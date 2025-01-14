@@ -10,10 +10,10 @@ class khoahoc extends Model
     use HasFactory;
 
     /**
-     * Get the chuongtrinhdaotaos for the khoahoc.
+     * Get the chuongtrinhdaotao that owns the khoahoc.
      */
-    public function chuongtrinhdaotaos()
+    public function chuongtrinhdaotao()
     {
-        return $this->hasMany(Chuongtrinhdaotao::class, 'KhoaHocID');
+        return $this->belongsTo(Chuongtrinhdaotao::class, 'CTDT_ID');
     }
 }

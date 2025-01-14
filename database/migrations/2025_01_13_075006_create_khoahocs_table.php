@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('MaKhoaHoc', 50)->unique();
             $table->string('TenKhoaHoc', 100);
+            $table->unsignedBigInteger('CTDT_ID')->nullable();
             $table->string('NamBatDau', 20);
             $table->string('NamKetThuc', 20);
+            $table->foreign('CTDT_ID')->references('id')->on('chuongtrinhdaotaos');
             $table->timestamps();
         });
     }

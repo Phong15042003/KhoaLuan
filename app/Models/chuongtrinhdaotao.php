@@ -26,10 +26,10 @@ class chuongtrinhdaotao extends Model
     }
 
     /**
-     * Get the khoahoc that owns the chuongtrinhdaotao.
+     * Get the khoahocs for the chuongtrinhdaotao.
      */
-    public function khoahoc()
+    public function khoahocs()
     {
-        return $this->belongsTo(Khoahoc::class, 'KhoaHocID');
+        return $this->hasMany(Khoahoc::class, 'CTDT_ID');
     }
 }

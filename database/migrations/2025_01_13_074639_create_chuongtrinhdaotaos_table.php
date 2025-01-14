@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('chuongtrinhdaotaos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('MaCTDT', 50)->unique();
             $table->string('TenChuongTrinh', 100);
             $table->unsignedBigInteger('NganhHocID')->nullable();
-            $table->unsignedBigInteger('KhoaHocID')->nullable();
             $table->foreign('NganhHocID')->references('id')->on('nganhhocs');
-            $table->foreign('KhoaHocID')->references('id')->on('khoahocs');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
