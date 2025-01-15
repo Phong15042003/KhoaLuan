@@ -44,26 +44,34 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Bảng chức năng</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">Interface</div>
+         
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Quản lý</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                   
+                        <a class="collapse-item" href="buttons.html">Khoa</a>
+                        <a class="collapse-item" href="cards.html">Bộ môn</a>
+                        <a class="collapse-item" href="cards.html">Ngành</a>
+                        <a class="collapse-item" href="cards.html">Khóa học</a>
+                        <a class="collapse-item" href="cards.html">Chương trình đào tạo</a>
+                        <a class="collapse-item" href="cards.html">Khối kiến thức</a>
+                        <a class="collapse-item" href="cards.html">Học phần</a>
+                        <a class="collapse-item" href="cards.html">Nhóm học phần</a>
+                        <a class="collapse-item" href="cards.html">Loại học phần</a>
+                        <a class="collapse-item" href="cards.html">Đề cương chi tiết</a>
                     </div>
                 </div>
             </li>
@@ -71,8 +79,8 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Tài khoản người dùng</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
