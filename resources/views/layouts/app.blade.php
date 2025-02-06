@@ -61,15 +61,15 @@
                         </a>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                <a class="collapse-item" href="buttons.html">Khoa</a>
-                                <a class="collapse-item" href="cards.html">Bộ môn</a>
-                                <a class="collapse-item" href="cards.html">Ngành</a>
-                                <a class="collapse-item" href="cards.html">Khóa học</a>
+                                <a class="collapse-item" href=" {{ route('khoa.index') }}">Khoa</a>
+                                <a class="collapse-item" href="{{ route('bomon.index') }}">Bộ môn</a>
+                                <a class="collapse-item" href="{{ route('nganhhoc.index') }}">Ngành</a>
+                                <a class="collapse-item" href="">Khóa học</a>
                                 <a class="collapse-item" href="cards.html">Chương trình đào tạo</a>
-                                <a class="collapse-item" href="cards.html">Khối kiến thức</a>
+                                <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
                                 <a class="collapse-item" href="cards.html">Học phần</a>
                                 <a class="collapse-item" href="cards.html">Nhóm học phần</a>
-                                <a class="collapse-item" href="cards.html">Loại học phần</a>
+                                <a class="collapse-item" href="{{ route('loaihocphan.index') }}">Loại học phần</a>
                                 <a class="collapse-item" href="cards.html">Đề cương chi tiết</a>
                             </div>
                         </div>

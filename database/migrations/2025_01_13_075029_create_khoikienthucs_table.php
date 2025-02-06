@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('MaKhoiKienThuc', 50)->unique();
             $table->string('TenKhoi', 100);
-            $table->unsignedBigInteger('ChuongTrinhID')->nullable();
-            $table->foreign('ChuongTrinhID')->references('id')->on('chuongtrinhdaotaos');
+       
             $table->timestamps();
         });
     }

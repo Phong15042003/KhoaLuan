@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('TenHocPhan', 100);
             $table->string('TenHocPhanTiengAnh', 100);
             $table->integer('SoTinChi');
+            $table->integer('SoTietLyThuyet'); 
+            $table->integer('SoTietThucHanh');
             $table->unsignedBigInteger('KhoiKienThucID')->nullable();
             $table->unsignedBigInteger('LoaiHocPhanID')->nullable();
             $table->unsignedBigInteger('NhomHocPhanID')->nullable();

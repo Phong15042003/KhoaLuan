@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bomon;
+use App\Models\khoa;
 use Illuminate\Http\Request;
 
 class BomonController extends Controller
@@ -12,7 +13,8 @@ class BomonController extends Controller
      */
     public function index()
     {
-        //
+        $bomons = Bomon::orderBy('created_at', 'desc')->get();
+        return view('bomon.index', compact('bomons'));
     }
 
     /**
@@ -20,7 +22,8 @@ class BomonController extends Controller
      */
     public function create()
     {
-        //
+        $khoas = Khoa::all();
+        return view('bomon.create', compact('khoas'));
     }
 
     /**
@@ -28,38 +31,68 @@ class BomonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'MaBoMon' => 'required|string|max:50|unique:bomons',
+            'TenBoMon' => 'required|string|max:100',
+            'KhoaID' => 'required|exists:khoas,id',
+        ]);
+
+        $bomon = new Bomon();
+        $bomon->MaBoMon = $request->MaBoMon;
+        $bomon->TenBoMon = $request->TenBoMon;
+        $bomon->KhoaID = $request->KhoaID;
+        $bomon->save();
+
+        return redirect()->route('bomon.index')->with('success', 'Bộ môn created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(bomon $bomon)
+    public function show($id)
     {
-        //
+        $bomon = Bomon::findOrFail($id);
+        return view('bomon.show', compact('bomon'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(bomon $bomon)
+    public function edit($id)
     {
-        //
+        $bomon = Bomon::findOrFail($id);
+        $khoas = Khoa::all();
+        return view('bomon.edit', compact('bomon', 'khoas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, bomon $bomon)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'MaBoMon' => 'required|string|max:50|unique:bomons,MaBoMon,' . $id,
+            'TenBoMon' => 'required|string|max:100',
+            'KhoaID' => 'required|exists:khoas,id',
+        ]);
+
+        $bomon = Bomon::findOrFail($id);
+        $bomon->MaBoMon = $request->MaBoMon;
+        $bomon->TenBoMon = $request->TenBoMon;
+        $bomon->KhoaID = $request->KhoaID;
+        $bomon->save();
+
+        return redirect()->route('bomon.index')->with('success', 'Bộ môn updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(bomon $bomon)
+    public function destroy($id)
     {
-        //
+        $bomon = Bomon::findOrFail($id);
+        $bomon->delete();
+
+        return redirect()->route('bomon.index')->with('success', 'Bộ môn deleted successfully.');
     }
 }

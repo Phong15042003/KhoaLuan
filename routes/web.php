@@ -29,3 +29,51 @@ Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edi
 Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 
+//khoa
+Route::get('/khoa', [App\Http\Controllers\KhoaController::class, 'index'])->name('khoa.index');
+Route::get('/khoa/create', [App\Http\Controllers\KhoaController::class, 'create'])->name('khoa.create');
+Route::post('/khoa', [App\Http\Controllers\KhoaController::class, 'store'])->name('khoa.store');
+Route::get('/khoa/{id}/edit', [App\Http\Controllers\KhoaController::class, 'edit'])->name('khoa.edit');
+Route::put('/khoa/{id}', [App\Http\Controllers\KhoaController::class, 'update'])->name('khoa.update');
+Route::delete('/khoa/{id}', [App\Http\Controllers\KhoaController::class, 'destroy'])->name('khoa.destroy');
+
+//bomon
+Route::get('/bomon', [App\Http\Controllers\BomonController::class, 'index'])->name('bomon.index');
+Route::get('/bomon/create', [App\Http\Controllers\BomonController::class, 'create'])->name('bomon.create');
+Route::post('/bomon', [App\Http\Controllers\BomonController::class, 'store'])->name('bomon.store');
+Route::get('/bomon/{id}/edit', [App\Http\Controllers\BomonController::class, 'edit'])->name('bomon.edit');
+Route::put('/bomon/{id}', [App\Http\Controllers\BomonController::class, 'update'])->name('bomon.update');
+Route::delete('/bomon/{id}', [App\Http\Controllers\BomonController::class, 'destroy'])->name('bomon.destroy');
+
+//nganhhoc
+Route::get('/nganhhoc', [App\Http\Controllers\NganhhocController::class, 'index'])->name('nganhhoc.index');
+Route::get('/nganhhoc/create', [App\Http\Controllers\NganhhocController::class, 'create'])->name('nganhhoc.create');
+Route::post('/nganhhoc', [App\Http\Controllers\NganhhocController::class, 'store'])->name('nganhhoc.store');
+Route::get('/nganhhoc/{id}/edit', [App\Http\Controllers\NganhhocController::class, 'edit'])->name('nganhhoc.edit');
+Route::put('/nganhhoc/{id}', [App\Http\Controllers\NganhhocController::class, 'update'])->name('nganhhoc.update');
+Route::delete('/nganhhoc/{id}', [App\Http\Controllers\NganhhocController::class, 'destroy'])->name('nganhhoc.destroy');
+
+//khoikienthuc
+Route::get('/khoikienthuc', [App\Http\Controllers\KhoikienthucController::class, 'index'])->name('khoikienthuc.index');
+Route::get('/khoikienthuc/create', [App\Http\Controllers\KhoikienthucController::class, 'create'])->name('khoikienthuc.create');
+Route::post('/khoikienthuc', [App\Http\Controllers\KhoikienthucController::class, 'store'])->name('khoikienthuc.store');
+Route::get('/khoikienthuc/{id}/edit', [App\Http\Controllers\KhoikienthucController::class, 'edit'])->name('khoikienthuc.edit');
+Route::put('/khoikienthuc/{id}', [App\Http\Controllers\KhoikienthucController::class, 'update'])->name('khoikienthuc.update');
+Route::delete('/khoikienthuc/{id}', [App\Http\Controllers\KhoikienthucController::class, 'destroy'])->name('khoikienthuc.destroy');
+
+//loaihocphan
+Route::get('/loaihocphan', [App\Http\Controllers\LoaihocphanController::class, 'index'])->name('loaihocphan.index');
+Route::get('/loaihocphan/create', [App\Http\Controllers\LoaihocphanController::class, 'create'])->name('loaihocphan.create');
+Route::post('/loaihocphan', [App\Http\Controllers\LoaihocphanController::class, 'store'])->name('loaihocphan.store');
+Route::get('/loaihocphan/{id}/edit', [App\Http\Controllers\LoaihocphanController::class, 'edit'])->name('loaihocphan.edit');
+Route::put('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::class, 'update'])->name('loaihocphan.update');
+Route::delete('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::class, 'destroy'])->name('loaihocphan.destroy');
+
+
+
+
+
+
+
+
+

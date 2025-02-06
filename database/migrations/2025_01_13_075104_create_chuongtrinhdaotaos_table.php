@@ -19,6 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('NganhHocID')->nullable();
             $table->foreign('NganhHocID')->references('id')->on('nganhhocs');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('hocphan_id')->nullable();
+            $table->foreign('hocphan_id')->references('id')->on('hocphans');
             $table->timestamps();
         });
     }

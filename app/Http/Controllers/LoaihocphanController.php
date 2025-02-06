@@ -12,7 +12,8 @@ class LoaihocphanController extends Controller
      */
     public function index()
     {
-        //
+        $loaihocphans = Loaihocphan::orderBy('created_at', 'desc')->get();
+        return view('loaihocphan.index', compact('loaihocphans'));
     }
 
     /**
@@ -20,7 +21,7 @@ class LoaihocphanController extends Controller
      */
     public function create()
     {
-        //
+        return view('loaihocphan.create');
     }
 
     /**
@@ -28,38 +29,59 @@ class LoaihocphanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'TenLoaiHocPhan' => 'required|string|max:100|unique:loaihocphans',
+        ]);
+
+        $loaihocphan = new Loaihocphan();
+        $loaihocphan->TenLoaiHocPhan = $request->TenLoaiHocPhan;
+        $loaihocphan->save();
+
+        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(loaihocphan $loaihocphan)
+    public function show($id)
     {
-        //
+        $loaihocphan = Loaihocphan::findOrFail($id);
+        return view('loaihocphan.show', compact('loaihocphan'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(loaihocphan $loaihocphan)
+    public function edit($id)
     {
-        //
+        $loaihocphan = Loaihocphan::findOrFail($id);
+        return view('loaihocphan.edit', compact('loaihocphan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, loaihocphan $loaihocphan)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'TenLoaiHocPhan' => 'required|string|max:100|unique:loaihocphans,TenLoaiHocPhan,' . $id,
+        ]);
+
+        $loaihocphan = Loaihocphan::findOrFail($id);
+        $loaihocphan->TenLoaiHocPhan = $request->TenLoaiHocPhan;
+        $loaihocphan->save();
+
+        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(loaihocphan $loaihocphan)
+    public function destroy($id)
     {
-        //
+        $loaihocphan = Loaihocphan::findOrFail($id);
+        $loaihocphan->delete();
+
+        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần deleted successfully.');
     }
 }
