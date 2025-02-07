@@ -69,6 +69,15 @@ Route::get('/loaihocphan/{id}/edit', [App\Http\Controllers\LoaihocphanController
 Route::put('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::class, 'update'])->name('loaihocphan.update');
 Route::delete('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::class, 'destroy'])->name('loaihocphan.destroy');
 
+//hocphan
+Route::get('/hocphan', [App\Http\Controllers\HocphanController::class, 'index'])->name('hocphan.index');
+Route::get('/hocphan/create', [App\Http\Controllers\HocphanController::class, 'create'])->name('hocphan.create');
+Route::post('/hocphan', [App\Http\Controllers\HocphanController::class, 'store'])->name('hocphan.store');
+Route::get('/hocphan/{id}/edit', [App\Http\Controllers\HocphanController::class, 'edit'])->name('hocphan.edit');
+Route::put('/hocphan/{id}', [App\Http\Controllers\HocphanController::class, 'update'])->name('hocphan.update');
+Route::delete('/hocphan/{id}', [App\Http\Controllers\HocphanController::class, 'destroy'])->name('hocphan.destroy');
+
+
 
 
 
