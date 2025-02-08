@@ -48,4 +48,12 @@ class hocphan extends Model
     {
         return $this->hasMany(Gopy::class, 'HocPhanID');
     }
+
+    /**
+     * The chuongtrinhdaotaos that belong to the hocphan.
+     */
+    public function chuongtrinhdaotaos()
+    {
+        return $this->belongsToMany(Chuongtrinhdaotao::class, 'ctdt_hocphans', 'hocphan_id', 'ctdt_id');
+    }
 }

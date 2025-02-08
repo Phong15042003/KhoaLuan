@@ -65,7 +65,8 @@
                                 <a class="collapse-item" href="{{ route('bomon.index') }}">Bộ môn</a>
                                 <a class="collapse-item" href="{{ route('nganhhoc.index') }}">Ngành</a>
                                 <a class="collapse-item" href="">Khóa học</a>
-                                <a class="collapse-item" href="cards.html">Chương trình đào tạo</a>
+                                <a class="collapse-item" href="{{ route('chuongtrinhdaotao.index') }}">Chương trình đào tạo</a>
+                                <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">Chương trình đào tạo học phần</a>
                                 <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
                                 <a class="collapse-item" href="{{ route('hocphan.index') }}">Học phần</a>
                                 <a class="collapse-item" href="cards.html">Nhóm học phần</a>

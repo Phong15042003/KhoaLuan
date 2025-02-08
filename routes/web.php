@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChuongtrinhdaotaoController;
+use App\Http\Controllers\HocphanController;
+use App\Http\Controllers\CtdtHocphanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,12 +73,28 @@ Route::put('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::cla
 Route::delete('/loaihocphan/{id}', [App\Http\Controllers\LoaihocphanController::class, 'destroy'])->name('loaihocphan.destroy');
 
 //hocphan
-Route::get('/hocphan', [App\Http\Controllers\HocphanController::class, 'index'])->name('hocphan.index');
-Route::get('/hocphan/create', [App\Http\Controllers\HocphanController::class, 'create'])->name('hocphan.create');
-Route::post('/hocphan', [App\Http\Controllers\HocphanController::class, 'store'])->name('hocphan.store');
-Route::get('/hocphan/{id}/edit', [App\Http\Controllers\HocphanController::class, 'edit'])->name('hocphan.edit');
-Route::put('/hocphan/{id}', [App\Http\Controllers\HocphanController::class, 'update'])->name('hocphan.update');
-Route::delete('/hocphan/{id}', [App\Http\Controllers\HocphanController::class, 'destroy'])->name('hocphan.destroy');
+Route::get('/hocphan', [HocphanController::class, 'index'])->name('hocphan.index');
+Route::get('/hocphan/create', [HocphanController::class, 'create'])->name('hocphan.create');
+Route::post('/hocphan', [HocphanController::class, 'store'])->name('hocphan.store');
+Route::get('/hocphan/{id}/edit', [HocphanController::class, 'edit'])->name('hocphan.edit');
+Route::put('/hocphan/{id}', [HocphanController::class, 'update'])->name('hocphan.update');
+Route::delete('/hocphan/{id}', [HocphanController::class, 'destroy'])->name('hocphan.destroy');
+
+//chuongtrinhdaotao
+Route::get('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'index'])->name('chuongtrinhdaotao.index');
+Route::get('/chuongtrinhdaotao/create', [ChuongtrinhdaotaoController::class, 'create'])->name('chuongtrinhdaotao.create');
+Route::post('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'store'])->name('chuongtrinhdaotao.store');
+Route::get('/chuongtrinhdaotao/{id}/edit', [ChuongtrinhdaotaoController::class, 'edit'])->name('chuongtrinhdaotao.edit');
+Route::put('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'update'])->name('chuongtrinhdaotao.update');
+Route::delete('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'destroy'])->name('chuongtrinhdaotao.destroy');
+
+//ctdthocphan
+Route::get('/ctdthocphan', [CtdtHocphanController::class, 'index'])->name('ctdthocphan.index');
+Route::get('/ctdthocphan/create', [CtdtHocphanController::class, 'create'])->name('ctdthocphan.create');
+Route::post('/ctdthocphan', [CtdtHocphanController::class, 'store'])->name('ctdthocphan.store');
+Route::get('/ctdthocphan/{id}/edit', [CtdtHocphanController::class, 'edit'])->name('ctdthocphan.edit');
+Route::put('/ctdthocphan/{id}', [CtdtHocphanController::class, 'update'])->name('ctdthocphan.update');
+Route::delete('/ctdthocphan/{id}', [CtdtHocphanController::class, 'destroy'])->name('ctdthocphan.destroy');
 
 
 

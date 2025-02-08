@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('chuongtrinhdaotaos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            //$table->unsignedBigInteger('user_id');
             $table->string('MaCTDT', 50)->unique();
             $table->string('TenChuongTrinh', 100);
             $table->unsignedBigInteger('NganhHocID')->nullable();
             $table->foreign('NganhHocID')->references('id')->on('nganhhocs');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('hocphan_id')->nullable();
-            $table->foreign('hocphan_id')->references('id')->on('hocphans');
+            //$table->foreign('user_id')->references('id')->on('users');
+         
             $table->timestamps();
         });
     }
