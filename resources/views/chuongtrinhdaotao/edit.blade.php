@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label for="MaChuongTrinh">{{ __('Mã Chương trình') }}</label>
-                            <input type="text" class="form-control" id="MaChuongTrinh" name="MaChuongTrinh" value="{{ $chuongtrinhdaotao->MaChuongTrinh }}" required>
+                            <input type="text" class="form-control" id="MaChuongTrinh" name="MaChuongTrinh" value="{{ $chuongtrinhdaotao->MaCTDT }}" required>
                         </div>
 
                         <div class="form-group">

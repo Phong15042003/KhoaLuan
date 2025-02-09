@@ -84,6 +84,7 @@ Route::delete('/hocphan/{id}', [HocphanController::class, 'destroy'])->name('hoc
 Route::get('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'index'])->name('chuongtrinhdaotao.index');
 Route::get('/chuongtrinhdaotao/create', [ChuongtrinhdaotaoController::class, 'create'])->name('chuongtrinhdaotao.create');
 Route::post('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'store'])->name('chuongtrinhdaotao.store');
+Route::get('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'show'])->name('chuongtrinhdaotao.show');
 Route::get('/chuongtrinhdaotao/{id}/edit', [ChuongtrinhdaotaoController::class, 'edit'])->name('chuongtrinhdaotao.edit');
 Route::put('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'update'])->name('chuongtrinhdaotao.update');
 Route::delete('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'destroy'])->name('chuongtrinhdaotao.destroy');

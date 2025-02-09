@@ -66,7 +66,7 @@
                                 <a class="collapse-item" href="{{ route('nganhhoc.index') }}">Ngành</a>
                                 <a class="collapse-item" href="">Khóa học</a>
                                 <a class="collapse-item" href="{{ route('chuongtrinhdaotao.index') }}">Chương trình đào tạo</a>
-                                <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">Chương trình đào tạo học phần</a>
+                                <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">CTDT học phần</a>
                                 <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
                                 <a class="collapse-item" href="{{ route('hocphan.index') }}">Học phần</a>
                                 <a class="collapse-item" href="cards.html">Nhóm học phần</a>
@@ -191,7 +191,7 @@
  <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+            <span>Copyright NgoThanhPhong &copy; Quản lý chương trình đào tạo</span>
         </div>
     </div>
 </footer>

@@ -5,17 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class chuongtrinhdaotao extends Model
+class Chuongtrinhdaotao extends Model
 {
     use HasFactory;
-
-    /**
-     * Get the khoikienthucs for the chuongtrinhdaotao.
-     */
-    public function khoikienthucs()
-    {
-        return $this->hasMany(Khoikienthuc::class, 'ChuongTrinhID');
-    }
 
     /**
      * Get the nganhhoc that owns the chuongtrinhdaotao.
@@ -26,18 +18,10 @@ class chuongtrinhdaotao extends Model
     }
 
     /**
-     * Get the khoahocs for the chuongtrinhdaotao.
-     */
-    public function khoahocs()
-    {
-        return $this->hasMany(Khoahoc::class, 'CTDT_ID');
-    }
-
-    /**
-     * Get the hocphans for the chuongtrinhdaotao.
+     * The hocphans that belong to the chuongtrinhdaotao.
      */
     public function hocphans()
     {
-        return $this->belongsToMany(Hocphan::class, 'ctdt_hocphans', 'ctdt_id', 'hocphan_id');
+        return $this->belongsToMany(Hocphan::class, 'ctdthocphans', 'CTDT_ID', 'HocPhanID');
     }
 }

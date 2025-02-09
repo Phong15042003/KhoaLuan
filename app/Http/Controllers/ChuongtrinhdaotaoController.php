@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\chuongtrinhdaotao;
-use App\Models\nganhhoc;
+use App\Models\Chuongtrinhdaotao;
+use App\Models\Nganhhoc;
 use Illuminate\Http\Request;
 
 class ChuongtrinhdaotaoController extends Controller
@@ -52,7 +52,8 @@ class ChuongtrinhdaotaoController extends Controller
     public function show($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
-        return view('chuongtrinhdaotao.show', compact('chuongtrinhdaotao'));
+        $hocphans = $chuongtrinhdaotao->hocphans; // Get the related hocphans
+        return view('chuongtrinhdaotao.show', compact('chuongtrinhdaotao', 'hocphans'));
     }
 
     /**

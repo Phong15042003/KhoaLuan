@@ -9,7 +9,7 @@ class CtdtHocphan extends Model
 {
     use HasFactory;
 
-    protected $table = 'ctdthocphans';
+    protected $table = 'ctdthocphans'; // Update the table name
 
     protected $fillable = [
         'CTDT_ID',

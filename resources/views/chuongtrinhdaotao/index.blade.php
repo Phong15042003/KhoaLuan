@@ -40,6 +40,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
+                                        <a href="{{ route('chuongtrinhdaotao.show', $chuongtrinhdaotao->id) }}" class="btn btn-info">Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach
