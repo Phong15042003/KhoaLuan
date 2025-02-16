@@ -41,6 +41,7 @@
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                         <a href="{{ route('chuongtrinhdaotao.show', $chuongtrinhdaotao->id) }}" class="btn btn-info">Chi tiết</a>
+                                        <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -55,6 +55,13 @@ class ChuongtrinhdaotaoController extends Controller
         $hocphans = $chuongtrinhdaotao->hocphans; // Get the related hocphans
         return view('chuongtrinhdaotao.show', compact('chuongtrinhdaotao', 'hocphans'));
     }
+    public function showhocky($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphansByHocky = $chuongtrinhdaotao->hocphans->sortBy('HocKy')->groupBy('HocKy'); // Sort and group hocphans by HocKy
+        return view('chuongtrinhdaotao.showhocky', compact('chuongtrinhdaotao', 'hocphansByHocky'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
