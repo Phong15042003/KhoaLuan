@@ -13,9 +13,9 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
+                    @if (auth()->user()->vaitro == 'admin')
                     <a href="{{ route('khoa.create') }}" class="btn btn-primary mb-3">Create Khoa</a>
-
+                    @endif
                     <table class="table table-bordered">
                         <thead>
                             <tr>

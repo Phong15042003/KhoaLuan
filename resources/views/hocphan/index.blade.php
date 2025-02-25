@@ -13,9 +13,9 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
+                    @if (auth()->user()->vaitro == 'admin')
                     <a href="{{ route('hocphan.create') }}" class="btn btn-primary mb-3">Create Học phần</a>
-
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-bordered" style="width: 100%;">
                             <thead>

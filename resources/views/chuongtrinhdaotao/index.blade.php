@@ -13,8 +13,10 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
-                    <a href="{{ route('chuongtrinhdaotao.create') }}" class="btn btn-primary mb-3">Create Chương trình đào tạo</a>
+                    @if (auth()->user()->vaitro == 'admin')
+                        <a href="{{ route('chuongtrinhdaotao.create') }}" class="btn btn-primary mb-3">Create Chương trình đào tạo</a>
+                    @endif
+                    
 
                     <table class="table table-bordered">
                         <thead>

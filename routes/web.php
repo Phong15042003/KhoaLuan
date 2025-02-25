@@ -98,6 +98,21 @@ Route::get('/ctdthocphan/{id}/edit', [CtdtHocphanController::class, 'edit'])->na
 Route::put('/ctdthocphan/{id}', [CtdtHocphanController::class, 'update'])->name('ctdthocphan.update');
 Route::delete('/ctdthocphan/{id}', [CtdtHocphanController::class, 'destroy'])->name('ctdthocphan.destroy');
 
+//vaitro
+Route::get('/vaitro', [App\Http\Controllers\VaitroController::class, 'index'])->name('vaitro.index');
+Route::get('/vaitro/create', [App\Http\Controllers\VaitroController::class, 'create'])->name('vaitro.create');
+Route::post('/vaitro', [App\Http\Controllers\VaitroController::class, 'store'])->name('vaitro.store');
+Route::get('/vaitro/{id}/edit', [App\Http\Controllers\VaitroController::class, 'edit'])->name('vaitro.edit');
+Route::put('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'update'])->name('vaitro.update');
+Route::delete('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'destroy'])->name('vaitro.destroy');
+Route::get('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'show'])->name('vaitro.show');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('users', UserController::class);
+    // ... các route chỉ dành cho admin
+});
+
+
 
 
 

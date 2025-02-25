@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hocphans', function (Blueprint $table) {
-            $table->id();
-            $table->string('MaHocPhan', 50)->unique();
+            $table->id(); 
+            $table->integer('sothutu')->nullable();
+            $table->string('MaHocPhan', 50); 
             $table->string('TenHocPhan', 100);
             $table->string('TenHocPhanTiengAnh', 100);
             $table->integer('SoTinChi');
@@ -28,8 +29,11 @@ return new class extends Migration
             $table->unsignedBigInteger('NhomHocPhanID')->nullable();
             $table->foreign('KhoiKienThucID')->references('id')->on('khoikienthucs');
             $table->foreign('LoaiHocPhanID')->references('id')->on('loaihocphans');
-            //$table->foreign('NhomHocPhanID')->references('id')->on('nhomhocphans');
+            $table->foreign('NhomHocPhanID')->references('id')->on('nhomhocphans');
+
             $table->timestamps();
+
+           
         });
     }
 

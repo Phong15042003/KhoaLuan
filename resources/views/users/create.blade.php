@@ -46,6 +46,9 @@
                             <select class="form-control" id="vaitro" name="vaitro" required>
                                 <option value="sinhvien">Sinh Vien</option>
                                 <option value="admin">Admin</option>
+                                <option value="biensoan">Biên soạn</option>
+                                <option value="chunhiem">Chủ nhiệm khoa</option>
+                                <option value="giangvien">Giảng viên</option>
                             </select>
                         </div>
 
