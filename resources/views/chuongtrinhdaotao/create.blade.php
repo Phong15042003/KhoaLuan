@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Chương trình đào tạo') }}</div>
+                <div class="card-header">Thêm chương trình đào tạo</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -40,7 +40,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
             </div>

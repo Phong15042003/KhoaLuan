@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create User') }}</div>
+                <div class="card-header">Thêm người dùng</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="vaitro">{{ __('Role') }}</label>
                             <select class="form-control" id="vaitro" name="vaitro" required>
-                                <option value="sinhvien">Sinh Vien</option>
+                                <option value="sinhvien">Sinh viên</option>
                                 <option value="admin">Admin</option>
                                 <option value="biensoan">Biên soạn</option>
                                 <option value="chunhiem">Chủ nhiệm khoa</option>
@@ -52,7 +52,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
             </div>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('CTDT Học phần') }}</div>
+                <div class="card-header">CTĐT-học phần</div>
 
                 <div class="card-body">
                     @if (session('success'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('ctdthocphan.create') }}" class="btn btn-primary mb-3">Create CTDT Học phần</a>
+                    <a href="{{ route('ctdthocphan.create') }}" class="btn btn-primary mb-3">Thêm CTDT Học phần</a>
 
                     <table class="table table-bordered">
                         <thead>
@@ -22,7 +22,7 @@
                                 <th>ID</th>
                                 <th>Chương trình đào tạo</th>
                                 <th>Học phần</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,11 +32,11 @@
                                     <td>{{ $ctdtHocphan->chuongtrinhdaotao ? $ctdtHocphan->chuongtrinhdaotao->TenChuongTrinh : 'N/A' }}</td>
                                     <td>{{ $ctdtHocphan->hocphan ? $ctdtHocphan->hocphan->TenHocPhan : 'N/A' }}</td>
                                     <td>
-                                        <a href="{{ route('ctdthocphan.edit', $ctdtHocphan->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('ctdthocphan.edit', $ctdtHocphan->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('ctdthocphan.destroy', $ctdtHocphan->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

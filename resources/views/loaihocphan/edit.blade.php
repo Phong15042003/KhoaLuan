@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Edit Loại học phần') }}</div>
+                <div class="card-header">Sửa loại học phần</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -27,7 +27,7 @@
                             <input type="text" class="form-control" id="TenLoaiHocPhan" name="TenLoaiHocPhan" value="{{ $loaihocphan->TenLoaiHocPhan }}" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </form>
                 </div>
             </div>

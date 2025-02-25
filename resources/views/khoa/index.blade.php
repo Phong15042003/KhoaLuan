@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     @if (auth()->user()->vaitro == 'admin')
-                    <a href="{{ route('khoa.create') }}" class="btn btn-primary mb-3">Create Khoa</a>
+                    <a href="{{ route('khoa.create') }}" class="btn btn-primary mb-3">Thêm khoa</a>
                     @endif
                     <table class="table table-bordered">
                         <thead>
@@ -22,7 +22,7 @@
                                 <th>ID</th>
                                 <th>Ma Khoa</th>
                                 <th>Ten Khoa</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,11 +32,11 @@
                                     <td>{{ $khoa->MaKhoa }}</td>
                                     <td>{{ $khoa->TenKhoa }}</td>
                                     <td>
-                                        <a href="{{ route('khoa.edit', $khoa->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('khoa.edit', $khoa->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('khoa.destroy', $khoa->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

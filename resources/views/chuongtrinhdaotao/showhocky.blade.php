@@ -20,7 +20,6 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="thead-light">
                                     <tr>
-                                      
                                         <th>Mã Học phần</th>
                                         <th>Tên Học phần</th>
                                         <th>Tên Học phần Tiếng Anh</th>
@@ -28,27 +27,48 @@
                                         <th>Số Tín Chỉ</th>
                                         <th>Số Tiết Lý Thuyết</th>
                                         <th>Số Tiết Thực Hành</th>
-                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hocphans as $hocphan)
+                                    @php
+                                        // Đếm tổng số môn Tự chọn trong học kỳ này
+                                        $countTuChon = $hocphans->filter(function($hp) {
+                                            return $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn';
+                                        })->count();
+
+                                        // Đếm số môn Tự chọn đã in (để in rowspan 1 lần)
+                                        $tuChonPrinted = 0;
+                                    @endphp
+
+                                    @foreach ($hocphans as $hp)
                                         <tr>
-                                           
-                                            <td>{{ $hocphan->MaHocPhan }}</td>
-                                            <td>{{ $hocphan->TenHocPhan }}</td>
-                                            <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
-                                            <td>{{ $hocphan->loaihocphan->TenLoaiHocPhan }}</td>
-                                            <td>{{ $hocphan->SoTinChi }}</td>
-                                            <td>{{ $hocphan->SoTietLyThuyet }}</td>
-                                            <td>{{ $hocphan->SoTietThucHanh }}</td>
-                                            
+                                            <td>{{ $hp->MaHocPhan }}</td>
+                                            <td>{{ $hp->TenHocPhan }}</td>
+                                            <td>{{ $hp->TenHocPhanTiengAnh }}</td>
+
+                                            {{-- Nếu là Tự chọn, chỉ in "Tự chọn" ở dòng đầu --}}
+                                            @if ($hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')
+                                                @if ($tuChonPrinted === 0)
+                                                <td rowspan="{{ $countTuChon }}" class="text-center align-middle">Tự chọn</td>
+                                                @endif
+                                                @php
+                                                    $tuChonPrinted++;
+                                                @endphp
+                                            @else
+                                                {{-- Nếu là Bắt buộc, in luôn cột --}}
+                                                <td>{{ $hp->loaihocphan->TenLoaiHocPhan }}</td>
+                                            @endif
+
+                                            <td>{{ $hp->SoTinChi }}</td>
+                                            <td>{{ $hp->SoTietLyThuyet }}</td>
+                                            <td>{{ $hp->SoTietThucHanh }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     @endforeach
+
                 </div>
             </div>
         </div>

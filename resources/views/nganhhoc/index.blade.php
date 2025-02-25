@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('nganhhoc.create') }}" class="btn btn-primary mb-3">Create Ngành học</a>
+                    <a href="{{ route('nganhhoc.create') }}" class="btn btn-primary mb-3">Thêm ngành học</a>
 
                     <table class="table table-bordered">
                         <thead>
@@ -23,7 +23,7 @@
                                 <th>Mã Ngành</th>
                                 <th>Tên Ngành</th>
                                 <th>Bộ Môn</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,11 +34,11 @@
                                     <td>{{ $nganhhoc->TenNganh }}</td>
                                     <td>{{ $nganhhoc->bomon->TenBoMon }}</td>
                                     <td>
-                                        <a href="{{ route('nganhhoc.edit', $nganhhoc->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('nganhhoc.edit', $nganhhoc->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('nganhhoc.destroy', $nganhhoc->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

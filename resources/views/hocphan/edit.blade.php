@@ -21,7 +21,14 @@
                     <form method="POST" action="{{ route('hocphan.update', $hocphan->id) }}">
                         @csrf
                         @method('PUT')
-
+                        <div class="form-group">
+                            <label for="id">{{ __('ID') }}</label>
+                            <input type="number" class="form-control" id="id" name="id" value="{{ $hocphan->id }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="SoTinChi">{{ __('Số thứ tự') }}</label>
+                            <input type="number" class="form-control" id="sothutu" name="sothutu" value="{{ $hocphan->sothutu }}" required>
+                        </div>
                         <div class="form-group">
                             <label for="MaHocPhan">{{ __('Mã Học phần') }}</label>
                             <input type="text" class="form-control" id="MaHocPhan" name="MaHocPhan" value="{{ $hocphan->MaHocPhan }}" required>
@@ -90,7 +97,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </form>
                 </div>
             </div>

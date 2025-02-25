@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Học phần') }}</div>
+                <div class="card-header">Thêm học phần</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -20,7 +20,7 @@
 
                     <form method="POST" action="{{ route('hocphan.store') }}">
                         @csrf
-
+                      
                         <div class="form-group">
                             <label for="MaHocPhan">{{ __('Mã Học phần') }}</label>
                             <input type="text" class="form-control" id="MaHocPhan" name="MaHocPhan" value="{{ old('MaHocPhan') }}" required>
@@ -89,7 +89,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
             </div>

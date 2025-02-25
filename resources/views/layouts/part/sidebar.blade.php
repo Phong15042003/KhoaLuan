@@ -43,7 +43,6 @@
                         <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">CTDT học phần</a>
                         <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
                         <a class="collapse-item" href="{{ route('hocphan.index') }}">Học phần</a>
-                        <a class="collapse-item" href="cards.html">Nhóm học phần</a>
                         <a class="collapse-item" href="{{ route('loaihocphan.index') }}">Loại học phần</a>
                         <a class="collapse-item" href="cards.html">Đề cương chi tiết</a>
                     </div>

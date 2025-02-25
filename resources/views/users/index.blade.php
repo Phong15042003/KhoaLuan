@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Create User</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Thêm người dùng</a>
 
                     <table class="table table-bordered">
                         <thead>

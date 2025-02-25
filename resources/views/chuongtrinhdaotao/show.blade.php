@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12"> 
             <div class="card">
-                <div class="card-header">{{ __('Chương trình đào tạo Details') }}</div>
+                <div class="card-header">Chi tiết chương trình đào</div>
 
                 <div class="card-body">
                     <div class="mb-3">
@@ -19,7 +19,7 @@
                         <table class="table table-bordered table-hover" style="min-width: 1200px;">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>ID</th>
+                                    <th>STT</th>
                                     <th>Mã Học phần</th>
                                     <th>Tên Học phần</th>
                                     <th>Tên Học phần Tiếng Anh</th>
@@ -37,7 +37,7 @@
                             <tbody>
                                 @foreach ($hocphans as $hocphan)
                                     <tr>
-                                        <td>{{ $hocphan->id }}</td>
+                                        <td>{{ $hocphan->sothutu }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
@@ -54,7 +54,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div> {{-- End table-responsive --}}
+                    </div> 
                 </div>
             </div>
         </div>

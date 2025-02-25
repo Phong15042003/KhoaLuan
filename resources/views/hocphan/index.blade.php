@@ -14,13 +14,14 @@
                         </div>
                     @endif
                     @if (auth()->user()->vaitro == 'admin')
-                    <a href="{{ route('hocphan.create') }}" class="btn btn-primary mb-3">Create Học phần</a>
+                    <a href="{{ route('hocphan.create') }}" class="btn btn-primary mb-3">Thêm học phần</a>
                     @endif
                     <div class="table-responsive">
                         <table class="table table-bordered" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                  
+                                    <th>STT</th>
                                     <th>Mã Học phần</th>
                                     <th>Tên Học phần</th>
                                     <th>Tên Học phần Tiếng Anh</th>
@@ -33,13 +34,14 @@
                                     <th>Điều kiện Song Hành</th>
                                     <th>Khối Kiến Thức</th>
                                     <th>Học Kỳ</th>
-                                    <th>Actions</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($hocphans as $hocphan)
                                     <tr>
-                                        <td>{{ $hocphan->id }}</td>
+                                       
+                                        <td>{{ $hocphan->sothutu }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
@@ -53,11 +55,11 @@
                                         <td>{{ $hocphan->khoikienthuc->TenKhoi }}</td>
                                         <td>{{ $hocphan->HocKy }}</td>
                                         <td>
-                                            <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning">Sửa</a>
                                             <form action="{{ route('hocphan.destroy', $hocphan->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Loại học phần') }}</div>
+                <div class="card-header">Thêm loại học phần</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -26,7 +26,7 @@
                             <input type="text" class="form-control" id="TenLoaiHocPhan" name="TenLoaiHocPhan" value="{{ old('TenLoaiHocPhan') }}" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>
                 </div>
             </div>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\hocphan;
-use App\Models\khoikienthuc;
-use App\Models\loaihocphan;
+use App\Models\Hocphan;
+use App\Models\Khoikienthuc;
+use App\Models\Loaihocphan;
 use Illuminate\Http\Request;
 
 class HocphanController extends Controller
@@ -34,6 +34,7 @@ class HocphanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'sothutu' => 'required|integer',
             'MaHocPhan' => 'required|string|max:50|unique:hocphans',
             'TenHocPhan' => 'required|string|max:100',
             'TenHocPhanTiengAnh' => 'required|string|max:100',
@@ -49,6 +50,7 @@ class HocphanController extends Controller
         ]);
 
         $hocphan = new Hocphan();
+        $hocphan->sothutu = $request->sothutu;
         $hocphan->MaHocPhan = $request->MaHocPhan;
         $hocphan->TenHocPhan = $request->TenHocPhan;
         $hocphan->TenHocPhanTiengAnh = $request->TenHocPhanTiengAnh;
@@ -92,6 +94,7 @@ class HocphanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'sothutu' => 'required|integer',
             'MaHocPhan' => 'required|string|max:50|unique:hocphans,MaHocPhan,' . $id,
             'TenHocPhan' => 'required|string|max:100',
             'TenHocPhanTiengAnh' => 'required|string|max:100',
@@ -107,6 +110,7 @@ class HocphanController extends Controller
         ]);
 
         $hocphan = Hocphan::findOrFail($id);
+        $hocphan->sothutu = $request->sothutu;
         $hocphan->MaHocPhan = $request->MaHocPhan;
         $hocphan->TenHocPhan = $request->TenHocPhan;
         $hocphan->TenHocPhanTiengAnh = $request->TenHocPhanTiengAnh;

@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     @if (auth()->user()->vaitro == 'admin')
-                    <a href="{{ route('bomon.create') }}" class="btn btn-primary mb-3">Create Bộ môn</a>
+                    <a href="{{ route('bomon.create') }}" class="btn btn-primary mb-3">Thêm bộ môn</a>
                     @endif
                     <table class="table table-bordered">
                         <thead>
@@ -23,7 +23,7 @@
                                 <th>Mã Bộ môn</th>
                                 <th>Tên Bộ môn</th>
                                 <th>Khoa</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,11 +34,11 @@
                                     <td>{{ $bomon->TenBoMon }}</td>
                                     <td>{{ $bomon->khoa->TenKhoa }}</td>
                                     <td>
-                                        <a href="{{ route('bomon.edit', $bomon->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('bomon.edit', $bomon->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('bomon.destroy', $bomon->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

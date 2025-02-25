@@ -14,14 +14,14 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('loaihocphan.create') }}" class="btn btn-primary mb-3">Create Loại học phần</a>
+                    <a href="{{ route('loaihocphan.create') }}" class="btn btn-primary mb-3">Thêm loại học phần</a>
 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Tên Loại học phần</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,11 +30,11 @@
                                     <td>{{ $loaihocphan->id }}</td>
                                     <td>{{ $loaihocphan->TenLoaiHocPhan }}</td>
                                     <td>
-                                        <a href="{{ route('loaihocphan.edit', $loaihocphan->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('loaihocphan.edit', $loaihocphan->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('loaihocphan.destroy', $loaihocphan->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>
