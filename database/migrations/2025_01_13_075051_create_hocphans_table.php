@@ -26,10 +26,8 @@ return new class extends Migration
             $table->integer('DkSongHanh');
             $table->unsignedBigInteger('KhoiKienThucID')->nullable();
             $table->unsignedBigInteger('LoaiHocPhanID')->nullable();
-            $table->unsignedBigInteger('NhomHocPhanID')->nullable();
             $table->foreign('KhoiKienThucID')->references('id')->on('khoikienthucs');
             $table->foreign('LoaiHocPhanID')->references('id')->on('loaihocphans');
-            $table->foreign('NhomHocPhanID')->references('id')->on('nhomhocphans');
 
             $table->timestamps();
 

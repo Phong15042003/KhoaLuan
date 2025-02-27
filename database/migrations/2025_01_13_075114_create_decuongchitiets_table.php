@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('HocPhanID');
             $table->text('NoiDung');
-            $table->date('NgayCapNhat')->default(DB::raw('CURRENT_DATE'));
             $table->foreign('HocPhanID')->references('id')->on('hocphans');
             $table->timestamps();
         });

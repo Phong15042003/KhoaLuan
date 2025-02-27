@@ -38,13 +38,13 @@
                         <a class="collapse-item" href="{{ route('khoa.index') }}">Khoa</a>
                         <a class="collapse-item" href="{{ route('bomon.index') }}">Bộ môn</a>
                         <a class="collapse-item" href="{{ route('nganhhoc.index') }}">Ngành</a>
-                        <a class="collapse-item" href="">Khóa học</a>
+                        <a class="collapse-item" href="{{ route('khoahoc.index') }}">Khóa học</a>
                         <a class="collapse-item" href="{{ route('chuongtrinhdaotao.index') }}">Chương trình đào tạo</a>
                         <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">CTDT học phần</a>
                         <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
                         <a class="collapse-item" href="{{ route('hocphan.index') }}">Học phần</a>
                         <a class="collapse-item" href="{{ route('loaihocphan.index') }}">Loại học phần</a>
-                        <a class="collapse-item" href="cards.html">Đề cương chi tiết</a>
+                        <a class="collapse-item" href="{{ route('decuongchitiet.index') }}">Đề cương chi tiết</a>
                     </div>
                 </div>
             </li>
@@ -80,6 +80,19 @@
                 </a>
             </li>
         @endif
+        @if (Auth::user()->vaitro == 'giangvien')
+        <!-- Nav Item - Chương trình đào tạo -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('chuongtrinhdaotao.index') }}">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Chương trình đào tạo</span>
+            </a>
+            <a class="nav-link" href="{{ route('decuongchitiet.index') }}">
+                <i class="fas fa-fw fa-book"></i>
+                <span>Đề cương chi tiết</span>
+            </a>
+        </li>
+    @endif
     @endauth
 
     <!-- Divider -->

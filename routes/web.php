@@ -107,10 +107,30 @@ Route::put('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'updat
 Route::delete('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'destroy'])->name('vaitro.destroy');
 Route::get('/vaitro/{id}', [App\Http\Controllers\VaitroController::class, 'show'])->name('vaitro.show');
 
+//khoahoc
+Route::get('/khoahoc', [App\Http\Controllers\KhoahocController::class, 'index'])->name('khoahoc.index');
+Route::get('/khoahoc/create', [App\Http\Controllers\KhoahocController::class, 'create'])->name('khoahoc.create');
+Route::post('/khoahoc', [App\Http\Controllers\KhoahocController::class, 'store'])->name('khoahoc.store');
+Route::get('/khoahoc/{id}/edit', [App\Http\Controllers\KhoahocController::class, 'edit'])->name('khoahoc.edit');
+Route::put('/khoahoc/{id}', [App\Http\Controllers\KhoahocController::class, 'update'])->name('khoahoc.update');
+Route::delete('/khoahoc/{id}', [App\Http\Controllers\KhoahocController::class, 'destroy'])->name('khoahoc.destroy');
+Route::get('/khoahoc/{id}', [App\Http\Controllers\KhoahocController::class, 'show'])->name('khoahoc.show');
+
+//decuongchitiet
+Route::get('/decuongchitiet', [App\Http\Controllers\DecuongchitietController::class, 'index'])->name('decuongchitiet.index');
+Route::get('/decuongchitiet/create', [App\Http\Controllers\DecuongchitietController::class, 'create'])->name('decuongchitiet.create');
+Route::post('/decuongchitiet', [App\Http\Controllers\DecuongchitietController::class, 'store'])->name('decuongchitiet.store');
+Route::get('/decuongchitiet/{id}/edit', [App\Http\Controllers\DecuongchitietController::class, 'edit'])->name('decuongchitiet.edit');
+Route::put('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'update'])->name('decuongchitiet.update');
+Route::delete('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'destroy'])->name('decuongchitiet.destroy');
+Route::get('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'show'])->name('decuongchitiet.show');
+
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
     // ... các route chỉ dành cho admin
 });
+
 
 
 
