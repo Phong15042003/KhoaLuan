@@ -128,7 +128,9 @@ Route::get('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietControlle
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
-    // ... các route chỉ dành cho admin
+    Route::resource('khoa', KhoaController::class);
+    Route::resource('bomon', BomonController::class);
+    
 });
 
 

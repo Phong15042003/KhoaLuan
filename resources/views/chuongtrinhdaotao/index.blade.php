@@ -13,7 +13,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    @if (auth()->user()->vaitro == 'admin')
+                    @if (auth()->user()->vaitro == 'admin' || auth()->user()->vaitro == 'biensoan')
                         <a href="{{ route('chuongtrinhdaotao.create') }}" class="btn btn-primary mb-3">Thêm chương trình đào tạo</a>
                     @endif
                     
@@ -36,12 +36,15 @@
                                     <td>{{ $chuongtrinhdaotao->TenChuongTrinh }}</td>
                                     <td>{{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</td>
                                     <td>
-                                        <a href="{{ route('chuongtrinhdaotao.edit', $chuongtrinhdaotao->id) }}" class="btn btn-warning">Sửa</a>
-                                        <form action="{{ route('chuongtrinhdaotao.destroy', $chuongtrinhdaotao->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
-                                        </form>
+                                        @if (auth()->user()->vaitro == 'admin')
+                                            <a href="{{ route('chuongtrinhdaotao.edit', $chuongtrinhdaotao->id) }}" class="btn btn-warning">Sửa</a>
+                                            <form action="{{ route('chuongtrinhdaotao.destroy', $chuongtrinhdaotao->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </form>
+                                        @endif
+                                      
                                         <a href="{{ route('chuongtrinhdaotao.show', $chuongtrinhdaotao->id) }}" class="btn btn-info">Chi tiết</a>
                                         <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
                                     </td>

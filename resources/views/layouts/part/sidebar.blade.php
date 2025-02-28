@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Bảng chức năng</span>
         </a>
@@ -80,7 +80,7 @@
                 </a>
             </li>
         @endif
-        @if (Auth::user()->vaitro == 'giangvien')
+        @if (Auth::user()->vaitro == 'giangvien' || Auth::user()->vaitro == 'chunhiem')
         <!-- Nav Item - Chương trình đào tạo -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('chuongtrinhdaotao.index') }}">
@@ -92,7 +92,27 @@
                 <span>Đề cương chi tiết</span>
             </a>
         </li>
-    @endif
+        @endif
+        @if (Auth::user()->vaitro == 'biensoan')
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('chuongtrinhdaotao.index') }}">Chương trình đào tạo</a>
+                    <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">CTDT học phần</a>
+                    <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">Khối kiến thức</a>
+                    <a class="collapse-item" href="{{ route('hocphan.index') }}">Học phần</a>
+                    <a class="collapse-item" href="{{ route('loaihocphan.index') }}">Loại học phần</a>
+             
+                </div>
+            </div>
+        </li>
+        @endif
     @endauth
 
     <!-- Divider -->
