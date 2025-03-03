@@ -96,6 +96,7 @@ Route::get('/chuongtrinhdaotao/{id}/edit', [ChuongtrinhdaotaoController::class, 
 Route::put('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'update'])->name('chuongtrinhdaotao.update');
 Route::delete('/chuongtrinhdaotao/{id}', [ChuongtrinhdaotaoController::class, 'destroy'])->name('chuongtrinhdaotao.destroy');
 Route::get('/chuongtrinhdaotao/{id}/showhocky', [ChuongtrinhdaotaoController::class, 'showhocky'])->name('chuongtrinhdaotao.showhocky'); 
+Route::get('chuongtrinhdaotao/{id}/changed-courses', [ChuongtrinhdaotaoController::class, 'showChangedCourses'])->name('chuongtrinhdaotao.changed-courses');
 
 //ctdthocphan
 Route::get('/ctdthocphan', [CtdtHocphanController::class, 'index'])->name('ctdthocphan.index');

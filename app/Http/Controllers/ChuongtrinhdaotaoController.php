@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chuongtrinhdaotao;
 use App\Models\Nganhhoc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChuongtrinhdaotaoController extends Controller
 {
@@ -62,6 +63,31 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.showhocky', compact('chuongtrinhdaotao', 'hocphansByHocky'));
     }
 
+    /**
+     * Show the changed courses for the specified resource.
+     */
+    public function showChangedCourses($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphans = $chuongtrinhdaotao->hocphans;
+
+        foreach ($hocphans as $hocphan) {
+            $mon_cu = DB::table('hocphans')
+                ->where('sothutu', $hocphan->sothutu)
+                ->where('MaHocPhan', $hocphan->MaHocPhan)
+                ->where('id', '<>', $hocphan->id)
+                ->where('TenHocPhan', '<>', $hocphan->TenHocPhan)
+                ->first();
+
+            if ($mon_cu) {
+                $hocphan->TenHocPhanCu = $mon_cu->TenHocPhan;
+            } else {
+                $hocphan->TenHocPhanCu = null;
+            }
+        }
+
+        return view('chuongtrinhdaotao.changed-courses', compact('hocphans'));
+    }
 
     /**
      * Show the form for editing the specified resource.

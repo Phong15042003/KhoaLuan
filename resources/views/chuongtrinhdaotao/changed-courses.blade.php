@@ -1,22 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid"> 
+<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12"> 
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Chi tiết chương trình đào</div>
-                <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-primary mb-3">Những môn đã bị thay đổi</a>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
-                        <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
-                        <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
-                    </div>
+                <div class="card-header">Những môn đã bị thay đổi</div>
 
-                    <h5>{{ __('Học phần') }}</h5>
+                <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" style="min-width: 1200px;">
+                        <table class="table table-bordered table-hover">
                             <thead class="thead-light">
                                 <tr>
                                     <th>STT</th>
@@ -27,9 +20,6 @@
                                     <th>Số Tín Chỉ</th>
                                     <th>Số Tiết Lý Thuyết</th>
                                     <th>Số Tiết Thực Hành</th>
-                                    <th>Điều kiện Tiên Quyết</th>
-                                    <th>Điều kiện Học Trước</th>
-                                    <th>Điều kiện Song Hành</th>
                                     <th>Khối Kiến Thức</th>
                                     <th>Học Kỳ</th>
                                 </tr>
@@ -39,15 +29,19 @@
                                     <tr>
                                         <td>{{ $hocphan->sothutu }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>
-                                        <td>{{ $hocphan->TenHocPhan }}</td>
+                                        <td>
+                                            {{ $hocphan->TenHocPhan }}
+                                            @if ($hocphan->TenHocPhanCu)
+                                                <br><small class="text-danger">
+                                                    (*Tên trước đây: {{ $hocphan->TenHocPhanCu }})
+                                                </small>
+                                            @endif
+                                        </td>
                                         <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
                                         <td>{{ $hocphan->loaihocphan->TenLoaiHocPhan }}</td>
                                         <td>{{ $hocphan->SoTinChi }}</td>
                                         <td>{{ $hocphan->SoTietLyThuyet }}</td>
                                         <td>{{ $hocphan->SoTietThucHanh }}</td>
-                                        <td>{{ $hocphan->DkTienQuyet }}</td>
-                                        <td>{{ $hocphan->DkHocTruoc }}</td>
-                                        <td>{{ $hocphan->DkSongHanh }}</td>
                                         <td>{{ $hocphan->khoikienthuc->TenKhoi }}</td>
                                         <td>{{ $hocphan->HocKy }}</td>
                                     </tr>
