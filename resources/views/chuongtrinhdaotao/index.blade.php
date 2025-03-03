@@ -36,7 +36,7 @@
                                     <td>{{ $chuongtrinhdaotao->TenChuongTrinh }}</td>
                                     <td>{{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</td>
                                     <td>
-                                        @if (auth()->user()->vaitro == 'admin')
+                                        @if (auth()->user()->vaitro == 'biensoan')
                                             <a href="{{ route('chuongtrinhdaotao.edit', $chuongtrinhdaotao->id) }}" class="btn btn-warning">Sửa</a>
                                             <form action="{{ route('chuongtrinhdaotao.destroy', $chuongtrinhdaotao->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf

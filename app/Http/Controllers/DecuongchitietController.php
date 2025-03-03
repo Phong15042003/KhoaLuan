@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Decuongchitiet;
 use App\Models\Hocphan;
+use App\Models\Phancongmonhoc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DecuongchitietController extends Controller
 {
@@ -13,7 +15,27 @@ class DecuongchitietController extends Controller
      */
     public function index()
     {
-        $decuongchitiets = Decuongchitiet::orderBy('created_at', 'desc')->get();
+        $user = Auth::user();
+        if (in_array($user->vaitro, ['giangvien', 'biensoan', 'chunhiem', 'sinhvien'])) {
+            // Filter decuongchitiets based on the logged-in giangvien's assignments
+            $decuongchitiets = Decuongchitiet::whereHas('hocphan.phancongmonhocs', function ($query) use ($user) {
+                $query->where('giangvien_id', $user->id);
+            })->orderBy('created_at', 'desc')->get();
+        } else {
+            // For other roles, show all decuongchitiets
+            $decuongchitiets = Decuongchitiet::orderBy('created_at', 'desc')->get();
+        }
+        $user = Auth::user();
+        if ($user->vaitro === 'giangvien') {
+            // Filter decuongchitiets based on the logged-in giangvien's assignments
+            $decuongchitiets = Decuongchitiet::whereHas('hocphan.phancongmonhocs', function ($query) use ($user) {
+                $query->where('giangvien_id', $user->id);
+            })->orderBy('created_at', 'desc')->get();
+        } else {
+            // For other roles, show all decuongchitiets
+            $decuongchitiets = Decuongchitiet::orderBy('created_at', 'desc')->get();
+        }
+
         return view('decuongchitiet.index', compact('decuongchitiets'));
     }
 
@@ -22,7 +44,15 @@ class DecuongchitietController extends Controller
      */
     public function create()
     {
-        $hocphans = Hocphan::all();
+        $user = Auth::user();
+        if ($user->vaitro !== 'giangvien') {
+            abort(403, 'Bạn không có quyền truy cập trang này.');
+        }
+
+        $hocphans = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
+            $query->where('giangvien_id', $user->id);
+        })->get();
+
         return view('decuongchitiet.create', compact('hocphans'));
     }
 
@@ -31,16 +61,24 @@ class DecuongchitietController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
+        if ($user->vaitro !== 'giangvien') {
+            abort(403, 'Bạn không có quyền truy cập trang này.');
+        }
+
         $request->validate([
             'HocPhanID' => 'required|exists:hocphans,id',
             'NoiDung' => 'required|string',
-           
         ]);
+
+        // Ensure the selected HocPhanID is assigned to the logged-in giangvien
+        $hocphan = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
+            $query->where('giangvien_id', $user->id);
+        })->findOrFail($request->HocPhanID);
 
         $decuongchitiet = new Decuongchitiet();
         $decuongchitiet->HocPhanID = $request->HocPhanID;
         $decuongchitiet->NoiDung = $request->NoiDung;
-       
         $decuongchitiet->save();
 
         return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết created successfully.');

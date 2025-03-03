@@ -20,7 +20,10 @@
 
                     <form method="POST" action="{{ route('hocphan.store') }}">
                         @csrf
-                      
+                        <div class="form-group">
+                            <label for="MaHocPhan">STT</label>
+                            <input type="number" class="form-control" id="sothutu" name="sothutu" value="{{ old('sothutu') }}" required>
+                        </div>
                         <div class="form-group">
                             <label for="MaHocPhan">{{ __('Mã Học phần') }}</label>
                             <input type="text" class="form-control" id="MaHocPhan" name="MaHocPhan" value="{{ old('MaHocPhan') }}" required>

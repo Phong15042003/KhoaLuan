@@ -35,7 +35,7 @@ class HocphanController extends Controller
     {
         $request->validate([
             'sothutu' => 'required|integer',
-            'MaHocPhan' => 'required|string|max:50|unique:hocphans',
+            'MaHocPhan' => 'required|string|max:50|',
             'TenHocPhan' => 'required|string|max:100',
             'TenHocPhanTiengAnh' => 'required|string|max:100',
             'SoTinChi' => 'required|integer',
@@ -95,7 +95,7 @@ class HocphanController extends Controller
     {
         $request->validate([
             'sothutu' => 'required|integer',
-            'MaHocPhan' => 'required|string|max:50|unique:hocphans,MaHocPhan,' . $id,
+            'MaHocPhan' => 'required|string|max:50|',
             'TenHocPhan' => 'required|string|max:100',
             'TenHocPhanTiengAnh' => 'required|string|max:100',
             'SoTinChi' => 'required|integer',

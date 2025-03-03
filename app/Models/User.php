@@ -51,5 +51,19 @@ class User extends Authenticatable
         return $this->hasMany(Gopy::class, 'SinhVienID');
     }
 
-    
+    /**
+     * Get the phancongmonhocs where the user is the biensoan.
+     */
+    public function phancongmonhocsAsBiensoan()
+    {
+        return $this->hasMany(Phancongmonhoc::class, 'biensoan_id');
+    }
+
+    /**
+     * Get the phancongmonhocs where the user is the giangvien.
+     */
+    public function phancongmonhocsAsGiangvien()
+    {
+        return $this->hasMany(Phancongmonhoc::class, 'giangvien_id');
+    }
 }

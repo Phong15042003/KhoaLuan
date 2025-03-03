@@ -56,4 +56,12 @@ class hocphan extends Model
     {
         return $this->belongsToMany(Chuongtrinhdaotao::class, 'ctdthocphans', 'HocPhanID', 'CTDT_ID');
     }
+
+    /**
+     * Get the phancongmonhocs for the hocphan.
+     */
+    public function phancongmonhocs()
+    {
+        return $this->hasMany(Phancongmonhoc::class, 'HocPhanID');
+    }
 }

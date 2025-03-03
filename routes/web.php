@@ -2,9 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KhoaController;
+use App\Http\Controllers\BomonController;
 use App\Http\Controllers\ChuongtrinhdaotaoController;
 use App\Http\Controllers\HocphanController;
 use App\Http\Controllers\CtdtHocphanController;
+use App\Http\Controllers\DecuongchitietController;
+use App\Http\Controllers\NganhhocController;
+use App\Http\Controllers\KhoikienthucController;
+use App\Http\Controllers\LoaihocphanController;
+use App\Http\Controllers\phancongmonhocController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -125,6 +132,14 @@ Route::put('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietControlle
 Route::delete('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'destroy'])->name('decuongchitiet.destroy');
 Route::get('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'show'])->name('decuongchitiet.show');
 
+//phancongmonhoc
+Route::get('/phancongmonhoc', [App\Http\Controllers\PhancongmonhocController::class, 'index'])->name('phancongmonhoc.index');
+Route::get('/phancongmonhoc/create', [App\Http\Controllers\PhancongmonhocController::class, 'create'])->name('phancongmonhoc.create');
+Route::post('/phancongmonhoc', [App\Http\Controllers\PhancongmonhocController::class, 'store'])->name('phancongmonhoc.store');
+Route::get('/phancongmonhoc/{id}/edit', [App\Http\Controllers\PhancongmonhocController::class, 'edit'])->name('phancongmonhoc.edit');
+Route::put('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'update'])->name('phancongmonhoc.update');
+Route::get('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'show'])->name('phancongmonhoc.show');
+Route::delete('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'destroy'])->name('phancongmonhoc.destroy');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
