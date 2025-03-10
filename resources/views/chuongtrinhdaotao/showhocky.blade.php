@@ -8,11 +8,20 @@
                 <div class="card-header">Chương trình đào tạo theo học Kỳ</div>
 
                 <div class="card-body">
-                    <div class="mb-3">
-                        <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
-                        <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
-                        <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
+                    <div class="mb-3 d-flex justify-content-between align-items-start">
+                       <div>
+                            <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
+                            <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
+                            <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
+                        </div>
+
+                        <div>
+                            <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-info">Những môn đã bị thay đổi </a>
+                            <a href="{{ route('chuongtrinhdaotao.showkhoikienthuc', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo khối kiến thức</a>
+                            <a href="{{ route('chuongtrinhdaotao.showloaihocphan', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo loại học phần</a>                      
+                        </div>
                     </div>
+                    
 
                     @foreach ($hocphansByHocky as $hocky => $hocphans)
                         <h5>{{ __('Học Kỳ') }} {{ $hocky }}</h5>

@@ -24,7 +24,7 @@ class CtdtHocphanController extends Controller
     public function create()
     {
         $chuongtrinhdaotaos = Chuongtrinhdaotao::all();
-        $hocphans = Hocphan::all();
+        $hocphans = Hocphan::with('khoikienthuc')->get()->groupBy('KhoiKienThucID');
         return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans'));
     }
 
@@ -35,13 +35,16 @@ class CtdtHocphanController extends Controller
     {
         $request->validate([
             'CTDT_ID' => 'required|exists:chuongtrinhdaotaos,id',
-            'HocPhanID' => 'required|exists:hocphans,id',
+            'HocPhanID' => 'required|array',
+            'HocPhanID.*' => 'exists:hocphans,id',
         ]);
 
-        $ctdtHocphan = new CtdtHocphan();
-        $ctdtHocphan->CTDT_ID = $request->CTDT_ID;
-        $ctdtHocphan->HocPhanID = $request->HocPhanID;
-        $ctdtHocphan->save();
+        foreach ($request->HocPhanID as $hocPhanId) {
+            $ctdtHocphan = new CtdtHocphan();
+            $ctdtHocphan->CTDT_ID = $request->CTDT_ID;
+            $ctdtHocphan->HocPhanID = $hocPhanId;
+            $ctdtHocphan->save();
+        }
 
         return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần created successfully.');
     }

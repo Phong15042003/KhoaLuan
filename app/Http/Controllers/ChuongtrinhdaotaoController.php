@@ -71,22 +71,44 @@ class ChuongtrinhdaotaoController extends Controller
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
         $hocphans = $chuongtrinhdaotao->hocphans;
 
+        $changedHocphans = [];
+
         foreach ($hocphans as $hocphan) {
             $mon_cu = DB::table('hocphans')
                 ->where('sothutu', $hocphan->sothutu)
                 ->where('MaHocPhan', $hocphan->MaHocPhan)
                 ->where('id', '<>', $hocphan->id)
-                ->where('TenHocPhan', '<>', $hocphan->TenHocPhan)
+                ->where('created_at', '<', $hocphan->created_at)
+                ->orderBy('created_at', 'desc')
                 ->first();
 
-            if ($mon_cu) {
+            if ($mon_cu && $mon_cu->TenHocPhan !== $hocphan->TenHocPhan) {
                 $hocphan->TenHocPhanCu = $mon_cu->TenHocPhan;
-            } else {
-                $hocphan->TenHocPhanCu = null;
+                $changedHocphans[] = $hocphan;
             }
         }
 
-        return view('chuongtrinhdaotao.changed-courses', compact('hocphans'));
+        return view('chuongtrinhdaotao.changed-courses', compact('changedHocphans'));
+    }
+
+    /**
+     * Show the hocphans grouped by khoikienthuc for the specified resource.
+     */
+    public function showKhoikienthuc($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphansByKhoikienthuc = $chuongtrinhdaotao->hocphans->sortBy('KhoiKienThucID')->groupBy('KhoiKienThucID'); // Sort and group hocphans by KhoiKienThucID
+        return view('chuongtrinhdaotao.showkhoikienthuc', compact('chuongtrinhdaotao', 'hocphansByKhoikienthuc'));
+    }
+
+    /**
+     * Show the hocphans grouped by loaihocphan for the specified resource.
+     */
+    public function showLoaihocphan($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphansByLoaihocphan = $chuongtrinhdaotao->hocphans->sortBy('LoaiHocPhanID')->groupBy('LoaiHocPhanID'); // Sort and group hocphans by LoaiHocPhanID
+        return view('chuongtrinhdaotao.showloaihocphan', compact('chuongtrinhdaotao', 'hocphansByLoaihocphan'));
     }
 
     /**

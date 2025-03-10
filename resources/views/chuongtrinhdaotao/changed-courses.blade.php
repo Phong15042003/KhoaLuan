@@ -25,7 +25,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($hocphans as $hocphan)
+                                @foreach ($changedHocphans as $hocphan)
                                     <tr>
                                         <td>{{ $hocphan->sothutu }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>

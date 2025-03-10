@@ -32,9 +32,14 @@
 
                         <div class="form-group">
                             <label for="HocPhanID">{{ __('Học phần') }}</label>
-                            <select class="form-control" id="HocPhanID" name="HocPhanID" required>
-                                @foreach ($hocphans as $hocphan)
-                                    <option value="{{ $hocphan->id }}">{{ $hocphan->TenHocPhan }}</option>
+                            <select class="form-control select2-no-close" id="HocPhanID" name="HocPhanID[]" multiple required>
+                                <option value="">Chọn</option>
+                                @foreach ($hocphans as $khoikienthucID => $groupedHocphans)
+                                    <optgroup label="{{ $groupedHocphans->first()->khoikienthuc->TenKhoi }}">
+                                        @foreach ($groupedHocphans as $hocphan)
+                                            <option value="{{ $hocphan->id }}">{{ $hocphan->TenHocPhan }}</option>
+                                        @endforeach
+                                    </optgroup>
                                 @endforeach
                             </select>
                         </div>

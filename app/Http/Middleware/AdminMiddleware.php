@@ -22,6 +22,6 @@ class AdminMiddleware
     }
 
     // Nếu không phải admin, trả về trang lỗi 403 hoặc chuyển hướng
-    abort(403, 'Bạn không có quyền truy cập trang này.');
+    abort(404, 'Bạn không có quyền truy cập trang này.');
     }
 }
