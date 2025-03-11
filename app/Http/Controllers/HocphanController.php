@@ -47,6 +47,7 @@ class HocphanController extends Controller
             'DkSongHanh' => 'nullable|integer',
             'KhoiKienThucID' => 'required|exists:khoikienthucs,id',
             'LoaiHocPhanID' => 'required|exists:loaihocphans,id',
+            'NhomTuChon' => 'nullable|integer',
         ]);
 
         $hocphan = new Hocphan();
@@ -63,6 +64,7 @@ class HocphanController extends Controller
         $hocphan->DkSongHanh = $request->DkSongHanh;
         $hocphan->KhoiKienThucID = $request->KhoiKienThucID;
         $hocphan->LoaiHocPhanID = $request->LoaiHocPhanID;
+        $hocphan->NhomTuChon = $request->NhomTuChon;
         $hocphan->save();
 
         return redirect()->route('hocphan.index')->with('success', 'Học phần created successfully.');
@@ -107,6 +109,7 @@ class HocphanController extends Controller
             'DkSongHanh' => 'nullable|integer',
             'KhoiKienThucID' => 'required|exists:khoikienthucs,id',
             'LoaiHocPhanID' => 'required|exists:loaihocphans,id',
+            'NhomTuChon' => 'nullable|integer',
         ]);
 
         $hocphan = Hocphan::findOrFail($id);
@@ -123,6 +126,7 @@ class HocphanController extends Controller
         $hocphan->DkSongHanh = $request->DkSongHanh;
         $hocphan->KhoiKienThucID = $request->KhoiKienThucID;
         $hocphan->LoaiHocPhanID = $request->LoaiHocPhanID;
+        $hocphan->NhomTuChon = $request->NhomTuChon;
         $hocphan->save();
 
         return redirect()->route('hocphan.index')->with('success', 'Học phần updated successfully.');

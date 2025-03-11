@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('DkSongHanh');
             $table->unsignedBigInteger('KhoiKienThucID')->nullable();
             $table->unsignedBigInteger('LoaiHocPhanID')->nullable();
+            $table->integer('NhomTuChon');
             $table->foreign('KhoiKienThucID')->references('id')->on('khoikienthucs');
             $table->foreign('LoaiHocPhanID')->references('id')->on('loaihocphans');
 

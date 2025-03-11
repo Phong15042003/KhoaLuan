@@ -26,7 +26,7 @@
                             <input type="number" class="form-control" id="id" name="id" value="{{ $hocphan->id }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="SoTinChi">{{ __('Số thứ tự') }}</label>
+                            <label for="sothutu">{{ __('Số thứ tự') }}</label>
                             <input type="number" class="form-control" id="sothutu" name="sothutu" value="{{ $hocphan->sothutu }}" required>
                         </div>
                         <div class="form-group">
@@ -95,6 +95,11 @@
                                     <option value="{{ $loaihocphan->id }}" {{ $hocphan->LoaiHocPhanID == $loaihocphan->id ? 'selected' : '' }}>{{ $loaihocphan->TenLoaiHocPhan }}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="NhomTuChon">{{ __('Nhóm Tự Chọn') }}</label>
+                            <input type="number" class="form-control" id="NhomTuChon" name="NhomTuChon" value="{{ $hocphan->NhomTuChon }}">
                         </div>
 
                         <button type="submit" class="btn btn-primary">Cập nhật</button>

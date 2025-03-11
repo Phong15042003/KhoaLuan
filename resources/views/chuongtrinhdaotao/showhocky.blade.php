@@ -22,61 +22,70 @@
                         </div>
                     </div>
                     
-
                     @foreach ($hocphansByHocky as $hocky => $hocphans)
-                        <h5>{{ __('Học Kỳ') }} {{ $hocky }}</h5>
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-light">
+                    @php
+                        $batBuoc = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Bắt buộc');
+                        $tuChon = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')->groupBy('NhomTuChon');
+                
+                        $sumTinChiBatBuoc = $batBuoc->sum('SoTinChi');
+                        $sumTinChiTuChon = $tuChon->sum(function($group) {
+                            return $group->first()->SoTinChi; // hoặc xử lý nâng cao hơn nếu cần
+                        });
+                    @endphp
+                
+                    <h5>Học kỳ {{ $hocky }}: {{ $sumTinChiBatBuoc + $sumTinChiTuChon }} TC (Bắt buộc: {{ $sumTinChiBatBuoc }} TC; Tự chọn: {{ $sumTinChiTuChon }} TC)</h5>
+                
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Mã Học phần</th>
+                                    <th>Tên Học phần</th>
+                                    <th>Tên Học phần Tiếng Anh</th>
+                                    <th>Loại Học Phần</th>
+                                    <th>Số Tín Chỉ</th>
+                                    <th>Số Tiết Lý Thuyết</th>
+                                    <th>Số Tiết Thực Hành</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{-- In các môn bắt buộc --}}
+                                @foreach ($batBuoc as $hp)
                                     <tr>
-                                        <th>Mã Học phần</th>
-                                        <th>Tên Học phần</th>
-                                        <th>Tên Học phần Tiếng Anh</th>
-                                        <th>Loại Học Phần</th>
-                                        <th>Số Tín Chỉ</th>
-                                        <th>Số Tiết Lý Thuyết</th>
-                                        <th>Số Tiết Thực Hành</th>
+                                        <td>{{ $hp->MaHocPhan }}</td>
+                                        <td>{{ $hp->TenHocPhan }}</td>
+                                        <td>{{ $hp->TenHocPhanTiengAnh }}</td>
+                                        <td>{{ $hp->loaihocphan->TenLoaiHocPhan }}</td>
+                                        <td>{{ $hp->SoTinChi }}</td>
+                                        <td>{{ $hp->SoTietLyThuyet }}</td>
+                                        <td>{{ $hp->SoTietThucHanh }}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        // Đếm tổng số môn Tự chọn trong học kỳ này
-                                        $countTuChon = $hocphans->filter(function($hp) {
-                                            return $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn';
-                                        })->count();
-
-                                        // Đếm số môn Tự chọn đã in (để in rowspan 1 lần)
-                                        $tuChonPrinted = 0;
-                                    @endphp
-
-                                    @foreach ($hocphans as $hp)
+                                @endforeach
+                
+                                {{-- In từng nhóm môn tự chọn --}}
+                                @foreach ($tuChon as $nhom => $group)
+                                    @php $printed = false; @endphp
+                                    @foreach ($group as $hp)
                                         <tr>
                                             <td>{{ $hp->MaHocPhan }}</td>
                                             <td>{{ $hp->TenHocPhan }}</td>
                                             <td>{{ $hp->TenHocPhanTiengAnh }}</td>
-
-                                            {{-- Nếu là Tự chọn, chỉ in "Tự chọn" ở dòng đầu --}}
-                                            @if ($hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')
-                                                @if ($tuChonPrinted === 0)
-                                                <td rowspan="{{ $countTuChon }}" class="text-center align-middle">Tự chọn</td>
-                                                @endif
-                                                @php
-                                                    $tuChonPrinted++;
-                                                @endphp
-                                            @else
-                                                {{-- Nếu là Bắt buộc, in luôn cột --}}
-                                                <td>{{ $hp->loaihocphan->TenLoaiHocPhan }}</td>
+                                            @if (!$printed)
+                                                <td rowspan="{{ count($group) }}" class="text-center align-middle">
+                                                    Tự chọn
+                                                </td>
+                                                @php $printed = true; @endphp
                                             @endif
-
                                             <td>{{ $hp->SoTinChi }}</td>
                                             <td>{{ $hp->SoTietLyThuyet }}</td>
                                             <td>{{ $hp->SoTietThucHanh }}</td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endforeach
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endforeach
 
                 </div>
             </div>
