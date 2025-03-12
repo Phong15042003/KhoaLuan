@@ -10,20 +10,34 @@
                 <div class="card-body">
                     <div class="mb-3 d-flex justify-content-between align-items-start">
                         <div>
-                             <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
-                             <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
-                             <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
-                         </div>
- 
-                         <div>
-                             <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-info">Những môn đã bị thay đổi </a>
-                             <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
-                             <a href="{{ route('chuongtrinhdaotao.showloaihocphan', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo loại học phần</a>                      
-                         </div>
-                     </div>
+                            <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
+                            <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
+                            <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
+                        </div>
+
+                        <div>
+                            <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-info">Những môn đã bị thay đổi</a>
+                            <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
+                            <a href="{{ route('chuongtrinhdaotao.showloaihocphan', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo loại học phần</a>
+                        </div>
+                    </div>
 
                     @foreach ($hocphansByKhoikienthuc as $khoikienthucID => $hocphans)
-                        <h5>{{ __('Khối Kiến Thức') }}: {{ $hocphans->first()->khoikienthuc->TenKhoi }}</h5>
+                        @php
+                            $batBuoc = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Bắt buộc');
+
+                            // Gộp theo NhomTuChon + HocKy để phân biệt rõ
+                            $tuChon = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')
+                                               ->groupBy(fn($hp) => $hp->NhomTuChon . '_' . $hp->HocKy);
+
+                            $sumTinChiBatBuoc = $batBuoc->sum('SoTinChi');
+                            $sumTinChiTuChon = $tuChon->sum(function($group) {
+                                return $group->first()->SoTinChi;
+                            });
+                        @endphp
+
+                        <h5>{{ __('Khối Kiến Thức') }}: {{ $hocphans->first()->khoikienthuc->TenKhoi }} - Tổng tín chỉ: {{ $sumTinChiBatBuoc + $sumTinChiTuChon }} TC (Bắt buộc: {{ $sumTinChiBatBuoc }} TC; Tự chọn: {{ $sumTinChiTuChon }} TC)</h5>
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="thead-light">
@@ -38,16 +52,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($hocphans as $hocphan)
+                                    {{-- In các môn bắt buộc --}}
+                                    @foreach ($batBuoc as $hp)
                                         <tr>
-                                            <td>{{ $hocphan->MaHocPhan }}</td>
-                                            <td>{{ $hocphan->TenHocPhan }}</td>
-                                            <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
-                                            <td>{{ $hocphan->loaihocphan->TenLoaiHocPhan }}</td>
-                                            <td>{{ $hocphan->SoTinChi }}</td>
-                                            <td>{{ $hocphan->SoTietLyThuyet }}</td>
-                                            <td>{{ $hocphan->SoTietThucHanh }}</td>
+                                            <td>{{ $hp->MaHocPhan }}</td>
+                                            <td>{{ $hp->TenHocPhan }}</td>
+                                            <td>{{ $hp->TenHocPhanTiengAnh }}</td>
+                                            <td>{{ $hp->loaihocphan->TenLoaiHocPhan }}</td>
+                                            <td>{{ $hp->SoTinChi }}</td>
+                                            <td>{{ $hp->SoTietLyThuyet }}</td>
+                                            <td>{{ $hp->SoTietThucHanh }}</td>
                                         </tr>
+                                    @endforeach
+
+                                    {{-- In từng nhóm môn tự chọn theo NhomTuChon + HocKy --}}
+                                    @foreach ($tuChon as $groupKey => $group)
+                                        @php 
+                                            $printed = false;
+                                            [$nhom, $hk] = explode('_', $groupKey); 
+                                        @endphp
+                                        @foreach ($group as $hp)
+                                            <tr>
+                                                <td>{{ $hp->MaHocPhan }}</td>
+                                                <td>{{ $hp->TenHocPhan }}</td>
+                                                <td>{{ $hp->TenHocPhanTiengAnh }}</td>
+                                                @if (!$printed)
+                                                    <td rowspan="{{ count($group) }}" class="text-center align-middle">
+                                                        Tự chọn
+                                                    </td>
+                                                    @php $printed = true; @endphp
+                                                @endif
+                                                <td>{{ $hp->SoTinChi }}</td>
+                                                <td>{{ $hp->SoTietLyThuyet }}</td>
+                                                <td>{{ $hp->SoTietThucHanh }}</td>
+                                            </tr>
+                                        @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
