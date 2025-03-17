@@ -30,9 +30,10 @@
                             </select>
                         </div>
 
+                        <!-- Summernote WYSIWYG Editor -->
                         <div class="form-group">
                             <label for="NoiDung">{{ __('Nội dung') }}</label>
-                            <textarea class="form-control" id="NoiDung" name="NoiDung" required>{{ old('NoiDung') }}</textarea>
+                            <textarea class="form-control summernote" id="NoiDung" name="NoiDung" required>{{ old('NoiDung') }}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Thêm</button>
@@ -43,3 +44,4 @@
     </div>
 </div>
 @endsection
+

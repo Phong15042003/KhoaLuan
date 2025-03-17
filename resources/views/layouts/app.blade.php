@@ -83,7 +83,24 @@
                 closeOnSelect: false
             });
         });
+
+        $(document).ready(function() {
+        // Khởi tạo Summernote cho textarea với class "summernote"
+        $('.summernote').summernote({
+            height: 200,                // Chiều cao của editor
+            minHeight: null,            // Không giới hạn chiều cao tối thiểu
+            maxHeight: null,            // Không giới hạn chiều cao tối đa
+            focus: true                 // Tự động focus vào textarea
+        });
+    });
+        
     </script>
+    <!-- Summernote CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+    <!-- Summernote JS -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 
 </body>
 </html>
