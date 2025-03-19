@@ -12,6 +12,7 @@ use App\Http\Controllers\NganhhocController;
 use App\Http\Controllers\KhoikienthucController;
 use App\Http\Controllers\LoaihocphanController;
 use App\Http\Controllers\phancongmonhocController;
+use App\Http\Controllers\ChuandauraController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -143,6 +144,15 @@ Route::get('/phancongmonhoc/{id}/edit', [App\Http\Controllers\PhancongmonhocCont
 Route::put('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'update'])->name('phancongmonhoc.update');
 Route::get('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'show'])->name('phancongmonhoc.show');
 Route::delete('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'destroy'])->name('phancongmonhoc.destroy');
+
+//chuandaura
+Route::get('/chuandaura', [App\Http\Controllers\ChuandauraController::class, 'index'])->name('chuandaura.index');
+Route::get('/chuandaura/create', [App\Http\Controllers\ChuandauraController::class, 'create'])->name('chuandaura.create');
+Route::post('/chuandaura', [App\Http\Controllers\ChuandauraController::class, 'store'])->name('chuandaura.store');
+Route::get('/chuandaura/{id}/edit', [App\Http\Controllers\ChuandauraController::class, 'edit'])->name('chuandaura.edit');
+Route::put('/chuandaura/{id}', [App\Http\Controllers\ChuandauraController::class, 'update'])->name('chuandaura.update');
+Route::delete('/chuandaura/{id}', [App\Http\Controllers\ChuandauraController::class, 'destroy'])->name('chuandaura.destroy');
+Route::get('/chuandaura/{id}', [App\Http\Controllers\ChuandauraController::class, 'show'])->name('chuandaura.show');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);

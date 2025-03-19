@@ -64,4 +64,12 @@ class hocphan extends Model
     {
         return $this->hasMany(Phancongmonhoc::class, 'HocPhanID');
     }
+
+    /**
+     * Get the chuandauras for the hocphan.
+     */
+    public function chuandauras()
+    {
+        return $this->hasMany(Chuandaura::class, 'hocphan_id');
+    }
 }

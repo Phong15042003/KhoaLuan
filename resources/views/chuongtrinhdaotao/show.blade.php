@@ -18,7 +18,8 @@
                             <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-info">Những môn đã bị thay đổi </a>
                             <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
                             <a href="{{ route('chuongtrinhdaotao.showkhoikienthuc', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo khối kiến thức</a>
-                            <a href="{{ route('chuongtrinhdaotao.showloaihocphan', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo loại học phần</a>                      
+                            <a href="{{ route('chuongtrinhdaotao.showloaihocphan', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo loại học phần</a>
+                            {{-- <a href="{{ route('chuandaura.index', $chuongtrinhdaotao->id) }}" class="btn btn-info">Chuẩn đầu ra</a>                                             --}}
                         </div>
                     </div>
 
@@ -45,7 +46,7 @@
                             <tbody>
                                 @foreach ($hocphans as $hocphan)
                                     <tr>
-                                        <td>{{ $hocphan->sothutu }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
