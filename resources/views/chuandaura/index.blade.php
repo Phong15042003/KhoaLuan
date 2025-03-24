@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Chuẩn đầu ra') }}</div>
+                <div class="card-header">{{ __('Chuẩn đầu ra') }} - {{ $chuongtrinhdaotao->TenChuongTrinh }}</div>
 
                 <div class="card-body">
                     @if (session('success'))
@@ -33,26 +33,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($chuandauras as $chuandaura)
+                            @foreach ($hocphans as $hocphan)
                                 <tr>
-                                    <td>{{ $chuandaura->hocphan->HocKy }}</td>
-                                    <td>{{ $chuandaura->hocphan->TenHocPhan }}</td>
-                                    <td>{{ $chuandaura->T1 }}</td>
-                                    <td>{{ $chuandaura->T2 }}</td>
-                                    <td>{{ $chuandaura->T3 }}</td>
-                                    <td>{{ $chuandaura->T4 }}</td>
-                                    <td>{{ $chuandaura->T5 }}</td>
-                                    <td>{{ $chuandaura->T6 }}</td>
-                                    <td>{{ $chuandaura->T7 }}</td>
-                                    <td>{{ $chuandaura->T8 }}</td>
+                                    <td>{{ $hocphan->HocKy }}</td>
+                                    <td>{{ $hocphan->TenHocPhan }}</td>
+                                    <td>{{ $hocphan->chuandaura->T1 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T2 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T3 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T4 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T5 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T6 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T7 ?? '' }}</td>
+                                    <td>{{ $hocphan->chuandaura->T8 ?? '' }}</td>
                                     <td>
-                                        <a href="{{ route('chuandaura.edit', $chuandaura->id) }}" class="btn btn-warning">Sửa</a>
-                                        <form action="{{ route('chuandaura.destroy', $chuandaura->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
-                                        </form>
-                                        <a href="{{ route('chuandaura.show', $chuandaura->id) }}" class="btn btn-info">Chi tiết</a>
+                                        <a href="{{ route('chuandaura.edit', $hocphan->id) }}" class="btn btn-warning">Sửa</a>
                                     </td>
                                 </tr>
                             @endforeach

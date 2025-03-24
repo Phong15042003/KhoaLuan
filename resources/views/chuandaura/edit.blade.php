@@ -18,14 +18,15 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('chuandaura.update', $chuandaura->id) }}">
+                    <form method="POST" action="{{ route('chuandaura.update', $chuandaura->id ?? $hocphan->id) }}">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
                             <label for="hocphan_id">{{ __('Học phần') }}</label>
-                            <input type="text" class="form-control" id="hocphan_name" name="hocphan_name" value="{{ $chuandaura->hocphan->TenHocPhan }}" readonly>
-                            <input type="hidden" id="hocphan_id" name="hocphan_id" value="{{ $chuandaura->hocphan_id }}">
+                            <input type="text" class="form-control" id="hocphan_name" name="hocphan_name" value="{{ $hocphan->TenHocPhan }}" readonly>
+                            <input type="hidden" id="hocphan_id" name="hocphan_id" value="{{ $hocphan->id }}">
+                            <input type="hidden" id="chuongtrinhdaotao_id" name="chuongtrinhdaotao_id" value="{{ $chuongtrinhdaotao->id }}">
                         </div>
 
                         @for ($i = 1; $i <= 8; $i++)

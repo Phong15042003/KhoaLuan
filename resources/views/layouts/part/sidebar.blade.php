@@ -65,9 +65,9 @@
                         <a class="collapse-item" href="{{ route('decuongchitiet.index') }}">
                             <i class="fas fa-file-alt mr-2"></i> Đề cương chi tiết
                         </a>
-                        <a class="collapse-item" href="{{ route('chuandaura.index') }}">
+                        {{-- <a class="collapse-item" href="{{ route('chuandaura.index') }}">
                             <i class="fas fa-clipboard-check"></i> Chuẩn đầu ra
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </li>

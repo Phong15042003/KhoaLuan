@@ -5,9 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class hocphan extends Model
+class Hocphan extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'MaHocPhan',
+        'TenHocPhan',
+        'TenHocPhanTiengAnh',
+        'SoTinChi',
+        'SoTietLyThuyet',
+        'SoTietThucHanh',
+        'HocKy',
+        'DkTienQuyet',
+        'DkHocTruoc',
+        'DkSongHanh',
+        'KhoiKienThucID',
+        'LoaiHocPhanID',
+        'NhomTuChon',
+    ];
 
     /**
      * Get the khoikienthuc that owns the hocphan.
@@ -71,5 +92,13 @@ class hocphan extends Model
     public function chuandauras()
     {
         return $this->hasMany(Chuandaura::class, 'hocphan_id');
+    }
+
+    /**
+     * Get the chuandaura associated with the hocphan.
+     */
+    public function chuandaura()
+    {
+        return $this->hasOne(chuandaura::class, 'hocphan_id');
     }
 }

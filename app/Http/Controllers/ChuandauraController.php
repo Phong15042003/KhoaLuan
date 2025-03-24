@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\chuandaura;
 use App\Models\Hocphan;
+use App\Models\Chuongtrinhdaotao;
 use Illuminate\Http\Request;
 
 class ChuandauraController extends Controller
@@ -11,10 +12,13 @@ class ChuandauraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $chuandauras = chuandaura::all();
-        return view('chuandaura.index', compact('chuandauras'));
+        $chuongtrinhdaotaoId = $request->input('chuongtrinhdaotao_id');
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($chuongtrinhdaotaoId);
+        $hocphans = $chuongtrinhdaotao->hocphans()->with('chuandaura')->orderBy('HocKy')->get(); // Eager load chuandaura relationship
+
+        return view('chuandaura.index', compact('hocphans', 'chuongtrinhdaotao')); // Pass the list to the view
     }
 
     /**
@@ -71,9 +75,10 @@ class ChuandauraController extends Controller
      */
     public function edit($id)
     {
-        $chuandaura = chuandaura::findOrFail($id);
-        $hocphans = Hocphan::all();
-        return view('chuandaura.edit', compact('chuandaura', 'hocphans'));
+        $hocphan = Hocphan::findOrFail($id);
+        $chuandaura = chuandaura::firstOrNew(['hocphan_id' => $hocphan->id]);
+        $chuongtrinhdaotao = $hocphan->chuongtrinhdaotaos()->first(); // Fetch the associated chuongtrinhdaotao
+        return view('chuandaura.edit', compact('chuandaura', 'hocphan', 'chuongtrinhdaotao'));
     }
 
     /**
@@ -93,19 +98,13 @@ class ChuandauraController extends Controller
             'T8' => 'nullable|string',
         ]);
 
-        $chuandaura = chuandaura::findOrFail($id);
-        $chuandaura->hocphan_id = $request->hocphan_id;
-        $chuandaura->T1 = $request->T1;
-        $chuandaura->T2 = $request->T2;
-        $chuandaura->T3 = $request->T3;
-        $chuandaura->T4 = $request->T4;
-        $chuandaura->T5 = $request->T5;
-        $chuandaura->T6 = $request->T6;
-        $chuandaura->T7 = $request->T7;
-        $chuandaura->T8 = $request->T8;
-        $chuandaura->save();
+        $chuandaura = chuandaura::updateOrCreate(
+            ['hocphan_id' => $request->hocphan_id],
+            $request->only(['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8'])
+        );
 
-        return redirect()->route('chuandaura.index')->with('success', 'Chuẩn đầu ra updated successfully.');
+        return redirect()->route('chuandaura.index', ['chuongtrinhdaotao_id' => $request->chuongtrinhdaotao_id])
+            ->with('success', 'Chuẩn đầu ra updated successfully.');
     }
 
     /**
