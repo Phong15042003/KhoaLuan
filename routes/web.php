@@ -100,6 +100,7 @@ Route::get('/chuongtrinhdaotao/{id}/showhocky', [ChuongtrinhdaotaoController::cl
 Route::get('chuongtrinhdaotao/{id}/showkhoikienthuc', [ChuongtrinhdaotaoController::class, 'showKhoikienthuc'])->name('chuongtrinhdaotao.showkhoikienthuc');
 Route::get('chuongtrinhdaotao/{id}/showloaihocphan', [ChuongtrinhdaotaoController::class, 'showLoaihocphan'])->name('chuongtrinhdaotao.showloaihocphan');
 Route::get('chuongtrinhdaotao/{id}/changed-courses', [ChuongtrinhdaotaoController::class, 'showChangedCourses'])->name('chuongtrinhdaotao.changed-courses');
+Route::get('/chuongtrinhdaotao/pdf/{id}', [ChuongtrinhdaotaoController::class, 'pdf'])->name('chuongtrinhdaotao.pdf');
 
 //ctdthocphan
 Route::get('/ctdthocphan', [CtdtHocphanController::class, 'index'])->name('ctdthocphan.index');

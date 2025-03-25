@@ -1,0 +1,104 @@
+/* ============================= */
+/* 1. Thiết lập chung cho body   */
+/* ============================= */
+body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 10px;  /* Giảm cỡ chữ cho gọn, có thể thay đổi 9px, 11px, ... */
+    margin: 10px;     /* Lề trang, có thể giảm/ tăng tuỳ ý */
+}
+
+/* ============================= */
+/* 2. Tiêu đề (header-table)     */
+/* ============================= */
+.header-table {
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;              /* Không viền bảng header */
+    border-collapse: collapse; /* Gộp viền (dù ta đã tắt viền) */
+}
+.header-table td {
+    text-align: center;
+    vertical-align: top;
+    border: none;              /* Không viền cho từng ô */
+}
+
+/* ============================= */
+/* 3. Các heading chung (h2,h3,h4) */
+/* ============================= */
+h2, h3, h4 {
+    text-align: center;
+    width: 100%;
+}
+
+/* ============================= */
+/* 4. Thiết lập chung cho bảng   */
+/* ============================= */
+table {
+    width: 100%;               /* Bảng chiếm hết chiều ngang khổ giấy */
+    border: 1px solid #000;    /* Viền chung cho bảng */
+    border-collapse: collapse; /* Gộp viền */
+    margin-bottom: 20px;       /* Khoảng cách dưới bảng */
+}
+table th, table td {
+    border: 1px solid #000;    /* Viền ô */
+    padding: 8px;              /* Khoảng cách trong ô */
+    word-wrap: break-word;     /* Tự xuống dòng khi nội dung quá dài */
+}
+
+/* ============================= */
+/* 5. Bảng Khối Kiến Thức        */
+/* ============================= */
+.khoikienthuc-table {
+    table-layout: fixed;       /* Buộc các cột chia theo width cố định */
+    width: 100%;
+}
+
+/* Quy định độ rộng cho từng cột (12 cột) */
+.khoikienthuc-table th:nth-child(1),
+.khoikienthuc-table td:nth-child(1) {
+    width: 4%;  /* STT */
+}
+.khoikienthuc-table th:nth-child(2),
+.khoikienthuc-table td:nth-child(2) {
+    width: 8%;  /* Mã HP */
+}
+.khoikienthuc-table th:nth-child(3),
+.khoikienthuc-table td:nth-child(3) {
+    width: 12%; /* Tên HP */
+}
+.khoikienthuc-table th:nth-child(4),
+.khoikienthuc-table td:nth-child(4) {
+    width: 12%; /* Tên HP Tiếng Anh */
+}
+.khoikienthuc-table th:nth-child(5),
+.khoikienthuc-table td:nth-child(5) {
+    width: 8%;  /* Loại HP */
+}
+.khoikienthuc-table th:nth-child(6),
+.khoikienthuc-table td:nth-child(6) {
+    width: 5%;  /* Số tín chỉ */
+}
+.khoikienthuc-table th:nth-child(7),
+.khoikienthuc-table td:nth-child(7) {
+    width: 7%;  /* Số tiết LT */
+}
+.khoikienthuc-table th:nth-child(8),
+.khoikienthuc-table td:nth-child(8) {
+    width: 7%;  /* Số tiết TH */
+}
+.khoikienthuc-table th:nth-child(9),
+.khoikienthuc-table td:nth-child(9) {
+    width: 8%;  /* Tiên quyết */
+}
+.khoikienthuc-table th:nth-child(10),
+.khoikienthuc-table td:nth-child(10) {
+    width: 8%;  /* Học trước */
+}
+.khoikienthuc-table th:nth-child(11),
+.khoikienthuc-table td:nth-child(11) {
+    width: 8%;  /* Song hành */
+}
+.khoikienthuc-table th:nth-child(12),
+.khoikienthuc-table td:nth-child(12) {
+    width: 5%;  /* Học kỳ */
+}

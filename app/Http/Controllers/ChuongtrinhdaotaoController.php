@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Chuongtrinhdaotao;
 use App\Models\Nganhhoc;
+use App\Models\chuandaura;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -150,5 +152,21 @@ class ChuongtrinhdaotaoController extends Controller
         $chuongtrinhdaotao->delete();
 
         return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo deleted successfully.');
+    }
+
+    public function pdf($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphansByKhoikienthuc = $chuongtrinhdaotao->hocphans->sortBy('KhoiKienThucID')->groupBy('KhoiKienThucID');
+        $hocphansByHocky = $chuongtrinhdaotao->hocphans->sortBy('HocKy')->groupBy('HocKy');
+        $chuandauras = chuandaura::whereIn('hocphan_id', $chuongtrinhdaotao->hocphans->pluck('id'))->get();
+
+        $pdf = PDF::loadView('chuongtrinhdaotao.pdf', [
+            'chuongtrinhdaotao' => $chuongtrinhdaotao,
+            'hocphansByKhoikienthuc' => $hocphansByKhoikienthuc,
+            'hocphansByHocky' => $hocphansByHocky,
+            'chuandauras' => $chuandauras,
+        ])->setPaper('a4', 'landscape'); 
+        return $pdf->download('chuongtrinhdaotao.pdf');
     }
 }

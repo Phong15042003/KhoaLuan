@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('chuandaura.create') }}" class="btn btn-primary mb-3">Thêm chuẩn đầu ra</a>
+               
 
                     <table class="table table-bordered">
                         <thead>
