@@ -13,7 +13,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    @if (auth()->user()->vaitro == 'admin')
+                    @if (auth()->user()->vaitro == 'admin' || auth()->user()->vaitro == 'biensoan')
                     <a href="{{ route('hocphan.create') }}" class="btn btn-primary mb-3">Thêm học phần</a>
                     @endif
                     <div class="table-responsive">

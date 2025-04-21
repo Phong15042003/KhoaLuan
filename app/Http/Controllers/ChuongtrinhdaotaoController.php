@@ -11,27 +11,21 @@ use Illuminate\Support\Facades\DB;
 
 class ChuongtrinhdaotaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $chuongtrinhdaotaos = Chuongtrinhdaotao::orderBy('created_at', 'desc')->get();
         return view('chuongtrinhdaotao.index', compact('chuongtrinhdaotaos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+  
     public function create()
     {
         $nganhhocs = Nganhhoc::all();
         return view('chuongtrinhdaotao.create', compact('nganhhocs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(Request $request)
     {
         $request->validate([
@@ -49,9 +43,7 @@ class ChuongtrinhdaotaoController extends Controller
         return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
@@ -65,9 +57,7 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.showhocky', compact('chuongtrinhdaotao', 'hocphansByHocky'));
     }
 
-    /**
-     * Show the changed courses for the specified resource.
-     */
+  //hien thi nhung mon bi thay doi
     public function showChangedCourses($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
@@ -93,9 +83,7 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.changed-courses', compact('changedHocphans'));
     }
 
-    /**
-     * Show the hocphans grouped by khoikienthuc for the specified resource.
-     */
+    
     public function showKhoikienthuc($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
@@ -103,9 +91,7 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.showkhoikienthuc', compact('chuongtrinhdaotao', 'hocphansByKhoikienthuc'));
     }
 
-    /**
-     * Show the hocphans grouped by loaihocphan for the specified resource.
-     */
+
     public function showLoaihocphan($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
@@ -113,9 +99,7 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.showloaihocphan', compact('chuongtrinhdaotao', 'hocphansByLoaihocphan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
@@ -123,9 +107,7 @@ class ChuongtrinhdaotaoController extends Controller
         return view('chuongtrinhdaotao.edit', compact('chuongtrinhdaotao', 'nganhhocs'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -143,9 +125,7 @@ class ChuongtrinhdaotaoController extends Controller
         return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);

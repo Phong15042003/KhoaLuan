@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // Thêm middleware admin
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        // Thêm middleware biên soạn
+        'biensoan' => \App\Http\Middleware\BienSoanMiddleware::class,
     ];
 }

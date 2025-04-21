@@ -9,18 +9,14 @@ use Illuminate\Http\Request;
 
 class CtdtHocphanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $ctdtHocphans = CtdtHocphan::orderBy('created_at', 'desc')->get();
         return view('ctdthocphan.index', compact('ctdtHocphans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
         $chuongtrinhdaotaos = Chuongtrinhdaotao::all();
@@ -28,9 +24,7 @@ class CtdtHocphanController extends Controller
         return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -49,18 +43,14 @@ class CtdtHocphanController extends Controller
         return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show($id)
     {
         $ctdtHocphan = CtdtHocphan::findOrFail($id);
         return view('ctdthocphan.show', compact('ctdtHocphan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+ 
     public function edit($id)
     {
         $ctdtHocphan = CtdtHocphan::findOrFail($id);
@@ -69,9 +59,7 @@ class CtdtHocphanController extends Controller
         return view('ctdthocphan.edit', compact('ctdtHocphan', 'chuongtrinhdaotaos', 'hocphans'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -87,9 +75,7 @@ class CtdtHocphanController extends Controller
         return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+ 
     public function destroy($id)
     {
         $ctdtHocphan = CtdtHocphan::findOrFail($id);

@@ -109,6 +109,7 @@ Route::post('/ctdthocphan', [CtdtHocphanController::class, 'store'])->name('ctdt
 Route::get('/ctdthocphan/{id}/edit', [CtdtHocphanController::class, 'edit'])->name('ctdthocphan.edit');
 Route::put('/ctdthocphan/{id}', [CtdtHocphanController::class, 'update'])->name('ctdthocphan.update');
 Route::delete('/ctdthocphan/{id}', [CtdtHocphanController::class, 'destroy'])->name('ctdthocphan.destroy');
+Route::get('/ctdthocphan/get-available-hocphans', [CtdtHocphanController::class, 'getAvailableHocphans'])->name('ctdthocphan.get-available-hocphans');
 
 //vaitro
 Route::get('/vaitro', [App\Http\Controllers\VaitroController::class, 'index'])->name('vaitro.index');
@@ -159,10 +160,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('khoa', KhoaController::class);
     Route::resource('bomon', BomonController::class);
-    
+    Route::resource('khoikienthuc', KhoikienthucController::class);
+    Route::resource('loaihocphan', LoaihocphanController::class);
 });
 
-
+Route::middleware(['auth', 'biensoan'])->group(function () {
+    Route::resource('ctdthocphan', CtdtHocphanController::class);
+});
 
 
 

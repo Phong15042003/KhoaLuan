@@ -26,6 +26,12 @@
     <!-- Heading -->
     @auth
         @if (Auth::user()->vaitro == 'admin')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+        </li>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -50,9 +56,9 @@
                         <a class="collapse-item" href="{{ route('chuongtrinhdaotao.index') }}">
                             <i class="fas fa-book mr-2"></i> Chương trình đào tạo
                         </a>
-                        <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">
+                        {{-- <a class="collapse-item" href="{{ route('ctdthocphan.index') }}">
                             <i class="fas fa-layer-group mr-2"></i> CTĐT học phần
-                        </a>
+                        </a> --}}
                         <a class="collapse-item" href="{{ route('khoikienthuc.index') }}">
                             <i class="fas fa-cubes mr-2"></i> Khối kiến thức
                         </a>
@@ -107,15 +113,31 @@
         @endif
 
         @if (Auth::user()->vaitro == 'sinhvien')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+        </li>
             <!-- Nav Item - Chương trình đào tạo -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('chuongtrinhdaotao.index') }}">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Chương trình đào tạo</span>
                 </a>
+                <a class="nav-link" href="{{ route('decuongchitiet.index') }}">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Đề cương chi tiết</span>
+                </a>
             </li>
         @endif
         @if (Auth::user()->vaitro == 'giangvien' || Auth::user()->vaitro == 'chunhiem')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+        </li>
         <!-- Nav Item - Chương trình đào tạo -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('chuongtrinhdaotao.index') }}">
@@ -129,6 +151,12 @@
         </li>
         @endif
         @if (Auth::user()->vaitro == 'biensoan')
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Trang chủ</span>
+            </a>
+        </li>
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

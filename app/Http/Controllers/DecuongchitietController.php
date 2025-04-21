@@ -17,22 +17,22 @@ class DecuongchitietController extends Controller
     {
         $user = Auth::user();
         if (in_array($user->vaitro, ['giangvien', 'biensoan', 'chunhiem', 'sinhvien'])) {
-            // Filter decuongchitiets based on the logged-in giangvien's assignments
+
             $decuongchitiets = Decuongchitiet::whereHas('hocphan.phancongmonhocs', function ($query) use ($user) {
                 $query->where('giangvien_id', $user->id);
             })->orderBy('created_at', 'desc')->get();
         } else {
-            // For other roles, show all decuongchitiets
+            
             $decuongchitiets = Decuongchitiet::orderBy('created_at', 'desc')->get();
         }
         $user = Auth::user();
         if ($user->vaitro === 'giangvien') {
-            // Filter decuongchitiets based on the logged-in giangvien's assignments
+            
             $decuongchitiets = Decuongchitiet::whereHas('hocphan.phancongmonhocs', function ($query) use ($user) {
                 $query->where('giangvien_id', $user->id);
             })->orderBy('created_at', 'desc')->get();
         } else {
-            // For other roles, show all decuongchitiets
+            
             $decuongchitiets = Decuongchitiet::orderBy('created_at', 'desc')->get();
         }
 
@@ -71,7 +71,7 @@ class DecuongchitietController extends Controller
             'NoiDung' => 'required|string',
         ]);
 
-        // Ensure the selected HocPhanID is assigned to the logged-in giangvien
+        // loc nhung hoc phan da duoc phan cong
         $hocphan = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
             $query->where('giangvien_id', $user->id);
         })->findOrFail($request->HocPhanID);
@@ -84,18 +84,14 @@ class DecuongchitietController extends Controller
         return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+  
     public function show($id)
     {
         $decuongchitiet = Decuongchitiet::findOrFail($id);
         return view('decuongchitiet.show', compact('decuongchitiet'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
     public function edit($id)
     {
         $decuongchitiet = Decuongchitiet::findOrFail($id);
@@ -103,9 +99,7 @@ class DecuongchitietController extends Controller
         return view('decuongchitiet.edit', compact('decuongchitiet', 'hocphans'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -123,9 +117,7 @@ class DecuongchitietController extends Controller
         return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  
     public function destroy($id)
     {
         $decuongchitiet = Decuongchitiet::findOrFail($id);

@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ChuandauraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  
     public function index(Request $request)
     {
         $chuongtrinhdaotaoId = $request->input('chuongtrinhdaotao_id');
@@ -21,18 +19,14 @@ class ChuandauraController extends Controller
         return view('chuandaura.index', compact('hocphans', 'chuongtrinhdaotao')); // Pass the list to the view
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+  
     public function create()
     {
         $hocphans = Hocphan::all();
         return view('chuandaura.create', compact('hocphans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(Request $request)
     {
         $request->validate([
@@ -62,17 +56,13 @@ class ChuandauraController extends Controller
         return redirect()->route('chuandaura.index')->with('success', 'Chuẩn đầu ra created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(chuandaura $chuandaura)
     {
         return view('chuandaura.show', compact('chuandaura'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
     public function edit($id)
     {
         $hocphan = Hocphan::findOrFail($id);
@@ -81,9 +71,7 @@ class ChuandauraController extends Controller
         return view('chuandaura.edit', compact('chuandaura', 'hocphan', 'chuongtrinhdaotao'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -107,9 +95,7 @@ class ChuandauraController extends Controller
             ->with('success', 'Chuẩn đầu ra updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+ 
     public function destroy($id)
     {
         $chuandaura = chuandaura::findOrFail($id);

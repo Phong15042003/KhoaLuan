@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-class AdminMiddleware
+class BienSoanMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
        // Kiểm tra xem user đã đăng nhập hay chưa và có vai trò admin không
-       if (Auth::check() && Auth::user()->vaitro === 'admin') {
+       if (Auth::check() && Auth::user()->vaitro === 'biensoan') {
         // Nếu đúng, cho phép đi tiếp
         return $next($request);
     }

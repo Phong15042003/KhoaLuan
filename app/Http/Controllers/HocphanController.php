@@ -9,18 +9,14 @@ use Illuminate\Http\Request;
 
 class HocphanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         $hocphans = Hocphan::orderBy('created_at')->get();
         return view('hocphan.index', compact('hocphans'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+  
     public function create()
     {
         $khoikienthucs = Khoikienthuc::all();
@@ -28,9 +24,7 @@ class HocphanController extends Controller
         return view('hocphan.create', compact('khoikienthucs', 'loaihocphans'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -70,18 +64,14 @@ class HocphanController extends Controller
         return redirect()->route('hocphan.index')->with('success', 'Học phần created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+ 
     public function show($id)
     {
         $hocphan = Hocphan::findOrFail($id);
         return view('hocphan.show', compact('hocphan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+  
     public function edit($id)
     {
         $hocphan = Hocphan::findOrFail($id);
@@ -90,9 +80,7 @@ class HocphanController extends Controller
         return view('hocphan.edit', compact('hocphan', 'khoikienthucs', 'loaihocphans'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -132,9 +120,7 @@ class HocphanController extends Controller
         return redirect()->route('hocphan.index')->with('success', 'Học phần updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy($id)
     {
         $hocphan = Hocphan::findOrFail($id);
