@@ -87,6 +87,8 @@ Route::post('/hocphan', [HocphanController::class, 'store'])->name('hocphan.stor
 Route::get('/hocphan/{id}/edit', [HocphanController::class, 'edit'])->name('hocphan.edit');
 Route::put('/hocphan/{id}', [HocphanController::class, 'update'])->name('hocphan.update');
 Route::delete('/hocphan/{id}', [HocphanController::class, 'destroy'])->name('hocphan.destroy');
+Route::get('/hocphan/excel', [HocphanController::class, 'excel'])->name('hocphan.excel');
+Route::post('/hocphan/import', [HocphanController::class, 'import'])->name('hocphan.import');
 
 //chuongtrinhdaotao
 Route::get('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'index'])->name('chuongtrinhdaotao.index');

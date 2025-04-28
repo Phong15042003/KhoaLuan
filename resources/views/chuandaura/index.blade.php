@@ -14,12 +14,12 @@
                         </div>
                     @endif
 
-               
+
 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Học kỳ</th>
+                              
                                 <th>Học phần</th>
                                 <th>T1</th>
                                 <th>T2</th>
@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach ($hocphans as $hocphan)
                                 <tr>
-                                    <td>{{ $hocphan->HocKy }}</td>
+                                   
                                     <td>{{ $hocphan->TenHocPhan }}</td>
                                     <td>{{ $hocphan->chuandaura->T1 ?? '' }}</td>
                                     <td>{{ $hocphan->chuandaura->T2 ?? '' }}</td>

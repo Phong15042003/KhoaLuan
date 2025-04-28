@@ -6,14 +6,27 @@ use App\Models\Hocphan;
 use App\Models\Khoikienthuc;
 use App\Models\Loaihocphan;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\HocphanImport;
 class HocphanController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $hocphans = Hocphan::orderBy('created_at')->get();
-        return view('hocphan.index', compact('hocphans'));
+        $query = Hocphan::query();
+
+    if ($request->has('chuongtrinhdaotao_id') && $request->chuongtrinhdaotao_id != '') {
+        $ctdt_id = $request->chuongtrinhdaotao_id;
+
+        $query->whereHas('chuongtrinhdaotaos', function($q) use ($ctdt_id) {
+            $q->where('chuongtrinhdaotaos.id', $ctdt_id);
+        });
+    }
+
+    $hocphans = $query->orderBy('created_at')->with(['loaihocphan', 'khoikienthuc'])->get();
+    $chuongtrinhdaotaos = \App\Models\Chuongtrinhdaotao::all();
+
+    return view('hocphan.index', compact('hocphans', 'chuongtrinhdaotaos'));
     }
 
   
@@ -127,5 +140,23 @@ class HocphanController extends Controller
         $hocphan->delete();
 
         return redirect()->route('hocphan.index')->with('success', 'Học phần deleted successfully.');
+    }
+
+    //xu ly them bang excecl
+    public function excel()
+    {
+        return view('hocphan.excel');
+    }
+
+ 
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        Excel::import(new HocphanImport, $request->file('file'));
+
+        return redirect()->route('hocphan.index')->with('success', 'Nhập học phần thành công!');
     }
 }

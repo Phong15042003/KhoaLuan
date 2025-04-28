@@ -15,6 +15,7 @@ class Hocphan extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'sothutu',
         'MaHocPhan',
         'TenHocPhan',
         'TenHocPhanTiengAnh',

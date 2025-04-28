@@ -13,14 +13,33 @@
                             {{ session('success') }}
                         </div>
                     @endif
+
                     @if (auth()->user()->vaitro == 'admin' || auth()->user()->vaitro == 'biensoan')
-                    <a href="{{ route('hocphan.create') }}" class="btn btn-primary mb-3">Thêm học phần</a>
+                    <div class="d-flex align-items-center mb-3 gap-2">
+                        <a href="{{ route('hocphan.create') }}" class="btn btn-primary">Thêm học phần</a>
+                        <a href="{{ route('hocphan.excel') }}" class="btn btn-primary">Thêm bằng excel</a>
+
+                        <form action="{{ route('hocphan.index') }}" method="GET" class="d-flex align-items-center">
+                            <select name="chuongtrinhdaotao_id" onchange="this.form.submit()" class="form-select form-select-sm w-auto" style="min-width: 250px;">
+                                <option value="">-- Tất cả môn học --</option>
+                                @foreach($chuongtrinhdaotaos as $ctdt)
+                                    <option value="{{ $ctdt->id }}" {{ request('chuongtrinhdaotao_id') == $ctdt->id ? 'selected' : '' }}>
+                                        {{ $ctdt->TenChuongTrinh }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
+
+                        @if(request('chuongtrinhdaotao_id'))
+                            <a href="{{ route('hocphan.index') }}" class="btn btn-danger">Xóa lọc</a>
+                        @endif
+                    </div>
                     @endif
+                    
                     <div class="table-responsive">
                         <table class="table table-bordered" style="width: 100%;">
-                            <thead>
+                            <thead class="table-light">
                                 <tr>
-                                  
                                     <th>STT</th>
                                     <th>Mã Học phần</th>
                                     <th>Tên Học phần</th>
@@ -38,32 +57,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($hocphans as $hocphan)
+                                @forelse ($hocphans as $hocphan)
                                     <tr>
-                                       
                                         <td>{{ $hocphan->sothutu }}</td>
                                         <td>{{ $hocphan->MaHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhan }}</td>
                                         <td>{{ $hocphan->TenHocPhanTiengAnh }}</td>
-                                        <td>{{ $hocphan->loaihocphan->TenLoaiHocPhan }}</td>
+                                        <td>{{ $hocphan->loaihocphan->TenLoaiHocPhan ?? '' }}</td>
                                         <td>{{ $hocphan->SoTinChi }}</td>
                                         <td>{{ $hocphan->SoTietLyThuyet }}</td>
                                         <td>{{ $hocphan->SoTietThucHanh }}</td>
                                         <td>{{ $hocphan->DkTienQuyet }}</td>
                                         <td>{{ $hocphan->DkHocTruoc }}</td>
                                         <td>{{ $hocphan->DkSongHanh }}</td>
-                                        <td>{{ $hocphan->khoikienthuc->TenKhoi }}</td>
+                                        <td>{{ $hocphan->khoikienthuc->TenKhoi ?? '' }}</td>
                                         <td>{{ $hocphan->HocKy }}</td>
                                         <td>
-                                            <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning">Sửa</a>
+                                            <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning btn-sm">Sửa</a>
                                             <form action="{{ route('hocphan.destroy', $hocphan->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="14" class="text-center">Không có học phần nào.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div> {{-- End of table-responsive --}}
