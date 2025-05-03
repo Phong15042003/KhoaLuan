@@ -15,7 +15,7 @@
                     @endif
 
                     <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Thêm người dùng</a>
-
+                    <a href="{{ route('users.excel') }}" class="btn btn-primary mb-3">Thêm người dùng bằng excel</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>

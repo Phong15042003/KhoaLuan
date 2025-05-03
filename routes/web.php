@@ -39,6 +39,8 @@ Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->na
 Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/excel', [UserController::class, 'excelForm'])->name('users.excel');
+Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
 
 //khoa
 Route::get('/khoa', [App\Http\Controllers\KhoaController::class, 'index'])->name('khoa.index');

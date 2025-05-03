@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
@@ -116,5 +118,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index');
+    }
+    //excel
+    public function excelForm()
+    {
+        return view('users.excel');
+    }
+    
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+    
+        Excel::import(new UsersImport, $request->file('file'));
+    
+        return redirect()->route('users.index')->with('success', 'Import thành công.');
     }
 }
