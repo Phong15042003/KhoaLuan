@@ -37,7 +37,7 @@
                                 @foreach ($hocphans as $khoikienthucID => $groupedHocphans)
                                     <optgroup label="{{ $groupedHocphans->first()->khoikienthuc->TenKhoi }}">
                                         @foreach ($groupedHocphans as $hocphan)
-                                            <option value="{{ $hocphan->id }}">{{ $hocphan->TenHocPhan }}</option>
+                                            <option value="{{ $hocphan->id }}">{{ $hocphan->MaHocPhan }} -{{ $hocphan->TenHocPhan }}- Học kỳ: {{ $hocphan->HocKy }}</option>
                                         @endforeach
                                     </optgroup>
                                 @endforeach

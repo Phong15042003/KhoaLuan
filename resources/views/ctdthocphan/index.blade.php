@@ -13,8 +13,22 @@
                             {{ session('success') }}
                         </div>
                     @endif
-
                     <a href="{{ route('ctdthocphan.create') }}" class="btn btn-primary mb-3">Thêm CTDT Học phần</a>
+                    <form action="{{ route('ctdthocphan.index') }}" method="GET" class="d-flex align-items-center mb-3 gap-2">
+                        <select name="CTDT_ID" onchange="this.form.submit()" class="form-select form-select-sm w-auto" style="min-width: 280px;">
+                            <option value="">-- Tất cả Chương trình đào tạo --</option>
+                            @foreach($chuongtrinhdaotaos as $ctdt)
+                                <option value="{{ $ctdt->id }}" {{ request('CTDT_ID') == $ctdt->id ? 'selected' : '' }}>
+                                    {{ $ctdt->TenChuongTrinh }}
+                                </option>
+                            @endforeach
+                        </select>
+                    
+                        @if(request('CTDT_ID'))
+                            <a href="{{ route('ctdthocphan.index') }}" class="btn btn-secondary btn-sm">Xóa lọc</a>
+                        @endif
+                    </form>
+                    
 
                     <table class="table table-bordered">
                         <thead>

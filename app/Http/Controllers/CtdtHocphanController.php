@@ -10,10 +10,18 @@ use Illuminate\Http\Request;
 class CtdtHocphanController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $ctdtHocphans = CtdtHocphan::orderBy('created_at', 'desc')->get();
-        return view('ctdthocphan.index', compact('ctdtHocphans'));
+        $query = CtdtHocphan::with(['chuongtrinhdaotao', 'hocphan'])->orderBy('created_at', 'desc');
+
+        if ($request->has('CTDT_ID') && $request->CTDT_ID != '') {
+            $query->where('CTDT_ID', $request->CTDT_ID);
+        }
+
+        $ctdtHocphans = $query->get();
+        $chuongtrinhdaotaos = \App\Models\Chuongtrinhdaotao::all();
+
+        return view('ctdthocphan.index', compact('ctdtHocphans', 'chuongtrinhdaotaos'));
     }
 
    
