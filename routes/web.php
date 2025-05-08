@@ -114,6 +114,9 @@ Route::get('/ctdthocphan/{id}/edit', [CtdtHocphanController::class, 'edit'])->na
 Route::put('/ctdthocphan/{id}', [CtdtHocphanController::class, 'update'])->name('ctdthocphan.update');
 Route::delete('/ctdthocphan/{id}', [CtdtHocphanController::class, 'destroy'])->name('ctdthocphan.destroy');
 Route::get('/ctdthocphan/get-available-hocphans', [CtdtHocphanController::class, 'getAvailableHocphans'])->name('ctdthocphan.get-available-hocphans');
+Route::get('/get-hocphans/{ctdt_id}', [CtdtHocphanController::class, 'getHocphans'])->name('get-hocphans');
+
+
 
 //vaitro
 Route::get('/vaitro', [App\Http\Controllers\VaitroController::class, 'index'])->name('vaitro.index');

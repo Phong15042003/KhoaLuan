@@ -28,8 +28,21 @@ class CtdtHocphanController extends Controller
     public function create()
     {
         $chuongtrinhdaotaos = Chuongtrinhdaotao::all();
-        $hocphans = Hocphan::with('khoikienthuc')->get()->groupBy('KhoiKienThucID');
-        return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans'));
+
+        // Nếu không có chương trình nào thì không hiển thị học phần
+        $firstCTDT = $chuongtrinhdaotaos->first();
+    
+        $existingHocPhanIDs = [];
+        if ($firstCTDT) {
+            $existingHocPhanIDs = CtdtHocphan::where('CTDT_ID', $firstCTDT->id)->pluck('HocPhanID')->toArray();
+        }
+    
+        $hocphans = Hocphan::with('khoikienthuc')
+            ->whereNotIn('id', $existingHocPhanIDs)
+            ->get()
+            ->groupBy('KhoiKienThucID');
+    
+        return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans', 'firstCTDT'));
     }
 
   
@@ -91,4 +104,31 @@ class CtdtHocphanController extends Controller
 
         return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần deleted successfully.');
     }
+
+    public function getHocphans($ctdt_id)
+{
+    $existingHocPhanIDs = CtdtHocphan::where('CTDT_ID', $ctdt_id)->pluck('HocPhanID');
+
+    $hocphans = Hocphan::with('khoikienthuc')
+        ->whereNotIn('id', $existingHocPhanIDs)
+        ->get()
+        ->groupBy('KhoiKienThucID');
+
+    $formatted = [];
+
+    foreach ($hocphans as $group => $items) {
+        $formatted[] = [
+            'group' => $items->first()->khoikienthuc->TenKhoi ?? 'Không rõ',
+            'items' => $items->map(function ($hp) {
+                return [
+                    'id' => $hp->id,
+                    'label' => "{$hp->MaHocPhan} - {$hp->TenHocPhan} - Học kỳ: {$hp->HocKy}"
+                ];
+            })->toArray()
+        ];
+    }
+
+    return response()->json($formatted);
+}
+
 }

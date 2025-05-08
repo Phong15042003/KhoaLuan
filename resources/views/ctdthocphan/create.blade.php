@@ -46,6 +46,63 @@
 
                         <button type="submit" class="btn btn-primary">Thêm</button>
                     </form>
+                    <script>
+                        document.getElementById('CTDT_ID').addEventListener('change', function () {
+                            const ctdtID = this.value;
+                            const hocphanSelect = document.getElementById('HocPhanID');
+                    
+                            if ($(hocphanSelect).hasClass('select2-hidden-accessible')) {
+                                $(hocphanSelect).val(null).trigger('change');
+                            }
+                    
+                            hocphanSelect.innerHTML = '';
+                    
+                            const baseUrl = "{{ url('/') }}"; // đường dẫn gốc tới /khoaluan/public nếu có
+                            fetch(`${baseUrl}/get-hocphans/${ctdtID}`)
+                                .then(res => {
+                                    if (!res.ok) {
+                                        throw new Error(`HTTP error! status: ${res.status}`);
+                                    }
+                                    return res.json();
+                                })
+                                .then(data => {
+                                    if (data.length === 0) {
+                                        const option = document.createElement('option');
+                                        option.disabled = true;
+                                        option.textContent = 'Không còn học phần để chọn';
+                                        hocphanSelect.appendChild(option);
+                                        return;
+                                    }
+                    
+                                    data.forEach(group => {
+                                        const optgroup = document.createElement('optgroup');
+                                        optgroup.label = group.group;
+                    
+                                        group.items.forEach(item => {
+                                            const option = document.createElement('option');
+                                            option.value = item.id;
+                                            option.textContent = item.label;
+                                            optgroup.appendChild(option);
+                                        });
+                    
+                                        hocphanSelect.appendChild(optgroup);
+                                    });
+                    
+                                    if ($(hocphanSelect).hasClass('select2-hidden-accessible')) {
+                                        $(hocphanSelect).select2();
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Lỗi khi tải học phần:', error);
+                                    const option = document.createElement('option');
+                                    option.disabled = true;
+                                    option.textContent = 'Lỗi khi tải học phần';
+                                    hocphanSelect.appendChild(option);
+                                });
+                        });
+                    </script>
+                    
+                    
                 </div>
             </div>
         </div>
