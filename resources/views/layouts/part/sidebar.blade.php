@@ -63,7 +63,7 @@
                             <i class="fas fa-cubes mr-2"></i> Khối kiến thức
                         </a>
                         <a class="collapse-item" href="{{ route('hocphan.index') }}">
-                            <i class="fas fa-book-reader mr-2"></i> Học phần
+                            <i class="fas fa-book-open mr-2"></i> Học phần
                         </a>
                         <a class="collapse-item" href="{{ route('loaihocphan.index') }}">
                             <i class="fas fa-tags mr-2"></i> Loại học phần

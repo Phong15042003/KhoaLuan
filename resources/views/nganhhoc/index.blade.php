@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>Mã Ngành</th>
                                 <th>Tên Ngành</th>
                                 <th>Bộ Môn</th>
@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($nganhhocs as $nganhhoc)
                                 <tr>
-                                    <td>{{ $nganhhoc->id }}</td>
+                                   
                                     <td>{{ $nganhhoc->MaNganh }}</td>
                                     <td>{{ $nganhhoc->TenNganh }}</td>
                                     <td>{{ $nganhhoc->bomon->TenBoMon }}</td>

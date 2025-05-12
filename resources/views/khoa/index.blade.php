@@ -19,7 +19,6 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Ma Khoa</th>
                                 <th>Ten Khoa</th>
                                 <th>Hành động</th>
@@ -28,7 +27,6 @@
                         <tbody>
                             @foreach ($khoas as $khoa)
                                 <tr>
-                                    <td>{{ $khoa->id }}</td>
                                     <td>{{ $khoa->MaKhoa }}</td>
                                     <td>{{ $khoa->TenKhoa }}</td>
                                     <td>
@@ -38,6 +36,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
+                                        <a href="{{ route('khoa.show', $khoa->id) }}" class="btn btn-info">Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach

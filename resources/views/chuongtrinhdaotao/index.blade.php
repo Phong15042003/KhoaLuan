@@ -21,7 +21,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>Mã Chương trình</th>
                                 <th>Tên Chương trình</th>
                                 <th>Ngành học</th>
@@ -31,7 +31,7 @@
                         <tbody>
                             @foreach ($chuongtrinhdaotaos as $chuongtrinhdaotao)
                                 <tr>
-                                    <td>{{ $chuongtrinhdaotao->id }}</td>
+                                  
                                     <td>{{ $chuongtrinhdaotao->MaCTDT }}</td>
                                     <td>{{ $chuongtrinhdaotao->TenChuongTrinh }}</td>
                                     <td>{{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</td>

@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                              
                                 <th>Mã Khối kiến thức</th>
                                 <th>Tên Khối</th>
                                 <th>Hành động</th>
@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach ($khoikienthucs as $khoikienthuc)
                                 <tr>
-                                    <td>{{ $khoikienthuc->id }}</td>
+                                    
                                     <td>{{ $khoikienthuc->MaKhoiKienThuc }}</td>
                                     <td>{{ $khoikienthuc->TenKhoi }}</td>
                                     <td>

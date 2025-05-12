@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                            
                                 <th>Mã Bộ môn</th>
                                 <th>Tên Bộ môn</th>
                                 <th>Khoa</th>
@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($bomons as $bomon)
                                 <tr>
-                                    <td>{{ $bomon->id }}</td>
+                                    
                                     <td>{{ $bomon->MaBoMon }}</td>
                                     <td>{{ $bomon->TenBoMon }}</td>
                                     <td>{{ $bomon->khoa->TenKhoa }}</td>
@@ -40,7 +40,9 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Xóa</button>
                                         </form>
+                                        <a href="{{ route('bomon.show', $bomon->id) }}" class="btn btn-info">Chi tiết</a>
                                     </td>
+                                    
                                 </tr>
                             @endforeach
                         </tbody>

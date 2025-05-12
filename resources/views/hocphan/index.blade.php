@@ -8,9 +8,17 @@
                 <div class="card-header">{{ __('Học phần') }}</div>
 
                 <div class="card-body">
+                    {{-- Thông báo thành công --}}
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
+                        </div>
+                    @endif
+
+                    {{-- Thông báo lỗi --}}
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
                         </div>
                     @endif
 
@@ -77,7 +85,9 @@
                                             <form action="{{ route('hocphan.destroy', $hocphan->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa học phần này?')">
+                                                    Xóa
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>

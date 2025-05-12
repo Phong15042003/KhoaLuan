@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                           
                                 <th>Tên Loại học phần</th>
                                 <th>Hành động</th>
                             </tr>
@@ -27,7 +27,7 @@
                         <tbody>
                             @foreach ($loaihocphans as $loaihocphan)
                                 <tr>
-                                    <td>{{ $loaihocphan->id }}</td>
+                                
                                     <td>{{ $loaihocphan->TenLoaiHocPhan }}</td>
                                     <td>
                                         <a href="{{ route('loaihocphan.edit', $loaihocphan->id) }}" class="btn btn-warning">Sửa</a>

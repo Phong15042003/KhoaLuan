@@ -23,7 +23,7 @@ class HocphanController extends Controller
         });
     }
 
-    $hocphans = $query->orderBy('created_at')->with(['loaihocphan', 'khoikienthuc'])->get();
+    $hocphans = $query->orderBy('sothutu')->with(['loaihocphan', 'khoikienthuc'])->get();
     $chuongtrinhdaotaos = \App\Models\Chuongtrinhdaotao::all();
 
     return view('hocphan.index', compact('hocphans', 'chuongtrinhdaotaos'));
@@ -134,13 +134,21 @@ class HocphanController extends Controller
     }
 
    
-    public function destroy($id)
-    {
-        $hocphan = Hocphan::findOrFail($id);
-        $hocphan->delete();
+   public function destroy($id)
+{
+    $hocphan = Hocphan::findOrFail($id);
 
-        return redirect()->route('hocphan.index')->with('success', 'Học phần deleted successfully.');
+    if ($hocphan->chuongtrinhdaotaos()->count() > 0) {
+        $tenCTDT = $hocphan->chuongtrinhdaotaos->pluck('TenChuongTrinh')->join(', ');
+        return redirect()->route('hocphan.index')
+            ->with('error', "Học phần này đang được sử dụng trong chương trình đào tạo: $tenCTDT! Không thể xóa.");
     }
+
+    $hocphan->delete();
+
+    return redirect()->route('hocphan.index')->with('success', 'Học phần đã được xóa thành công.');
+}
+
 
     //xu ly them bang excecl
     public function excel()

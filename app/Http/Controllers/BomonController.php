@@ -51,7 +51,10 @@ class BomonController extends Controller
      */
     public function show($id)
     {
-        $bomon = Bomon::findOrFail($id);
+        // Fetch the Bomon and its associated Nganhhocs
+        $bomon = Bomon::with('nganhhocs')->findOrFail($id);
+
+        // Pass the data to the view
         return view('bomon.show', compact('bomon'));
     }
 

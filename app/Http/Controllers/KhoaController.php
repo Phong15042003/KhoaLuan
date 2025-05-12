@@ -47,7 +47,10 @@ class KhoaController extends Controller
      */
     public function show($id)
     {
-        $khoa = Khoa::findOrFail($id);
+        // Fetch the Khoa and its associated Bomons
+        $khoa = Khoa::with('bomons')->findOrFail($id);
+
+        // Pass the data to the view
         return view('khoa.show', compact('khoa'));
     }
 
