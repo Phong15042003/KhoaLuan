@@ -119,6 +119,28 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+       public function show($id)
+    {
+        // Fetch the user
+        $user = User::findOrFail($id);
+
+        // Initialize an empty collection for decuongchitiets
+        $decuongchitiets = collect();
+
+        // If the user is a giangvien, fetch their assigned decuongchitiets
+        if ($user->vaitro === 'giangvien') {
+            $decuongchitiets = \App\Models\Decuongchitiet::whereHas('hocphan.phancongmonhocs', function ($query) use ($user) {
+                $query->where('giangvien_id', $user->id);
+            })->get();
+        }
+
+        // Pass the user and decuongchitiets to the view
+        return view('users.show', compact('user', 'decuongchitiets'));
+    }
+
+    
+
     //excel
     public function excelForm()
     {

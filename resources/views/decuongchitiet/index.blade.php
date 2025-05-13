@@ -20,7 +20,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                              
                                 <th>Học phần</th>
                                 <th>Nội dung</th>
                                 <th>Hành động</th>
@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($decuongchitiets as $decuongchitiet)
                                 <tr>
-                                    <td>{{ $decuongchitiet->id }}</td>
+                                    
                                     <td>{{ $decuongchitiet->hocphan->TenHocPhan }}</td>
                                     <td>{{ $decuongchitiet->NoiDung }}</td>
                                     <td>  @if (auth()->user()->vaitro == 'giangvien')

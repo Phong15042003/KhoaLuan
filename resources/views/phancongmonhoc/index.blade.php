@@ -14,12 +14,12 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('phancongmonhoc.create') }}" class="btn btn-primary mb-3">Thêm phân công môn học</a>
+                    <a href="{{ route('phancongmonhoc.create') }}" class="btn btn-primary mb-3">Thêm phân công </a>
 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                
                                 <th>Biên soạn</th>
                                 <th>Giảng viên</th>
                                 <th>Học phần</th>
@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($phancongmonhocs as $phancongmonhoc)
                                 <tr>
-                                    <td>{{ $phancongmonhoc->id }}</td>
+                                    
                                     <td>{{ $phancongmonhoc->biensoan->name }}</td>
                                     <td>{{ $phancongmonhoc->giangvien->name }}</td>
                                     <td>{{ $phancongmonhoc->hocphan->TenHocPhan }}</td>

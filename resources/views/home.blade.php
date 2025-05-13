@@ -46,7 +46,7 @@
                         </div>
                        
                         <div class="col-md-4">
-                            <a href="{{ route('hocphan.index') }}" class="text-decoration-none">
+                            <a href="{{ route('decuongchitiet.index') }}" class="text-decoration-none">
                                 <div class="card text-center shadow-sm">
                                     <div class="card-body">
                                         <i class="fas fa-file-alt fa-3x mb-3 text-info"></i>
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="col-md-4">
-                            <a href="{{ route('hocphan.index') }}" class="text-decoration-none">
+                            <a href="{{ route('users.index', ['vaitro' => 'giangvien']) }}" class="text-decoration-none">
                                 <div class="card text-center shadow-sm">
                                     <div class="card-body">
                                         <i class="fas fa-user-graduate  fa-3x mb-3 text-info"></i>

@@ -14,12 +14,16 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Thêm người dùng</a>
-                    <a href="{{ route('users.excel') }}" class="btn btn-primary mb-3">Thêm người dùng bằng excel</a>
+                    {{-- Show "Thêm người dùng" and "Thêm người dùng bằng excel" only for admin --}}
+                    @if (auth()->user()->vaitro == 'admin')
+                        <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Thêm người dùng</a>
+                        <a href="{{ route('users.excel') }}" class="btn btn-primary mb-3">Thêm người dùng bằng excel</a>
+                    @endif
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                
                                 <th>Tên</th>
                                 <th>Email</th>
                                 <th>Vai trò</th>
@@ -29,17 +33,21 @@
                         <tbody>
                             @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
+                                   
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->vaitro }}</td>
                                     <td>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Sửa</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
-                                        </form>
+                                        {{-- Show "Sửa" and "Xóa" buttons only for admin --}}
+                                        @if (auth()->user()->vaitro == 'admin')
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Sửa</a>
+                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                            </form>
+                                        @endif
+                                        <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach

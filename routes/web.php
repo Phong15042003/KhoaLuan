@@ -40,6 +40,7 @@ Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->na
 Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
 Route::get('/users/excel', [UserController::class, 'excelForm'])->name('users.excel');
 Route::post('/users/import', [UserController::class, 'import'])->name('users.import');
 
@@ -165,7 +166,7 @@ Route::delete('/chuandaura/{id}', [App\Http\Controllers\ChuandauraController::cl
 Route::get('/chuandaura/{id}', [App\Http\Controllers\ChuandauraController::class, 'show'])->name('chuandaura.show');
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('users', UserController::class);
+    //Route::resource('users', UserController::class);
     Route::resource('khoa', KhoaController::class);
     Route::resource('bomon', BomonController::class);
     Route::resource('khoikienthuc', KhoikienthucController::class);

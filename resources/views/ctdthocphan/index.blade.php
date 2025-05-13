@@ -33,7 +33,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>Chương trình đào tạo</th>
                                 <th>Học phần</th>
                                 <th>Hành động</th>
@@ -42,7 +42,7 @@
                         <tbody>
                             @foreach ($ctdtHocphans as $ctdtHocphan)
                                 <tr>
-                                    <td>{{ $ctdtHocphan->id }}</td>
+                                    
                                     <td>{{ $ctdtHocphan->chuongtrinhdaotao ? $ctdtHocphan->chuongtrinhdaotao->TenChuongTrinh : 'N/A' }}</td>
                                     <td>{{ $ctdtHocphan->hocphan ? $ctdtHocphan->hocphan->TenHocPhan : 'N/A' }}</td>
                                     <td>

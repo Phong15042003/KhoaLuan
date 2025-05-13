@@ -13,7 +13,7 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                    @if (auth()->user()->vaitro == 'admin' || auth()->user()->vaitro == 'biensoan')
+                    @if (auth()->user()->vaitro == 'admin')
                         <a href="{{ route('chuongtrinhdaotao.create') }}" class="btn btn-primary mb-3">Thêm chương trình đào tạo</a>
                     @endif
                     
