@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Đề cương chi tiết Details') }}</div>
+        <div class="col-12">
+            <div class="card mx-auto" style="max-width: 1100px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Đề cương chi tiết</h5>
+                </div>
 
                 <div class="card-body">
                     <p><strong>Tên học phần tiếng Việt:</strong> {{ $decuongchitiet->hocphan->TenHocPhan }}</p>
@@ -13,8 +15,15 @@
                     <p><strong>Mã học phần:</strong> {{ $decuongchitiet->hocphan->MaHocPhan }}</p>
                     <p><strong>Số tín chỉ:</strong> {{ $decuongchitiet->hocphan->SoTinChi }}</p>
                     <p><strong>Học phần thuộc khối kiến thức:</strong> {{ $decuongchitiet->hocphan->khoikienthuc->TenKhoi }}</p>
-                    <p><strong>Nội dung:</strong> {{ $decuongchitiet->NoiDung }}</p>
-                   
+
+                    <hr>
+                    <h5 class="mt-4">Nội dung đề cương chi tiết</h5>
+
+                    <div class="table-responsive" style="background-color: #f8f9fa; padding: 20px;">
+                        {!! $decuongchitiet->NoiDung !!}
+                    </div>
+
+                    <a href="{{ route('decuongchitiet.index') }}" class="btn btn-secondary mt-3">Quay lại</a>
                 </div>
             </div>
         </div>

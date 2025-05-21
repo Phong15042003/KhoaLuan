@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 17, 2025 lúc 11:48 AM
+-- Thời gian đã tạo: Th5 16, 2025 lúc 04:06 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.1.25
 
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `khoaluantn`
 --
-CREATE DATABASE IF NOT EXISTS `khoaluantn` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `khoaluantn`;
+
 -- --------------------------------------------------------
 
 --
@@ -98,7 +97,8 @@ CREATE TABLE `chuongtrinhdaotaos` (
 
 INSERT INTO `chuongtrinhdaotaos` (`id`, `MaCTDT`, `TenChuongTrinh`, `NganhHocID`, `created_at`, `updated_at`) VALUES
 (1, 'CNTTDH25', 'Công nghệ thông tin DH25', 1, '2025-02-25 00:12:50', '2025-02-25 00:12:50'),
-(2, 'CNTTDH24', 'Công nghệ thông tin DH24', 1, '2025-02-25 00:12:57', '2025-02-25 00:12:57');
+(2, 'CNTTDH24', 'Công nghệ thông tin DH24', 1, '2025-02-25 00:12:57', '2025-02-25 00:12:57'),
+(5, '7480103', 'Kĩ thuật phần mềm', 2, '2025-05-08 01:08:49', '2025-05-08 01:08:49');
 
 -- --------------------------------------------------------
 
@@ -178,19 +178,17 @@ INSERT INTO `ctdthocphans` (`id`, `CTDT_ID`, `HocPhanID`, `created_at`, `updated
 (57, 1, 57, '2025-02-26 18:29:03', '2025-02-26 18:29:03'),
 (58, 1, 58, '2025-02-26 18:29:07', '2025-02-26 18:29:07'),
 (59, 1, 59, '2025-02-26 18:29:13', '2025-02-26 18:29:13'),
-(60, 1, 60, '2025-02-26 18:29:19', '2025-02-26 18:29:19'),
-(61, 1, 61, '2025-02-26 18:29:24', '2025-02-26 18:29:24'),
-(62, 1, 62, '2025-02-26 18:29:29', '2025-02-26 18:29:29'),
-(63, 1, 63, '2025-02-26 18:29:35', '2025-02-26 18:29:35'),
-(64, 1, 64, '2025-02-26 18:29:41', '2025-02-26 18:29:41'),
-(65, 1, 65, '2025-02-26 18:29:46', '2025-02-26 18:29:46'),
-(66, 1, 66, '2025-02-26 18:29:51', '2025-02-26 18:29:51'),
-(67, 1, 67, '2025-02-26 18:29:55', '2025-02-26 18:29:55'),
-(68, 1, 68, '2025-02-26 18:30:00', '2025-02-26 18:30:00'),
-(69, 1, 69, '2025-02-26 18:30:07', '2025-02-26 18:30:07'),
-(70, 2, 1, '2025-03-25 05:58:16', '2025-03-25 05:58:16'),
-(71, 2, 2, '2025-03-25 05:58:16', '2025-03-25 05:58:16'),
-(72, 2, 3, '2025-03-25 05:58:16', '2025-03-25 05:58:16');
+(108, 1, 60, '2025-05-12 19:55:41', '2025-05-12 19:55:41'),
+(109, 1, 61, '2025-05-12 19:55:41', '2025-05-12 19:55:41'),
+(110, 1, 62, '2025-05-12 19:55:41', '2025-05-12 19:55:41'),
+(111, 1, 63, '2025-05-12 19:55:41', '2025-05-12 19:55:41'),
+(112, 1, 64, '2025-05-12 19:55:41', '2025-05-12 19:55:41'),
+(113, 1, 65, '2025-05-12 19:55:42', '2025-05-12 19:55:42'),
+(114, 1, 66, '2025-05-12 19:55:42', '2025-05-12 19:55:42'),
+(115, 1, 67, '2025-05-12 19:55:42', '2025-05-12 19:55:42'),
+(116, 1, 68, '2025-05-12 19:55:42', '2025-05-12 19:55:42'),
+(117, 1, 69, '2025-05-12 19:55:42', '2025-05-12 19:55:42'),
+(118, 2, 71, '2025-05-12 20:42:15', '2025-05-12 20:42:15');
 
 -- --------------------------------------------------------
 
@@ -205,6 +203,14 @@ CREATE TABLE `decuongchitiets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `decuongchitiets`
+--
+
+INSERT INTO `decuongchitiets` (`id`, `HocPhanID`, `NoiDung`, `created_at`, `updated_at`) VALUES
+(1, 14, '<p>kjsklfnkewrhsroeru</p>', '2025-04-20 22:35:51', '2025-04-20 22:35:51'),
+(3, 17, '<p class=\"MsoNormal\" align=\"center\" style=\"margin-top:6.0pt;text-align:center\"><b><span lang=\"X-NONE\" style=\"mso-bidi-font-size:\r\n14.0pt;line-height:107%;mso-ansi-language:X-NONE\">LỜI</span></b><b><span lang=\"VI\" style=\"mso-bidi-font-size:\r\n14.0pt;line-height:107%;mso-ansi-language:VI\"> CẢM ƠN</span></b><b><span lang=\"X-NONE\" style=\"mso-bidi-font-size:\r\n14.0pt;line-height:107%;mso-ansi-language:X-NONE\"><o:p></o:p></span></b></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Lời\r\nđầu tiên, tôi xin chân thành gửi lời cảm ơn đến Ban Giám hiệu Trường Đại học An\r\nGiang cùng quý thầy cô trong Khoa Công nghệ Thông tin đã tạo điều kiện thuận\r\nlợi nhất để tôi hoàn thành quá trình thực tập cuối khóa này. Khoảng thời gian\r\nthực tập vừa qua là cơ hội quý giá để tôi có thể củng cố kiến thức chuyên môn,\r\nvận dụng những kỹ năng đã học vào thực tế, và phát triển bản thân một cách toàn\r\ndiện hơn.<o:p></o:p></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Tôi\r\nxin bày tỏ lòng biết ơn sâu sắc tới giảng viên hướng dẫn, TS. Lê Hoàng Anh,\r\nngười đã dành nhiều thời gian và tâm huyết hướng dẫn tôi trong suốt quá trình\r\nthực hiện đề tài. Sự tận tâm, nhiệt tình, những chỉ dẫn tận tình cùng với những\r\nlời góp ý quý báu của thầy đã giúp tôi hoàn thành tốt đề tài thực tập và hoàn\r\nthiện bài báo cáo này một cách chất lượng nhất.<o:p></o:p></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Môi\r\ntrường làm việc tại Khoa Công nghệ Thông tin đã giúp tôi tiếp xúc và làm quen\r\nvới phong cách làm việc chuyên nghiệp, tinh thần trách nhiệm và thái độ làm\r\nviệc nghiêm túc, khoa học. Những kinh nghiệm thực tế học được trong thời gian\r\nnày đã giúp tôi trưởng thành hơn, hiểu rõ hơn về cách vận dụng kiến thức vào\r\nthực tiễn, cũng như có cơ hội học hỏi từ những người có kinh nghiệm lâu năm\r\ntrong lĩnh vực công nghệ thông tin.<o:p></o:p></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Những\r\nkinh nghiệm quý giá, kiến thức bổ ích và kỹ năng mà tôi có được từ quá trình\r\nthực tập tại Khoa Công nghệ Thông tin – Trường Đại học An Giang chắc chắn sẽ là\r\nhành trang quan trọng giúp tôi tự tin hơn và vững vàng hơn trong công việc và\r\ncuộc sống sau này.<o:p></o:p></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Sinh\r\nviên thực hiện đề tài<o:p></o:p></p>\r\n\r\n<p style=\"margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;margin-left:0cm\">Ngô\r\nThanh Phong<o:p></o:p></p>', '2025-04-22 00:20:47', '2025-04-22 00:22:16');
 
 -- --------------------------------------------------------
 
@@ -269,7 +275,7 @@ CREATE TABLE `hocphans` (
 --
 
 INSERT INTO `hocphans` (`id`, `sothutu`, `MaHocPhan`, `TenHocPhan`, `TenHocPhanTiengAnh`, `SoTinChi`, `SoTietLyThuyet`, `SoTietThucHanh`, `HocKy`, `DkTienQuyet`, `DkHocTruoc`, `DkSongHanh`, `KhoiKienThucID`, `LoaiHocPhanID`, `NhomTuChon`, `created_at`, `updated_at`) VALUES
-(1, 1, 'PHT15X', 'Giáo dục thể chất 1', 'Physical Education 1', 3, 3, 0, 3, 0, 0, 0, 5, 1, 0, '2025-02-05 19:19:58', '2025-02-24 09:48:56'),
+(1, 1, 'PHT15X', 'Giáo dục thể chất 1', 'Physical Education 1', 3, 3, 0, 3, 0, 0, 0, 5, 1, 0, '2025-02-05 19:19:58', '2025-04-20 22:45:52'),
 (2, 2, 'PHT25X', 'Giáo dục thể chất 2', 'Physical Education 2', 3, 3, 0, 4, 0, 1, 0, 5, 1, 0, '2025-02-05 19:23:19', '2025-02-24 09:49:28'),
 (3, 3, 'MIS21X', 'Giáo dục quốc phòng và an ninh', 'National Security & Defence Education', 4, 4, 0, 4, 0, 0, 0, 5, 1, 0, '2025-02-05 19:27:59', '2025-02-24 09:49:35'),
 (4, 4, 'ENG110', 'Tiếng Anh 1', 'English 1', 4, 4, 0, 2, 0, 0, 0, 5, 1, 0, '2025-02-05 19:29:18', '2025-02-24 09:49:41'),
@@ -281,7 +287,7 @@ INSERT INTO `hocphans` (`id`, `sothutu`, `MaHocPhan`, `TenHocPhan`, `TenHocPhanT
 (10, 10, 'VRP505', 'Lịch sử Đảng Cộng sản Việt Nam', 'History of Vietnamese Communist Party', 2, 2, 0, 5, 0, 9, 0, 1, 1, 0, '2025-02-05 19:47:45', '2025-02-24 09:52:11'),
 (11, 11, 'HCM101', 'Tư tưởng Hồ Chí Minh', 'HoChiMinh\'s Ideology', 2, 2, 0, 6, 0, 10, 0, 1, 1, 0, '2025-02-05 19:48:45', '2025-02-24 09:52:22'),
 (12, 12, 'LAW101', 'Pháp luật đại cương', 'Introduction to Law', 2, 2, 0, 2, 0, 0, 0, 1, 1, 0, '2025-02-05 19:50:08', '2025-02-24 09:52:29'),
-(13, 13, 'COS104', 'Giới thiệu ngành - CNTT', 'Introduce to Information Technology', 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, '2025-02-05 19:53:56', '2025-02-24 09:53:16'),
+(13, 13, 'COS104', 'Giới thiệu ngành - CNTT', 'Introduce to Information Technology', 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, '2025-02-05 19:53:56', '2025-04-28 05:38:13'),
 (14, 14, 'MAT104', 'Toán A1', 'Advanced Mathematics A1', 3, 3, 0, 1, 0, 0, 0, 1, 1, 0, '2025-02-05 19:54:46', '2025-02-24 09:53:32'),
 (15, 15, 'MAT105', 'Toán A2', 'Advanced Mathematics A2', 3, 3, 0, 2, 0, 14, 0, 1, 1, 0, '2025-02-05 19:55:32', '2025-02-24 09:53:39'),
 (16, 16, 'MAT106', 'Toán A3', 'Advanced Mathematics A3', 3, 3, 0, 3, 0, 15, 0, 1, 1, 0, '2025-02-05 19:57:19', '2025-02-24 09:53:50'),
@@ -337,7 +343,8 @@ INSERT INTO `hocphans` (`id`, `sothutu`, `MaHocPhan`, `TenHocPhan`, `TenHocPhanT
 (66, 66, 'COS916', 'Khai thác dữ liệu lớn', 'Data mining with Big Data', 3, 2, 1, 8, 0, 0, 0, 4, 2, 0, '2025-02-06 19:04:46', '2025-02-24 10:05:49'),
 (67, 67, 'SEE910', 'Điện toán đám mây', 'Cloud Computing', 3, 2, 1, 8, 0, 0, 0, 4, 2, 0, '2025-02-06 19:05:51', '2025-02-24 10:06:00'),
 (68, 68, 'COS917', 'Khai phá dữ liệu', 'Data mining', 3, 2, 1, 8, 0, 39, 0, 4, 2, 0, '2025-02-06 19:07:28', '2025-02-24 10:06:10'),
-(69, 69, 'SEE917', 'Phát triển ứng dụng hướng dịch vụ', 'Service-Oriented Application Development', 3, 2, 1, 8, 0, 0, 0, 4, 2, 0, '2025-02-06 19:15:43', '2025-02-24 10:06:21');
+(69, 69, 'SEE917', 'Phát triển ứng dụng hướng dịch vụ', 'Service-Oriented Application Development', 3, 2, 1, 8, 0, 0, 0, 4, 2, 0, '2025-02-06 19:15:43', '2025-02-24 10:06:21'),
+(71, 1, 'PHT15X', 'Giáo dục thể chất 1', 'Physical Education 1', 2, 2, 0, 1, 0, 0, 0, 5, 1, 0, '2025-04-20 22:32:48', '2025-05-12 20:42:33');
 
 -- --------------------------------------------------------
 
@@ -554,7 +561,9 @@ CREATE TABLE `phancongmonhocs` (
 --
 
 INSERT INTO `phancongmonhocs` (`id`, `biensoan_id`, `giangvien_id`, `HocPhanID`, `created_at`, `updated_at`) VALUES
-(1, 3, 5, 14, '2025-03-21 01:10:19', '2025-03-21 01:10:19');
+(3, 3, 5, 20, '2025-04-20 22:47:10', '2025-04-20 22:47:10'),
+(5, 3, 8, 17, '2025-04-22 00:18:25', '2025-04-22 00:18:25'),
+(6, 3, 5, 13, '2025-05-12 19:35:25', '2025-05-12 19:35:25');
 
 -- --------------------------------------------------------
 
@@ -597,8 +606,32 @@ INSERT INTO `users` (`id`, `name`, `email`, `vaitro`, `email_verified_at`, `pass
 (1, 'admin', 'win65905@gmail.com', 'admin', NULL, '$2y$12$B9ba/BByht3bFoWFjtdorOU8XvVdHM5a/7nXAQCXkZU79P50mJ2RC', NULL, '2025-02-08 00:14:24', '2025-02-08 00:14:24'),
 (2, 'phong', 'phong_dth216080@student.agu.edu.vn', 'sinhvien', NULL, '$2y$12$SHHfpyr.8dDFKiu2SEtFpOQ6blEPorz8LD45JBQcG9jfKydnadrma', NULL, '2025-02-23 17:22:24', '2025-03-20 00:23:46'),
 (3, 'Biên soạn', 'biensoan123@gmail.com', 'biensoan', NULL, '$2y$12$8AINccpX9sCMiCDW3kGPM.ja7kekjAcRFL.AEawaif4u/5fff/iX2', NULL, '2025-02-23 18:19:24', '2025-02-23 18:19:24'),
-(4, 'Chủ nhiệm khoa', 'chunhiemkhoa@gmail.com', 'chunhiem', NULL, '$2y$12$YWdeKpbiMeCGvaMKPyJkweA732Y6b/kRQ.abKPQaBzz9PPZ1rCq9C', NULL, '2025-02-23 18:19:54', '2025-02-23 18:19:54'),
-(5, 'Lê Hoàng Anh', 'lhanh@agu.edu.com', 'giangvien', NULL, '$2y$12$RZ71lNlU4CvwsjMSZj3heO8f4GZVpt3M8oTfXnI3SaUMr4ATuqx0i', NULL, '2025-02-23 18:20:20', '2025-04-16 23:24:20');
+(4, 'Trưởng khoa-Đoàn Thanh Nghị', 'dtnghi@agu.edu.vn', 'chunhiem', NULL, '$2y$12$YWdeKpbiMeCGvaMKPyJkweA732Y6b/kRQ.abKPQaBzz9PPZ1rCq9C', NULL, '2025-02-23 18:19:54', '2025-04-21 05:49:58'),
+(5, 'Lê Hoàng Anh', 'lhanh@agu.edu.com', 'giangvien', NULL, '$2y$12$RZ71lNlU4CvwsjMSZj3heO8f4GZVpt3M8oTfXnI3SaUMr4ATuqx0i', NULL, '2025-02-23 18:20:20', '2025-04-16 23:24:20'),
+(7, 'Phó trưởng khoa-Nguyễn Văn Hòa', 'nvhoa@agu.edu.vn', 'chunhiem', NULL, '$2y$12$WGpOmWK5DOJdJMJ6Kj2fN.3gvvwU9jIh7omdSm3DjkMPsOIrqynE2', NULL, '2025-04-21 05:50:47', '2025-04-21 05:50:47'),
+(8, 'Thầy Tùng', 'tung@gmail.com', 'giangvien', NULL, '$2y$12$ZFexHuDYmiAuoyEPYeQk3eXN.6Y4QVRhBtnxaSq1q7WblOaTjtO0u', NULL, '2025-04-22 00:18:00', '2025-04-22 00:18:00'),
+(13, 'Nguyễn Thái Dư', 'ntdu@agu.edu.vn', 'giangvien', NULL, '$2y$12$XlzuJVGcBvQdzdCqfcco4OOzIn2dH/L6aew.8Qqn6FQDmv8XUG2Ua', NULL, '2025-05-03 07:16:37', '2025-05-03 07:16:37'),
+(14, 'Trương Thị Diễm', 'ttdiem@agu.edu.vn', 'giangvien', NULL, '$2y$12$/vpGLdoAdrgNvsg0bIkRj.EWWzl8fqbbJr1dGv45LzAQWCVnveM/6', NULL, '2025-05-03 07:16:37', '2025-05-03 07:16:37'),
+(15, 'Nguyễn Quang Huy', ' nqhuy@agu.edu.vn', 'giangvien', NULL, '$2y$12$snw42vuTX.goZLxOq5QlHOyDEfC99RdGgxUs5N3mPsPUB4eA11gBG', NULL, '2025-05-03 07:16:37', '2025-05-03 07:16:37'),
+(16, 'Lê Thị Minh Nguyệt', 'ltmnguyet@agu.edu.vn', 'giangvien', NULL, '$2y$12$p5gOD5PH5kvTL8sXXYYBnO6snlQiUR4snje.zXo4mxvacdCHqRIG.', NULL, '2025-05-03 07:16:38', '2025-05-03 07:16:38'),
+(17, 'Nguyễn Thị Lan Quyên', 'ntlquyen@agu.edu.vn', 'giangvien', NULL, '$2y$12$M44ZWHkOvZuhntXDZnpCUe8GiwBI0ZLsopmTX7zhR6POwNZ23JipG', NULL, '2025-05-03 07:16:38', '2025-05-03 07:16:38'),
+(18, 'Nguyễn Văn Đông', ' nvdong@agu.edu.vn', 'giangvien', NULL, '$2y$12$YSb.gVqWrmRRFc.t1mbA4..OAEO58p.bcOadj8MOeY2gvtx9TOhL6', NULL, '2025-05-03 07:16:38', '2025-05-03 07:16:38'),
+(19, 'Lê Công Đoàn', ' lcdoan@agu.edu.vn', 'giangvien', NULL, '$2y$12$StkbTHzHbmkdVXJrFyMSAukJ4ibQjl1E5lWC90hiVquxlvUOOsWeS', NULL, '2025-05-03 07:16:39', '2025-05-03 07:16:39'),
+(20, 'Huỳnh Cao Thế Cường', 'hctcuong@agu.edu.vn', 'giangvien', NULL, '$2y$12$QX6yLhJUumAX7kfUO.dmn.v7/yWJvHnu3WV27Aug.o/xIL5iOlEFu', NULL, '2025-05-03 07:16:39', '2025-05-03 07:16:39'),
+(21, 'Phan Thanh Bình', 'ptbinh@agu.edu.vn', 'giangvien', NULL, '$2y$12$aG.6b63v.7aKatiVPgKjQee8bwL/3ytng.qqCs9Zn0aZMLkulP70m', NULL, '2025-05-03 07:16:39', '2025-05-03 07:16:39'),
+(22, 'Châu Ngân Khánh', 'cnkhanh@agu.edu.vn', 'giangvien', NULL, '$2y$12$Hy/eqhMc565mr5KuK63p4.dLnyszt0sMD/xMuX3ANJ4hG.NsNUFla', NULL, '2025-05-03 07:16:40', '2025-05-03 07:16:40'),
+(23, 'Huỳnh Phước Hải', 'hphai@agu.edu.vn', 'giangvien', NULL, '$2y$12$zlAW56PVVb4FhMCtUygD1OOWB3BaTj0vg6jm6dibfAqeeqnB3TagO', NULL, '2025-05-03 07:16:40', '2025-05-03 07:16:40'),
+(24, 'Phạm Hữu Dũng', 'phdung@agu.edu.vn', 'giangvien', NULL, '$2y$12$giu1XAhxxxnCrj8jhDcMyOUbN8IlfnHWr7DiidTd/wuv4I6bESfxS', NULL, '2025-05-03 07:16:41', '2025-05-03 07:16:41'),
+(25, 'Nguyễn Thị Mỹ Truyền', 'ntmtruyen@agu.edu.vn', 'giangvien', NULL, '$2y$12$.OE6SvHzZM2GB/TLjW6Rsu1HL/tTHI0tU8S66OEmyOwGC.5f1ivvC', NULL, '2025-05-03 07:16:41', '2025-05-03 07:16:41'),
+(26, 'Lê Trung Thư', ' ltthu@agu.edu.vn', 'giangvien', NULL, '$2y$12$DUTEDkmyELb28V4jnACCKOWEBd9kaFS7XPZaYvuW.gv8UcnLJ.0zm', NULL, '2025-05-03 07:16:41', '2025-05-03 07:16:41'),
+(27, 'Lê Văn Toán', ' lvtoan@agu.edu.vn', 'giangvien', NULL, '$2y$12$I/4Qp70ZPIpb6NeIwXIDkurFMYC5Ne5m0XKLHKrkERuM6RYiorp46', NULL, '2025-05-03 07:16:42', '2025-05-03 07:16:42'),
+(28, 'Nguyễn Minh Vi', 'nmvi@agu.edu.vn', 'giangvien', NULL, '$2y$12$RWE4sr5OrdI9WPWcvnEwIOEGgxtZygrP.6iytFH00OAWyxr1Rfl0G', NULL, '2025-05-03 07:16:42', '2025-05-03 07:16:42'),
+(29, 'Nguyễn Ngọc Minh', 'nnminh@agu.edu.vn', 'giangvien', NULL, '$2y$12$iOgU.aQy6KnHDh.1zdEGj.THVv.nrszqEwqt.D32L5DK2jMZZbYXa', NULL, '2025-05-03 07:16:43', '2025-05-03 07:16:43'),
+(30, 'Trần Thị Tuyết Vân', 'tttvan@agu.edu.vn', 'giangvien', NULL, '$2y$12$IcQ1eBhPrKWJj5ac/4Q8K.VSeA3vfUBuVXcZlLW3KAR.GGs9lrsnm', NULL, '2025-05-03 07:16:43', '2025-05-03 07:21:48'),
+(31, 'Thiều Thanh Quang Phú', 'ttqphu@agu.edu.vn', 'giangvien', NULL, '$2y$12$D0KZqC8lbqIN3mwjt8kPaOHnmPkmNTRsprItRqnbSmQtPJ7b3mC2a', NULL, '2025-05-03 07:16:43', '2025-05-03 07:16:43'),
+(32, 'Huỳnh Lý Thanh Nhàn', ' hltnhan@agu.edu.vn', 'giangvien', NULL, '$2y$12$BIes4w3lKW8B9tE2UTI5i.4JssKjn4L8tCdZVLREKMIDCC9gdQScC', NULL, '2025-05-03 07:16:44', '2025-05-03 07:16:44'),
+(33, 'Nguyễn Hoàng Tùng', 'nhoangtung@agu.edu.vn', 'giangvien', NULL, '$2y$12$g0V9vRTfNSkS4aDIjmegIuJfR4SaD4ennpImKQJ4TLZno2LsToc9O', NULL, '2025-05-03 07:16:44', '2025-05-03 07:16:44'),
+(34, 'Nguyễn Hoài Nam', 'nhnam@agu.edu.vn', 'giangvien', NULL, '$2y$12$31oqy3s.sGwhV1FivXMFnOJr.T61UM/XU/pNuYKBBoGR9l3wzTi2y', NULL, '2025-05-03 07:16:44', '2025-05-03 07:16:44');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -768,19 +801,19 @@ ALTER TABLE `chuandauras`
 -- AUTO_INCREMENT cho bảng `chuongtrinhdaotaos`
 --
 ALTER TABLE `chuongtrinhdaotaos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `ctdthocphans`
 --
 ALTER TABLE `ctdthocphans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT cho bảng `decuongchitiets`
 --
 ALTER TABLE `decuongchitiets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -798,7 +831,7 @@ ALTER TABLE `gopies`
 -- AUTO_INCREMENT cho bảng `hocphans`
 --
 ALTER TABLE `hocphans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT cho bảng `khoahocs`
@@ -816,7 +849,7 @@ ALTER TABLE `khoas`
 -- AUTO_INCREMENT cho bảng `khoikienthucs`
 --
 ALTER TABLE `khoikienthucs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `loaihocphans`
@@ -846,7 +879,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `phancongmonhocs`
 --
 ALTER TABLE `phancongmonhocs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `thongkes`
@@ -858,7 +891,7 @@ ALTER TABLE `thongkes`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -22,7 +22,6 @@
                             <tr>
                               
                                 <th>Học phần</th>
-                                <th>Nội dung</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -31,7 +30,6 @@
                                 <tr>
                                     
                                     <td>{{ $decuongchitiet->hocphan->TenHocPhan }}</td>
-                                    <td>{{ $decuongchitiet->NoiDung }}</td>
                                     <td>  @if (auth()->user()->vaitro == 'giangvien')
                                         <a href="{{ route('decuongchitiet.edit', $decuongchitiet->id) }}" class="btn btn-warning">Sửa</a>
                                         <form action="{{ route('decuongchitiet.destroy', $decuongchitiet->id) }}" method="POST" style="display:inline-block;">
