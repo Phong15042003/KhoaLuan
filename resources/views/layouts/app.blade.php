@@ -76,30 +76,27 @@
 
     <!-- Select2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('.select2-no-close').select2({
-                closeOnSelect: false
-            });
-        });
-
-        $(document).ready(function() {
-        // Khởi tạo Summernote cho textarea với class "summernote"
-        $('.summernote').summernote({
-            height: 200,                // Chiều cao của editor
-            minHeight: null,            // Không giới hạn chiều cao tối thiểu
-            maxHeight: null,            // Không giới hạn chiều cao tối đa
-            focus: true                 // Tự động focus vào textarea
-        });
+<script src="https://cdn.ckeditor.com/4.21.0/full-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('NoiDung', {
+        height: 500,
+        extraPlugins: 'table,justify,colorbutton,font',
+        toolbarGroups: [
+            { name: 'document',	   groups: [ 'mode', 'document' ] },
+            { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+            { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+            { name: 'insert' },
+            '/',
+            { name: 'styles' },
+            { name: 'colors' },
+            { name: 'tools' },
+            { name: 'table' }
+        ]
     });
-        
-    </script>
-    <!-- Summernote CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-
-    <!-- Summernote JS -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+</script>
 
 
 </body>

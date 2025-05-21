@@ -1,0 +1,68 @@
+body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 30px;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    margin: 4px 0;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    page-break-inside: avoid;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+th, td {
+    padding: 6px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+/* Loại bỏ viền bảng đầu trang */
+.no-border {
+    border: none !important;
+}
+
+.no-border td {
+    border: none !important;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Giảm margin của tiêu đề */
+h3, h4 {
+    margin-top: 10px;
+}
+
+/* Danh sách trong nội dung CKEditor */
+ul {
+    padding-left: 18px;
+    margin: 4px 0;
+}

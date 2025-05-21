@@ -32,21 +32,21 @@
 
                         <div class="form-group mt-4">
                             <label for="NoiDung"><strong>Nội dung đề cương chi tiết</strong></label>
-                            <textarea class="form-control summernote" id="NoiDung" name="NoiDung" rows="15" required>
-<h5>2. Mô tả môn học</h5>
+                            <textarea class="form-control" id="NoiDung" name="NoiDung" rows="15" required>
+<h3><b>2. Mô tả môn học</b></h3>
 <p>Nhập nội dung mô tả môn học tại đây...</p>
 
-<h5>3. Tài liệu học tập</h5>
+<h3><b>3. Tài liệu học tập</b></h3>
 <ul>
     <b>Giáo trình</b>
-    <li> Các tài liệu giáo trình:…</li>
+    <li> Tài liệu giáo trình: …</li>
     <b>Tham khảo</b>
-    <li> Các tài liệu tham khảo: …</li>
+    <li> Tài liệu ham khảo: …</li>
     <b>Phần mềm</b>
-    <li> Các tài liệu phần mềm: …</li>
+    <li> Tài liệu phần mềm: …</li>
 </ul>
 
-<h5>4. Chuẩn đầu ra môn học</h5>
+<h3><b>4. Chuẩn đầu ra môn học</b></h3>
 <table border="1" cellpadding="6" cellspacing="0" style="width:100%;">
     <thead>
         <tr>
@@ -78,14 +78,14 @@
     </tbody>
 </table>
 
-<h5>5. Chuẩn đầu ra bài học</h5>
+<h3><b>5. Chuẩn đầu ra bài học</b></h3>
 <table border="1" cellpadding="6" cellspacing="0" style="width:100%;">
     <thead>
         <tr>
             <th>CĐR môn học</th>
             <th>CDR bài học</th>
             <th>Mô tả CĐR bài học</th>
-            <th>Mức độ Gd</th>
+            <th>Mức độ GD</th>
         </tr>
     </thead>
     <tbody>
@@ -121,23 +121,4 @@
 </div>
 @endsection
 
-@section('scripts')
-<!-- Summernote JS + cấu hình gọn -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.summernote').summernote({
-            height: 400,
-            styleTags: [],
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['link']],
-                ['view', ['codeview']]
-            ]
-        });
-    });
-</script>
-@endsection
+

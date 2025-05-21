@@ -7,6 +7,7 @@ use App\Models\Hocphan;
 use App\Models\Phancongmonhoc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DecuongchitietController extends Controller
 {
@@ -125,4 +126,11 @@ class DecuongchitietController extends Controller
 
         return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết deleted successfully.');
     }
+    //xuat pdf
+    public function exportPDF($id)
+{
+    $decuongchitiet = Decuongchitiet::with('hocphan.khoikienthuc')->findOrFail($id);
+    $pdf = Pdf::loadView('decuongchitiet.pdf', compact('decuongchitiet'));
+    return $pdf->stream('decuong_'.$decuongchitiet->hocphan->MaHocPhan.'.pdf');
+}
 }

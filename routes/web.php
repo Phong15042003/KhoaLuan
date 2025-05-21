@@ -146,6 +146,7 @@ Route::get('/decuongchitiet/{id}/edit', [App\Http\Controllers\DecuongchitietCont
 Route::put('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'update'])->name('decuongchitiet.update');
 Route::delete('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'destroy'])->name('decuongchitiet.destroy');
 Route::get('/decuongchitiet/{id}', [App\Http\Controllers\DecuongchitietController::class, 'show'])->name('decuongchitiet.show');
+Route::get('/decuongchitiet/{id}/export-pdf', [DecuongchitietController::class, 'exportPDF'])->name('decuongchitiet.exportPDF');
 
 //phancongmonhoc
 Route::get('/phancongmonhoc', [App\Http\Controllers\PhancongmonhocController::class, 'index'])->name('phancongmonhoc.index');

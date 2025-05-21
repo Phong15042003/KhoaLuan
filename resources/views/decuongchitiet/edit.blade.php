@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
+        <div class="col-12">
+            <div class="card" style="max-width: 1000px; margin: 0 auto;">
                 <div class="card-header">Sửa đề cương chi tiết</div>
 
                 <div class="card-body">
@@ -47,15 +47,15 @@
                             <input type="text" class="form-control" id="KhoiKienThuc" value="{{ $decuongchitiet->hocphan->khoikienthuc->TenKhoi }}" readonly>
                         </div>
 
-                        <!-- Một ô textarea Summernote duy nhất chứa toàn bộ nội dung từ mục 2 đến 5 -->
+                        <!-- Ô CKEditor cho nội dung mục 2 - 5 -->
                         <div class="form-group mt-4">
-                            <label for="NoiDung"><strong>Nội dung đề cương chi tiết (bao gồm mục 2 - 5)</strong></label>
-                            <textarea class="form-control summernote" id="NoiDung" name="NoiDung" rows="15" required>{!! $decuongchitiet->NoiDung !!}</textarea>
+                            <label for="NoiDung"><strong>Nội dung đề cương chi tiết (mục 2 – 5)</strong></label>
+                            <textarea class="form-control" id="NoiDung" name="NoiDung" rows="15" required>{!! $decuongchitiet->NoiDung !!}</textarea>
                         </div>
 
                         <input type="hidden" name="HocPhanID" value="{{ $decuongchitiet->hocphan->id }}">
 
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary mt-3">Cập nhật</button>
                     </form>
                 </div>
             </div>
@@ -63,3 +63,5 @@
     </div>
 </div>
 @endsection
+
+

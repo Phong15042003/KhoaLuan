@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('khoahoc.create') }}" class="btn btn-primary mb-3">Thêm khóa học</a>
+                    @auth
+                        @if (auth()->user()->vaitro === 'admin')
+                            <a href="{{ route('khoahoc.create') }}" class="btn btn-primary mb-3">Thêm khóa học</a>
+                        @endif
+                    @endauth
 
                     <table class="table table-bordered">
                         <thead>
