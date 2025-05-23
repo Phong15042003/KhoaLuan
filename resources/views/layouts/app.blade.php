@@ -97,7 +97,28 @@
         ]
     });
 </script>
+<script>
+    CKEDITOR.replace('Noidung', {
+        height: 500,
+        extraPlugins: 'table,justify,colorbutton,font',
+        toolbarGroups: [
+            { name: 'document',	   groups: [ 'mode', 'document' ] },
+            { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+            { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+            { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align' ] },
+            { name: 'insert' },
+            '/',
+            { name: 'styles' },
+            { name: 'colors' },
+            { name: 'tools' },
+            { name: 'table' }
+        ]
+    });
 
+    
+</script>
 
 </body>
 </html>

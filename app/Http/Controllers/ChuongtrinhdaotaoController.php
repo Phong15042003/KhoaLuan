@@ -8,7 +8,7 @@ use App\Models\chuandaura;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 class ChuongtrinhdaotaoController extends Controller
 {
    
@@ -37,25 +37,67 @@ class ChuongtrinhdaotaoController extends Controller
         $chuongtrinhdaotao = new Chuongtrinhdaotao();
         $chuongtrinhdaotao->MaCTDT = $request->MaCTDT;
         $chuongtrinhdaotao->TenChuongTrinh = $request->TenChuongTrinh;
+        $chuongtrinhdaotao->TenChuongTrinhTiengAnh = $request->TenChuongTrinhTiengAnh;
         $chuongtrinhdaotao->NganhHocID = $request->NganhHocID;
+        $chuongtrinhdaotao->Noidung = $request->Noidung;
         $chuongtrinhdaotao->save();
 
         return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo created successfully.');
     }
 
 
-    public function show($id)
-    {
-        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
-        $hocphans = $chuongtrinhdaotao->hocphans; // Get the related hocphans
-        return view('chuongtrinhdaotao.show', compact('chuongtrinhdaotao', 'hocphans'));
+   
+public function show($id)
+{
+    $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+    $hocphans = $chuongtrinhdaotao->hocphans()->with('khoikienthuc', 'loaihocphan')->get();
+    
+
+    $thongKe = [];
+
+    foreach ($hocphans->groupBy('KhoiKienThucID') as $idKhoi => $group) {
+        $tenKhoi = optional($group->first()->khoikienthuc)->TenKhoi ?? 'Không rõ';
+
+        $bb = $group->filter(fn($hp) => optional($hp->loaihocphan)->TenLoaiHocPhan === 'Bắt buộc');
+        $tc = $group->filter(fn($hp) => optional($hp->loaihocphan)->TenLoaiHocPhan === 'Tự chọn')->groupBy('NhomTuChon');
+
+        $soTinChiBB = $bb->sum('SoTinChi');
+        $soTinChiTC = $tc->sum(fn($g) => $g->first()->SoTinChi);
+        $tong = $soTinChiBB + $soTinChiTC;
+
+        $thongKe[] = [
+            'TenKhoi' => $tenKhoi,
+            'BatBuoc' => $soTinChiBB,
+            'TuChon' => $soTinChiTC,
+            'Tong' => $tong,
+        ];
     }
-    public function showhocky($id)
-    {
-        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
-        $hocphansByHocky = $chuongtrinhdaotao->hocphans->sortBy('HocKy')->groupBy('HocKy'); // Sort and group hocphans by HocKy
-        return view('chuongtrinhdaotao.showhocky', compact('chuongtrinhdaotao', 'hocphansByHocky'));
+
+    $tongBB = collect($thongKe)->sum('BatBuoc');
+    $tongTC = collect($thongKe)->sum('TuChon');
+    $tongAll = $tongBB + $tongTC;
+
+    foreach ($thongKe as &$row) {
+        $row['TyLeBB'] = $tongAll > 0 ? round($row['BatBuoc'] * 100 / $tongAll, 1) : 0;
+        $row['TyLeTC'] = $tongAll > 0 ? round($row['TuChon'] * 100 / $tongAll, 1) : 0;
+        $row['TyLeTong'] = $tongAll > 0 ? round($row['Tong'] * 100 / $tongAll, 1) : 0;
     }
+
+    $thongKe[] = [
+        'TenKhoi' => 'Tổng cộng',
+        'BatBuoc' => $tongBB,
+        'TuChon' => $tongTC,
+        'Tong' => $tongAll,
+        'TyLeBB' => $tongAll > 0 ? round($tongBB * 100 / $tongAll, 1) : 0,
+        'TyLeTC' => $tongAll > 0 ? round($tongTC * 100 / $tongAll, 1) : 0,
+        'TyLeTong' => 100.0,
+    ];
+
+    return view('chuongtrinhdaotao.show', compact('chuongtrinhdaotao', 'hocphans', 'thongKe'));
+}
+
+
+
 
   //hien thi nhung mon bi thay doi
     public function showChangedCourses($id)
@@ -113,13 +155,17 @@ class ChuongtrinhdaotaoController extends Controller
         $request->validate([
             'MaCTDT' => 'required|string|max:50|unique:chuongtrinhdaotaos,MaCTDT,' . $id,
             'TenChuongTrinh' => 'required|string|max:100',
+            'TenChuongTrinhTiengAnh' => 'required|string|max:100',
             'NganhHocID' => 'required|exists:nganhhocs,id',
+            'Noidung' => 'required|string',
         ]);
 
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
         $chuongtrinhdaotao->MaCTDT = $request->MaCTDT;
         $chuongtrinhdaotao->TenChuongTrinh = $request->TenChuongTrinh;
+        $chuongtrinhdaotao->TenChuongTrinhTiengAnh = $request->TenChuongTrinhTiengAnh;
         $chuongtrinhdaotao->NganhHocID = $request->NganhHocID;
+        $chuongtrinhdaotao->Noidung = $request->Noidung;
         $chuongtrinhdaotao->save();
 
         return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo updated successfully.');
@@ -135,18 +181,60 @@ class ChuongtrinhdaotaoController extends Controller
     }
 
     public function pdf($id)
-    {
-        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
-        $hocphansByKhoikienthuc = $chuongtrinhdaotao->hocphans->sortBy('KhoiKienThucID')->groupBy('KhoiKienThucID');
-        $hocphansByHocky = $chuongtrinhdaotao->hocphans->sortBy('HocKy')->groupBy('HocKy');
-        $chuandauras = chuandaura::whereIn('hocphan_id', $chuongtrinhdaotao->hocphans->pluck('id'))->get();
+{
+    $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+    $hocphans = $chuongtrinhdaotao->hocphans()->with('khoikienthuc', 'loaihocphan')->get();
+    
+    // Tính thống kê như show()
+    $thongKe = [];
+    foreach ($hocphans->groupBy('KhoiKienThucID') as $idKhoi => $group) {
+        $tenKhoi = optional($group->first()->khoikienthuc)->TenKhoi ?? 'Không rõ';
 
-        $pdf = PDF::loadView('chuongtrinhdaotao.pdf', [
-            'chuongtrinhdaotao' => $chuongtrinhdaotao,
-            'hocphansByKhoikienthuc' => $hocphansByKhoikienthuc,
-            'hocphansByHocky' => $hocphansByHocky,
-            'chuandauras' => $chuandauras,
-        ])->setPaper('a4', 'landscape'); 
-        return $pdf->download('chuongtrinhdaotao.pdf');
+        $bb = $group->filter(fn($hp) => optional($hp->loaihocphan)->TenLoaiHocPhan === 'Bắt buộc');
+        $tc = $group->filter(fn($hp) => optional($hp->loaihocphan)->TenLoaiHocPhan === 'Tự chọn')->groupBy('NhomTuChon');
+
+        $soTinChiBB = $bb->sum('SoTinChi');
+        $soTinChiTC = $tc->sum(fn($g) => $g->first()->SoTinChi);
+        $tong = $soTinChiBB + $soTinChiTC;
+
+        $thongKe[] = [
+            'TenKhoi' => $tenKhoi,
+            'BatBuoc' => $soTinChiBB,
+            'TuChon' => $soTinChiTC,
+            'Tong' => $tong,
+        ];
     }
+
+    $tongBB = collect($thongKe)->sum('BatBuoc');
+    $tongTC = collect($thongKe)->sum('TuChon');
+    $tongAll = $tongBB + $tongTC;
+
+    foreach ($thongKe as &$row) {
+        $row['TyLeBB'] = $tongAll > 0 ? round($row['BatBuoc'] * 100 / $tongAll, 1) : 0;
+        $row['TyLeTC'] = $tongAll > 0 ? round($row['TuChon'] * 100 / $tongAll, 1) : 0;
+        $row['TyLeTong'] = $tongAll > 0 ? round($row['Tong'] * 100 / $tongAll, 1) : 0;
+    }
+
+    $thongKe[] = [
+        'TenKhoi' => 'Tổng cộng',
+        'BatBuoc' => $tongBB,
+        'TuChon' => $tongTC,
+        'Tong' => $tongAll,
+        'TyLeBB' => $tongAll > 0 ? round($tongBB * 100 / $tongAll, 1) : 0,
+        'TyLeTC' => $tongAll > 0 ? round($tongTC * 100 / $tongAll, 1) : 0,
+        'TyLeTong' => 100.0,
+    ];
+
+    $hocphansByKhoikienthuc = $hocphans->sortBy('KhoiKienThucID')->groupBy('KhoiKienThucID');
+    $hocphansByHocky = $hocphans->sortBy('HocKy')->groupBy('HocKy');
+    $chuandauras = chuandaura::whereIn('hocphan_id', $hocphans->pluck('id'))->get();
+
+    return PDF::loadView('chuongtrinhdaotao.pdf', compact(
+        'chuongtrinhdaotao', 'hocphansByKhoikienthuc', 'hocphansByHocky', 'chuandauras', 'thongKe'
+    ))->setPaper('a4', 'landscape')->stream(Str::slug($chuongtrinhdaotao->TenChuongTrinh) . '.pdf');
+}
+
+
+
+    
 }

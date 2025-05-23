@@ -108,6 +108,7 @@ Route::get('chuongtrinhdaotao/{id}/showloaihocphan', [ChuongtrinhdaotaoControlle
 Route::get('chuongtrinhdaotao/{id}/changed-courses', [ChuongtrinhdaotaoController::class, 'showChangedCourses'])->name('chuongtrinhdaotao.changed-courses');
 Route::get('/chuongtrinhdaotao/pdf/{id}', [ChuongtrinhdaotaoController::class, 'pdf'])->name('chuongtrinhdaotao.pdf');
 
+
 //ctdthocphan
 Route::get('/ctdthocphan', [CtdtHocphanController::class, 'index'])->name('ctdthocphan.index');
 Route::get('/ctdthocphan/create', [CtdtHocphanController::class, 'create'])->name('ctdthocphan.create');

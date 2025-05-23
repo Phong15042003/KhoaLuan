@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chương trình Đào tạo</title>
+    <title>{{ $chuongtrinhdaotao->TenChuongTrinh }} </title>
     <link href="{{ public_path('css/pdfctdt.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -25,7 +25,42 @@
     <p><strong>Mã chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
     <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
     <p><strong>Mã ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->MaNganh }}</p>
-
+    <div class="section">
+        {!! $chuongtrinhdaotao->Noidung !!}
+    </div>
+  @if (!empty($thongKe))
+    <h3>7. Khối lượng kiến thức toàn khoá</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>TT</th>
+                    <th>Khối kiến thức</th>
+                    <th>Bắt buộc (TC)</th>
+                    <th>Tự chọn (TC)</th>
+                    <th>Tổng (TC)</th>
+                    <th>Tỷ lệ BB (%)</th>
+                    <th>Tỷ lệ TC (%)</th>
+                    <th>Tỷ lệ Tổng (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($thongKe as $index => $row)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $row['TenKhoi'] }}</td>
+                        <td>{{ $row['BatBuoc'] }}</td>
+                        <td>{{ $row['TuChon'] }}</td>
+                        <td>{{ $row['Tong'] }}</td>
+                        <td>{{ $row['TyLeBB'] }}</td>
+                        <td>{{ $row['TyLeTC'] }}</td>
+                        <td>{{ $row['TyLeTong'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endif
     <!-- Học phần via Khối Kiến Thức -->
     <h3>Học phần theo Khối Kiến Thức</h3>
     @foreach ($hocphansByKhoikienthuc as $khoikienthucID => $hocphans)
