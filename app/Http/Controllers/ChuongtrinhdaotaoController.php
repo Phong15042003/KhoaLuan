@@ -231,7 +231,7 @@ public function show($id)
 
     return PDF::loadView('chuongtrinhdaotao.pdf', compact(
         'chuongtrinhdaotao', 'hocphansByKhoikienthuc', 'hocphansByHocky', 'chuandauras', 'thongKe'
-    ))->setPaper('a4', 'landscape')->stream(Str::slug($chuongtrinhdaotao->TenChuongTrinh) . '.pdf');
+    ))->stream(Str::slug($chuongtrinhdaotao->TenChuongTrinh) . '.pdf');
 }
 
 

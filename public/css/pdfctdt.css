@@ -26,8 +26,16 @@ body {
 /* 3. Các heading chung (h2,h3,h4) */
 /* ============================= */
 h2, h3, h4 {
-    text-align: center;
+    text-align: left; 
     width: 100%;
+    font-weight: bold;
+
+}
+h2 {
+    text-align: center; 
+    width: 100%;
+    font-weight: bold;
+
 }
 
 /* ============================= */
@@ -49,56 +57,113 @@ table th, table td {
 /* 5. Bảng Khối Kiến Thức        */
 /* ============================= */
 .khoikienthuc-table {
-    table-layout: fixed;       /* Buộc các cột chia theo width cố định */
+    table-layout: fixed;
     width: 100%;
 }
 
-/* Quy định độ rộng cho từng cột (12 cột) */
+.khoikienthuc-table th, .khoikienthuc-table td {
+    border: 1px solid #000;
+    padding: 4px;
+    font-size: 9px;
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
 .khoikienthuc-table th:nth-child(1),
 .khoikienthuc-table td:nth-child(1) {
     width: 4%;  /* STT */
 }
+
 .khoikienthuc-table th:nth-child(2),
 .khoikienthuc-table td:nth-child(2) {
     width: 8%;  /* Mã HP */
 }
+
 .khoikienthuc-table th:nth-child(3),
 .khoikienthuc-table td:nth-child(3) {
-    width: 12%; /* Tên HP */
+    width: 18%; /* Tên học phần */
 }
+
 .khoikienthuc-table th:nth-child(4),
 .khoikienthuc-table td:nth-child(4) {
-    width: 12%; /* Tên HP Tiếng Anh */
+    width: 18%; /* Tên tiếng Anh */
 }
+
 .khoikienthuc-table th:nth-child(5),
 .khoikienthuc-table td:nth-child(5) {
-    width: 8%;  /* Loại HP */
+    width: 8%;  /* Loại học phần */
 }
+
 .khoikienthuc-table th:nth-child(6),
 .khoikienthuc-table td:nth-child(6) {
-    width: 5%;  /* Số tín chỉ */
+    width: 5%;  /* Tín chỉ */
 }
+
 .khoikienthuc-table th:nth-child(7),
 .khoikienthuc-table td:nth-child(7) {
-    width: 7%;  /* Số tiết LT */
+    width: 5%;  /* Lý thuyết */
 }
+
 .khoikienthuc-table th:nth-child(8),
 .khoikienthuc-table td:nth-child(8) {
-    width: 7%;  /* Số tiết TH */
+    width: 5%;  /* Thực hành */
 }
+
 .khoikienthuc-table th:nth-child(9),
 .khoikienthuc-table td:nth-child(9) {
-    width: 8%;  /* Tiên quyết */
+    width: 7%;  /* Tiên quyết */
 }
+
 .khoikienthuc-table th:nth-child(10),
 .khoikienthuc-table td:nth-child(10) {
-    width: 8%;  /* Học trước */
+    width: 7%;  /* Học trước */
 }
+
 .khoikienthuc-table th:nth-child(11),
 .khoikienthuc-table td:nth-child(11) {
-    width: 8%;  /* Song hành */
+    width: 7%;  /* Song hành */
 }
+
 .khoikienthuc-table th:nth-child(12),
 .khoikienthuc-table td:nth-child(12) {
-    width: 5%;  /* Học kỳ */
+    width: 6%;  /* Học kỳ */
 }
+.hocky-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.hocky-table th,
+.hocky-table td {
+    padding: 4px;
+    font-size: 9px;
+    word-wrap: break-word;
+    vertical-align: middle;
+}
+
+/* Chia đều cho 7 cột */
+.hocky-table th:nth-child(1),
+.hocky-table td:nth-child(1) {
+    width: 12%;
+}
+.hocky-table th:nth-child(2),
+.hocky-table td:nth-child(2) {
+    width: 20%;
+}
+.hocky-table th:nth-child(3),
+.hocky-table td:nth-child(3) {
+    width: 20%;
+}
+.hocky-table th:nth-child(4),
+.hocky-table td:nth-child(4),
+.hocky-table th:nth-child(5),
+.hocky-table td:nth-child(5),
+.hocky-table th:nth-child(6),
+.hocky-table td:nth-child(6),
+.hocky-table th:nth-child(7),
+.hocky-table td:nth-child(7) {
+    width: 8%;
+    text-align: center;
+}
+

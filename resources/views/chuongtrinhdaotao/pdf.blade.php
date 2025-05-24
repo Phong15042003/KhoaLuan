@@ -2,10 +2,11 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>{{ $chuongtrinhdaotao->TenChuongTrinh }} </title>
+    <title>{{ $chuongtrinhdaotao->TenChuongTrinh }}</title>
     <link href="{{ public_path('css/pdfctdt.css') }}" rel="stylesheet">
 </head>
 <body>
+
     <!-- PHẦN TIÊU ĐỀ ĐẦU TRANG -->
     <table class="header-table">
         <tr>
@@ -20,85 +21,78 @@
         </tr>
     </table>
 
-    <h2>CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC</h2>
+    <h2 style="text-align: center;">CHƯƠNG TRÌNH ĐÀO TẠO TRÌNH ĐỘ ĐẠI HỌC</h2>
+
+    <h3>1. Thông tin chung</h3>
     <p><strong>Chương trình Đào tạo:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
     <p><strong>Mã chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
     <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
     <p><strong>Mã ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->MaNganh }}</p>
-    <div class="section">
-        {!! $chuongtrinhdaotao->Noidung !!}
-    </div>
-  @if (!empty($thongKe))
-    <h3>7. Khối lượng kiến thức toàn khoá</h3>
-    <div class="table-responsive">
-        <table class="table table-bordered text-center">
-            <thead class="table-light">
-                <tr>
-                    <th>TT</th>
-                    <th>Khối kiến thức</th>
-                    <th>Bắt buộc (TC)</th>
-                    <th>Tự chọn (TC)</th>
-                    <th>Tổng (TC)</th>
-                    <th>Tỷ lệ BB (%)</th>
-                    <th>Tỷ lệ TC (%)</th>
-                    <th>Tỷ lệ Tổng (%)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($thongKe as $index => $row)
+
+    {!! $chuongtrinhdaotao->Noidung !!}
+
+    @if (!empty($thongKe))
+        <h3>7. Khối lượng kiến thức toàn khoá</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center">
+                <thead class="table-light">
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $row['TenKhoi'] }}</td>
-                        <td>{{ $row['BatBuoc'] }}</td>
-                        <td>{{ $row['TuChon'] }}</td>
-                        <td>{{ $row['Tong'] }}</td>
-                        <td>{{ $row['TyLeBB'] }}</td>
-                        <td>{{ $row['TyLeTC'] }}</td>
-                        <td>{{ $row['TyLeTong'] }}</td>
+                        <th>TT</th>
+                        <th>Khối kiến thức</th>
+                        <th>Bắt buộc (TC)</th>
+                        <th>Tự chọn (TC)</th>
+                        <th>Tổng (TC)</th>
+                        <th>Tỷ lệ BB (%)</th>
+                        <th>Tỷ lệ TC (%)</th>
+                        <th>Tỷ lệ Tổng (%)</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach ($thongKe as $index => $row)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $row['TenKhoi'] }}</td>
+                            <td>{{ $row['BatBuoc'] }}</td>
+                            <td>{{ $row['TuChon'] }}</td>
+                            <td>{{ $row['Tong'] }}</td>
+                            <td>{{ $row['TyLeBB'] }}</td>
+                            <td>{{ $row['TyLeTC'] }}</td>
+                            <td>{{ $row['TyLeTong'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     @endif
-    <!-- Học phần via Khối Kiến Thức -->
-    <h3>Học phần theo Khối Kiến Thức</h3>
+
+    <h3>8. Nội dung chương trình đào tạo</h3>
     @foreach ($hocphansByKhoikienthuc as $khoikienthucID => $hocphans)
         @php
             $batBuoc = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Bắt buộc');
-
-            // Gộp theo NhomTuChon + HocKy để phân biệt rõ
-            $tuChon = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')
-                               ->groupBy(fn($hp) => $hp->NhomTuChon . '_' . $hp->HocKy);
-
-            $sumTinChiBatBuoc = $batBuoc->sum('SoTinChi');
-            $sumTinChiTuChon = $tuChon->sum(function($group) {
-                return $group->first()->SoTinChi;
-            });
+            $tuChon = $hocphans->filter(fn($hp) => $hp->loaihocphan->TenLoaiHocPhan === 'Tự chọn')->groupBy(fn($hp) => $hp->NhomTuChon . '_' . $hp->HocKy);
         @endphp
 
-        <h4>{{ __('Khối Kiến Thức') }}: {{ $hocphans->first()->khoikienthuc->TenKhoi }} - Tổng tín chỉ: {{ $sumTinChiBatBuoc + $sumTinChiTuChon }} TC (Bắt buộc: {{ $sumTinChiBatBuoc }} TC; Tự chọn: {{ $sumTinChiTuChon }} TC)</h4>
+        <h4><strong>Khối Kiến Thức:</strong> {{ $hocphans->first()->khoikienthuc->TenKhoi }}</h4>
 
         <table class="khoikienthuc-table">
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Mã Học phần</th>
-                    <th>Tên Học phần</th>
-                    <th>Tên Học phần Tiếng Anh</th>
-                    <th>Loại Học Phần</th>
-                    <th>Số Tín Chỉ</th>
-                    <th>Số Tiết Lý Thuyết</th>
-                    <th>Số Tiết Thực Hành</th>
+                    <th>Mã HP</th>
+                    <th>Tên học phần</th>
+                    <th>Tên tiếng Anh</th>
+                    <th>Loại HP</th>
+                    <th>Tín chỉ</th>
+                    <th>Lý thuyết</th>
+                    <th>Thực hành</th>
                     <th>Tiên quyết</th>
                     <th>Học trước</th>
                     <th>Song hành</th>
-                    <th>Học Kỳ</th>
+                    <th>Học kỳ</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- In các môn bắt buộc --}}
-                @foreach ($batBuoc as $hp)
+                @foreach ($batBuoc as $i => $hp)
                     <tr>
                         <td>{{ $hp->sothutu }}</td>
                         <td>{{ $hp->MaHocPhan }}</td>
@@ -108,34 +102,32 @@
                         <td>{{ $hp->SoTinChi }}</td>
                         <td>{{ $hp->SoTietLyThuyet }}</td>
                         <td>{{ $hp->SoTietThucHanh }}</td>
-                        <td>{{ $hp->DkTienQuyet }}</td>
-                        <td>{{ $hp->DkHocTruoc }}</td>
-                        <td>{{ $hp->DkSongHanh }}</td>
+                        <td>{{ $hp->DkTienQuyet ?: '-' }}</td>
+                        <td>{{ $hp->DkHocTruoc ?: '-' }}</td>
+                        <td>{{ $hp->DkSongHanh ?: '-' }}</td>
                         <td>{{ $hp->HocKy }}</td>
-
                     </tr>
                 @endforeach
 
-                {{-- In từng nhóm môn tự chọn theo NhomTuChon + HocKy --}}
                 @foreach ($tuChon as $groupKey => $group)
-                    @php 
-                        $printed = false;
-                        [$nhom, $hk] = explode('_', $groupKey); 
-                    @endphp
-                    @foreach ($group as $hp)
+                    @php $printed = false; @endphp
+                    @foreach ($group as $j => $hp)
                         <tr>
+                            <td>{{ $j + 1 }}</td>
                             <td>{{ $hp->MaHocPhan }}</td>
                             <td>{{ $hp->TenHocPhan }}</td>
                             <td>{{ $hp->TenHocPhanTiengAnh }}</td>
                             @if (!$printed)
-                                <td rowspan="{{ count($group) }}" class="text-center align-middle">
-                                    Tự chọn
-                                </td>
+                                <td rowspan="{{ count($group) }}" class="text-center align-middle">Tự chọn</td>
                                 @php $printed = true; @endphp
                             @endif
                             <td>{{ $hp->SoTinChi }}</td>
                             <td>{{ $hp->SoTietLyThuyet }}</td>
                             <td>{{ $hp->SoTietThucHanh }}</td>
+                            <td>{{ $hp->DkTienQuyet ?: '-' }}</td>
+                            <td>{{ $hp->DkHocTruoc ?: '-' }}</td>
+                            <td>{{ $hp->DkSongHanh ?: '-' }}</td>
+                            <td>{{ $hp->HocKy }}</td>
                         </tr>
                     @endforeach
                 @endforeach
@@ -143,7 +135,8 @@
         </table>
     @endforeach
 
-    <!-- Học phần via Học Kỳ -->
+    <!-- Học phần theo học kỳ -->
+     <!-- Học phần via Học Kỳ -->
     <h3>Học phần theo Học Kỳ</h3>
     @foreach ($hocphansByHocky as $hocky => $hocphans)
         @php
@@ -209,13 +202,13 @@
     @endforeach
 
     <!-- Chuẩn đầu ra -->
-    <h3>Chuẩn đầu ra</h3>
+    <h3>10. Chuẩn đầu ra</h3>
     <table class="chuandaura-table">
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Mã Học phần</th>
-                <th>Tên Học phần</th>
+                <th>Mã HP</th>
+                <th>Tên học phần</th>
                 <th>T1</th>
                 <th>T2</th>
                 <th>T3</th>
@@ -244,6 +237,5 @@
             @endforeach
         </tbody>
     </table>
-</div>
 </body>
 </html>
