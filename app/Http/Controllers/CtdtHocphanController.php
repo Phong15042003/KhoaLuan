@@ -107,8 +107,10 @@ class CtdtHocphanController extends Controller
 
     public function getHocphans($ctdt_id)
 {
-    $existingHocPhanIDs = CtdtHocphan::where('CTDT_ID', $ctdt_id)->pluck('HocPhanID');
+    // Lấy toàn bộ học phần đã được dùng ở bất kỳ CTDT nào
+    $existingHocPhanIDs = CtdtHocphan::pluck('HocPhanID');
 
+    // Lấy các học phần chưa thuộc CTDT nào
     $hocphans = Hocphan::with('khoikienthuc')
         ->whereNotIn('id', $existingHocPhanIDs)
         ->get()
@@ -118,7 +120,7 @@ class CtdtHocphanController extends Controller
 
     foreach ($hocphans as $group => $items) {
         $formatted[] = [
-            'group' => $items->first()->khoikienthuc->TenKhoi ?? 'Không rõ',
+            'group' => optional($items->first()->khoikienthuc)->TenKhoi ?? 'Không rõ',
             'items' => $items->map(function ($hp) {
                 return [
                     'id' => $hp->id,
@@ -130,5 +132,19 @@ class CtdtHocphanController extends Controller
 
     return response()->json($formatted);
 }
+public function destroyAll(Request $request)
+{
+    $ctdt_id = $request->CTDT_ID;
+
+    if (!$ctdt_id) {
+        return redirect()->route('ctdthocphan.index')->with('error', 'Không tìm thấy CTĐT để xóa.');
+    }
+
+    $deleted = \App\Models\CTDTHocPhan::where('CTDT_ID', $ctdt_id)->delete();
+
+    return redirect()->route('ctdthocphan.index')->with('success', "Đã xóa $deleted học phần của chương trình đào tạo.");
+}
+
+
 
 }

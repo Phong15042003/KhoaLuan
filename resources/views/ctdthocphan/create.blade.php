@@ -28,7 +28,9 @@
                                     <option value="{{ $chuongtrinhdaotao->id }}">{{ $chuongtrinhdaotao->TenChuongTrinh }}</option>
                                 @endforeach
                             </select>
+                            <button type="button" id="selectAllHocPhan" class="btn btn-sm btn-success mt-2">Chọn tất cả học phần</button>
                         </div>
+
 
                         <div class="form-group">
                             <label for="HocPhanID">{{ __('Học phần') }}</label>
@@ -108,4 +110,44 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        const $select = $('#HocPhanID');
+
+        // Nếu select đã được khởi tạo Select2, thì hủy trước
+        if ($select.hasClass("select2-hidden-accessible")) {
+            $select.select2('destroy');
+        }
+
+        // Khởi tạo Select2 với closeOnSelect: false
+        $select.select2({
+            placeholder: "Chọn học phần",
+            width: '100%',
+            closeOnSelect: false
+        });
+
+        // Ép nó mở lại sau khi chọn
+        $select.on('select2:select', function (e) {
+            const target = $(this);
+            setTimeout(() => {
+                target.select2('open'); // ⭐ mở lại dropdown
+            }, 0);
+        });
+    });
+    $('#selectAllHocPhan').click(function () {
+    const $select = $('#HocPhanID');
+    const allValues = [];
+
+    $select.find('option').each(function () {
+        if (!$(this).is(':disabled')) {
+            allValues.push($(this).val());
+        }
+    });
+
+    $select.val(allValues).trigger('change');
+});
+</script>
+@endpush
 @endsection

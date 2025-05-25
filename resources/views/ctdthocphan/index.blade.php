@@ -28,6 +28,14 @@
                             <a href="{{ route('ctdthocphan.index') }}" class="btn btn-secondary btn-sm">Xóa lọc</a>
                         @endif
                     </form>
+                    @if(request('CTDT_ID'))
+    <form action="{{ route('ctdthocphan.destroyAll') }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa tất cả học phần của CTĐT này?')">
+        @csrf
+        @method('POST')
+        <input type="hidden" name="CTDT_ID" value="{{ request('CTDT_ID') }}">
+        <button type="submit" class="btn btn-danger btn-sm">🗑 Xóa tất cả học phần CTĐT này</button>
+    </form>
+@endif
                     
 
                     <table class="table table-bordered">

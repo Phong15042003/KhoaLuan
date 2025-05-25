@@ -102,27 +102,31 @@ public function show($id)
   //hien thi nhung mon bi thay doi
     public function showChangedCourses($id)
     {
-        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
-        $hocphans = $chuongtrinhdaotao->hocphans;
+           $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+    $hocphans = $chuongtrinhdaotao->hocphans;
 
-        $changedHocphans = [];
+    $changedHocphans = [];
 
-        foreach ($hocphans as $hocphan) {
-            $mon_cu = DB::table('hocphans')
-                ->where('sothutu', $hocphan->sothutu)
-                ->where('MaHocPhan', $hocphan->MaHocPhan)
-                ->where('id', '<>', $hocphan->id)
-                ->where('created_at', '<', $hocphan->created_at)
-                ->orderBy('created_at', 'desc')
-                ->first();
+    foreach ($hocphans as $hocphan) {
+        $mon_cu = DB::table('hocphans')
+            ->where('sothutu', $hocphan->sothutu)
+            ->where('id', '<>', $hocphan->id)
+            ->where('created_at', '<', $hocphan->created_at)
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-            if ($mon_cu && $mon_cu->TenHocPhan !== $hocphan->TenHocPhan) {
-                $hocphan->TenHocPhanCu = $mon_cu->TenHocPhan;
-                $changedHocphans[] = $hocphan;
-            }
+        if ($mon_cu && (
+            $mon_cu->TenHocPhan !== $hocphan->TenHocPhan ||
+            $mon_cu->MaHocPhan !== $hocphan->MaHocPhan
+        )) {
+            // Gán thông tin cũ để hiển thị
+            $hocphan->TenHocPhanCu = $mon_cu->TenHocPhan !== $hocphan->TenHocPhan ? $mon_cu->TenHocPhan : null;
+            $hocphan->MaHocPhanCu = $mon_cu->MaHocPhan !== $hocphan->MaHocPhan ? $mon_cu->MaHocPhan : null;
+            $changedHocphans[] = $hocphan;
         }
+    }
 
-        return view('chuongtrinhdaotao.changed-courses', compact('changedHocphans'));
+    return view('chuongtrinhdaotao.changed-courses', compact('changedHocphans', 'chuongtrinhdaotao'));
     }
 
     public function showHocky($id)

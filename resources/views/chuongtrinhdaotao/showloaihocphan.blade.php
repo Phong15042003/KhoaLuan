@@ -8,20 +8,17 @@
                 <div class="card-header">Chương trình đào tạo theo loại học phần</div>
 
                 <div class="card-body">
-                    <div class="mb-3 d-flex justify-content-between align-items-start">
-                        <div>
-                             <p><strong>Mã Chương trình:</strong> {{ $chuongtrinhdaotao->MaCTDT }}</p>
-                             <p><strong>Tên Chương trình:</strong> {{ $chuongtrinhdaotao->TenChuongTrinh }}</p>
-                             <p><strong>Ngành học:</strong> {{ $chuongtrinhdaotao->nganhhoc->TenNganh }}</p>
-                         </div>
- 
-                         <div>
-                            <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-info">Những môn đã bị thay đổi </a>
-                            <a href="{{ route('chuongtrinhdaotao.showkhoikienthuc', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo khối kiến thức</a>
-                            <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-info">Theo học kỳ</a>
-
-                         </div>
-                     </div>
+                     <div class="card mb-3">
+        <div class="card-header bg-secondary text-white">Các tác vụ</div>
+        <div class="card-body d-flex flex-wrap gap-2">
+             <a href="{{ route('chuongtrinhdaotao.show', $chuongtrinhdaotao->id) }}" class="btn btn-outline-info">Thông tin chung</a>
+            <a href="{{ route('chuongtrinhdaotao.changed-courses', $chuongtrinhdaotao->id) }}" class="btn btn-outline-info">Những môn đã bị thay đổi</a>
+            <a href="{{ route('chuongtrinhdaotao.showhocky', $chuongtrinhdaotao->id) }}" class="btn btn-outline-info">Theo học kỳ</a>
+            <a href="{{ route('chuongtrinhdaotao.showkhoikienthuc', $chuongtrinhdaotao->id) }}" class="btn btn-outline-info">Theo khối kiến thức</a>
+            <a href="{{ route('chuandaura.index', ['chuongtrinhdaotao_id' => $chuongtrinhdaotao->id]) }}" class="btn btn-outline-info">Chuẩn đầu ra</a>
+            <a href="{{ route('chuongtrinhdaotao.pdf', ['id' => $chuongtrinhdaotao->id]) }}" class="btn btn-outline-danger"  target="_blank"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
+        </div>
+    </div>
 
                     @foreach ($hocphansByLoaihocphan as $loaihocphanID => $hocphans)
                         <h5>{{ __('Loại Học Phần') }}: {{ $hocphans->first()->loaihocphan->TenLoaiHocPhan }}</h5>

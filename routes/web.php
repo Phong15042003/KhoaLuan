@@ -119,6 +119,7 @@ Route::put('/ctdthocphan/{id}', [CtdtHocphanController::class, 'update'])->name(
 Route::delete('/ctdthocphan/{id}', [CtdtHocphanController::class, 'destroy'])->name('ctdthocphan.destroy');
 Route::get('/ctdthocphan/get-available-hocphans', [CtdtHocphanController::class, 'getAvailableHocphans'])->name('ctdthocphan.get-available-hocphans');
 Route::get('/get-hocphans/{ctdt_id}', [CtdtHocphanController::class, 'getHocphans'])->name('get-hocphans');
+Route::post('/ctdthocphan/destroy-all', [CtdtHocphanController::class, 'destroyAll'])->name('ctdthocphan.destroyAll');
 
 
 
