@@ -47,7 +47,7 @@ class KhoahocController extends Controller
         $khoahoc->NamKetThuc = $request->NamKetThuc;
         $khoahoc->save();
 
-        return redirect()->route('khoahoc.index')->with('success', 'Khóa học created successfully.');
+        return redirect()->route('khoahoc.index')->with('success', 'Thêm thành công.');
     }
 
     /**
@@ -90,7 +90,7 @@ class KhoahocController extends Controller
         $khoahoc->NamKetThuc = $request->NamKetThuc;
         $khoahoc->save();
 
-        return redirect()->route('khoahoc.index')->with('success', 'Khóa học updated successfully.');
+        return redirect()->route('khoahoc.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -101,6 +101,6 @@ class KhoahocController extends Controller
         $khoahoc = Khoahoc::findOrFail($id);
         $khoahoc->delete();
 
-        return redirect()->route('khoahoc.index')->with('success', 'Khóa học deleted successfully.');
+        return redirect()->route('khoahoc.index')->with('success', 'Đã xóa.');
     }
 }

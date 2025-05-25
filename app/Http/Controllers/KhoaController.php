@@ -39,7 +39,7 @@ class KhoaController extends Controller
         $khoa->TenKhoa = $request->TenKhoa;
         $khoa->save();
 
-        return redirect()->route('khoa.index')->with('success', 'Khoa created successfully.');
+        return redirect()->route('khoa.index')->with('success', 'Thêm thành công.');
     }
 
     /**
@@ -78,7 +78,7 @@ class KhoaController extends Controller
         $khoa->TenKhoa = $request->TenKhoa;
         $khoa->save();
 
-        return redirect()->route('khoa.index')->with('success', 'Khoa updated successfully.');
+        return redirect()->route('khoa.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -89,6 +89,6 @@ class KhoaController extends Controller
         $khoa = Khoa::findOrFail($id);
         $khoa->delete();
 
-        return redirect()->route('khoa.index')->with('success', 'Khoa deleted successfully.');
+        return redirect()->route('khoa.index')->with('success', 'Đã xóa.');
     }
 }

@@ -43,7 +43,7 @@ class NganhhocController extends Controller
         $nganhhoc->BoMonID = $request->BoMonID;
         $nganhhoc->save();
 
-        return redirect()->route('nganhhoc.index')->with('success', 'Ngành học created successfully.');
+        return redirect()->route('nganhhoc.index')->with('success', 'Thêm thành công.');
     }
 
     /**
@@ -82,7 +82,7 @@ class NganhhocController extends Controller
         $nganhhoc->BoMonID = $request->BoMonID;
         $nganhhoc->save();
 
-        return redirect()->route('nganhhoc.index')->with('success', 'Ngành học updated successfully.');
+        return redirect()->route('nganhhoc.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -93,6 +93,6 @@ class NganhhocController extends Controller
         $nganhhoc = Nganhhoc::findOrFail($id);
         $nganhhoc->delete();
 
-        return redirect()->route('nganhhoc.index')->with('success', 'Ngành học deleted successfully.');
+        return redirect()->route('nganhhoc.index')->with('success', 'Đã xóa.');
     }
 }

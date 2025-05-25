@@ -66,7 +66,7 @@ class UserController extends Controller
         $user->vaitro= $request->vaitro;
         $user->save();
 
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success', 'Thêm thành công.');
     }
 
     /**

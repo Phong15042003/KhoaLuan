@@ -42,7 +42,7 @@ class ChuongtrinhdaotaoController extends Controller
         $chuongtrinhdaotao->Noidung = $request->Noidung;
         $chuongtrinhdaotao->save();
 
-        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo created successfully.');
+        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Đã thêm mới chương trình đào tạo.');
     }
 
 
@@ -177,7 +177,7 @@ public function show($id)
         $chuongtrinhdaotao->Noidung = $request->Noidung;
         $chuongtrinhdaotao->save();
 
-        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo updated successfully.');
+        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Đã cập nhật chương trình đào tạo.');
     }
 
 
@@ -186,7 +186,7 @@ public function show($id)
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
         $chuongtrinhdaotao->delete();
 
-        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Chương trình đào tạo deleted successfully.');
+        return redirect()->route('chuongtrinhdaotao.index')->with('success', 'Đã xóa chương trình đào tạo.');
     }
 
     public function pdf($id)

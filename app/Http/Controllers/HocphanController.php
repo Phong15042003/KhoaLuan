@@ -76,7 +76,7 @@ class HocphanController extends Controller
         $hocphan->NhomTuChon = $request->NhomTuChon;
         $hocphan->save();
 
-        return redirect()->route('hocphan.index')->with('success', 'Học phần created successfully.');
+        return redirect()->route('hocphan.index')->with('success', 'Đã lưu.');
     }
 
  
@@ -132,7 +132,7 @@ class HocphanController extends Controller
         $hocphan->NhomTuChon = $request->NhomTuChon;
         $hocphan->save();
 
-        return redirect()->route('hocphan.index')->with('success', 'Học phần updated successfully.');
+        return redirect()->route('hocphan.index')->with('success', 'Đã cập nhật.');
     }
 
    

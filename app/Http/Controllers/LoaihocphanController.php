@@ -37,7 +37,7 @@ class LoaihocphanController extends Controller
         $loaihocphan->TenLoaiHocPhan = $request->TenLoaiHocPhan;
         $loaihocphan->save();
 
-        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần created successfully.');
+        return redirect()->route('loaihocphan.index')->with('success', 'Thêm thành công.');
     }
 
     /**
@@ -71,7 +71,7 @@ class LoaihocphanController extends Controller
         $loaihocphan->TenLoaiHocPhan = $request->TenLoaiHocPhan;
         $loaihocphan->save();
 
-        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần updated successfully.');
+        return redirect()->route('loaihocphan.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -82,6 +82,6 @@ class LoaihocphanController extends Controller
         $loaihocphan = Loaihocphan::findOrFail($id);
         $loaihocphan->delete();
 
-        return redirect()->route('loaihocphan.index')->with('success', 'Loại học phần deleted successfully.');
+        return redirect()->route('loaihocphan.index')->with('success', 'Đã xóa.');
     }
 }

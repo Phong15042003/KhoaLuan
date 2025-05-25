@@ -92,7 +92,7 @@ class ChuandauraController extends Controller
         );
 
         return redirect()->route('chuandaura.index', ['chuongtrinhdaotao_id' => $request->chuongtrinhdaotao_id])
-            ->with('success', 'Chuẩn đầu ra updated successfully.');
+            ->with('success', 'Đã cập nhật.');
     }
 
  

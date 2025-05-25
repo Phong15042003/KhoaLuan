@@ -39,7 +39,7 @@ class KhoikienthucController extends Controller
         $khoikienthuc->TenKhoi = $request->TenKhoi;
         $khoikienthuc->save();
 
-        return redirect()->route('khoikienthuc.index')->with('success', 'Khối kiến thức created successfully.');
+        return redirect()->route('khoikienthuc.index')->with('success', 'Thêm thành công.');
     }
 
     /**
@@ -75,7 +75,7 @@ class KhoikienthucController extends Controller
         $khoikienthuc->TenKhoi = $request->TenKhoi;
         $khoikienthuc->save();
 
-        return redirect()->route('khoikienthuc.index')->with('success', 'Khối kiến thức updated successfully.');
+        return redirect()->route('khoikienthuc.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -86,6 +86,6 @@ class KhoikienthucController extends Controller
         $khoikienthuc = Khoikienthuc::findOrFail($id);
         $khoikienthuc->delete();
 
-        return redirect()->route('khoikienthuc.index')->with('success', 'Khối kiến thức deleted successfully.');
+        return redirect()->route('khoikienthuc.index')->with('success', 'Đã xóa.');
     }
 }

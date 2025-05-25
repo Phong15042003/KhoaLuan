@@ -19,7 +19,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                              
+                                <th>STT</th>
                                 <th>Học phần</th>
                                 <th>T1</th>
                                 <th>T2</th>
@@ -35,7 +35,7 @@
                         <tbody>
                             @foreach ($hocphans as $hocphan)
                                 <tr>
-                                   
+                                   <td>{{ $loop->iteration }}</td>
                                     <td>{{ $hocphan->TenHocPhan }}</td>
                                     <td>{{ $hocphan->chuandaura->T1 ?? '' }}</td>
                                     <td>{{ $hocphan->chuandaura->T2 ?? '' }}</td>

@@ -43,7 +43,7 @@ class BomonController extends Controller
         $bomon->KhoaID = $request->KhoaID;
         $bomon->save();
 
-        return redirect()->route('bomon.index')->with('success', 'Bộ môn created successfully.');
+        return redirect()->route('bomon.index')->with('success', 'Đã thêm.');
     }
 
     /**
@@ -85,7 +85,7 @@ class BomonController extends Controller
         $bomon->KhoaID = $request->KhoaID;
         $bomon->save();
 
-        return redirect()->route('bomon.index')->with('success', 'Bộ môn updated successfully.');
+        return redirect()->route('bomon.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -96,6 +96,6 @@ class BomonController extends Controller
         $bomon = Bomon::findOrFail($id);
         $bomon->delete();
 
-        return redirect()->route('bomon.index')->with('success', 'Bộ môn deleted successfully.');
+        return redirect()->route('bomon.index')->with('success', 'Đã xóa.');
     }
 }

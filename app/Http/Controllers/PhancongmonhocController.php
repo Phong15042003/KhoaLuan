@@ -45,7 +45,7 @@ class PhancongmonhocController extends Controller
         $phancongmonhoc->HocPhanID = $request->HocPhanID;
         $phancongmonhoc->save();
 
-        return redirect()->route('phancongmonhoc.index')->with('success', 'Phân công môn học created successfully.');
+        return redirect()->route('phancongmonhoc.index')->with('success', 'Đã thêm phân công.');
     }
 
     /**
@@ -85,7 +85,7 @@ class PhancongmonhocController extends Controller
         $phancongmonhoc->HocPhanID = $request->HocPhanID;
         $phancongmonhoc->save();
 
-        return redirect()->route('phancongmonhoc.index')->with('success', 'Phân công môn học updated successfully.');
+        return redirect()->route('phancongmonhoc.index')->with('success', 'Đã cập nhật.');
     }
 
     /**
@@ -96,6 +96,6 @@ class PhancongmonhocController extends Controller
         $phancongmonhoc = Phancongmonhoc::findOrFail($id);
         $phancongmonhoc->delete();
 
-        return redirect()->route('phancongmonhoc.index')->with('success', 'Phân công môn học deleted successfully.');
+        return redirect()->route('phancongmonhoc.index')->with('success', 'Đã xóa.');
     }
 }

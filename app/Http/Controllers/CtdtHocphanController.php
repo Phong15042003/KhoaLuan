@@ -61,7 +61,7 @@ class CtdtHocphanController extends Controller
             $ctdtHocphan->save();
         }
 
-        return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần created successfully.');
+        return redirect()->route('ctdthocphan.index')->with('success', 'Đã lưu.');
     }
 
     
@@ -93,7 +93,7 @@ class CtdtHocphanController extends Controller
         $ctdtHocphan->HocPhanID = $request->HocPhanID;
         $ctdtHocphan->save();
 
-        return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần updated successfully.');
+        return redirect()->route('ctdthocphan.index')->with('success', 'Đã cập nhật.');
     }
 
  
@@ -102,7 +102,7 @@ class CtdtHocphanController extends Controller
         $ctdtHocphan = CtdtHocphan::findOrFail($id);
         $ctdtHocphan->delete();
 
-        return redirect()->route('ctdthocphan.index')->with('success', 'CTDT Học phần deleted successfully.');
+        return redirect()->route('ctdthocphan.index')->with('success', 'Đã xóa.');
     }
 
     public function getHocphans($ctdt_id)

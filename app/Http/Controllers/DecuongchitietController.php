@@ -82,7 +82,7 @@ class DecuongchitietController extends Controller
         $decuongchitiet->NoiDung = $request->NoiDung;
         $decuongchitiet->save();
 
-        return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết created successfully.');
+        return redirect()->route('decuongchitiet.index')->with('success', 'Đã thêm đề cương.');
     }
 
   
@@ -115,7 +115,7 @@ class DecuongchitietController extends Controller
         
         $decuongchitiet->save();
 
-        return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết updated successfully.');
+        return redirect()->route('decuongchitiet.index')->with('success', 'Đã cập nhật.');
     }
 
   
@@ -124,7 +124,7 @@ class DecuongchitietController extends Controller
         $decuongchitiet = Decuongchitiet::findOrFail($id);
         $decuongchitiet->delete();
 
-        return redirect()->route('decuongchitiet.index')->with('success', 'Đề cương chi tiết deleted successfully.');
+        return redirect()->route('decuongchitiet.index')->with('success', 'Đã xóa.');
     }
     //xuat pdf
     public function exportPDF($id)
