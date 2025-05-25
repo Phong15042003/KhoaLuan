@@ -125,7 +125,12 @@ public function show($id)
         return view('chuongtrinhdaotao.changed-courses', compact('changedHocphans'));
     }
 
-    
+    public function showHocky($id)
+    {
+        $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);
+        $hocphansByHocky = $chuongtrinhdaotao->hocphans->sortBy('HocKy')->groupBy('HocKy');
+        return view('chuongtrinhdaotao.showhocky', compact('chuongtrinhdaotao', 'hocphansByHocky'));
+    }
     public function showKhoikienthuc($id)
     {
         $chuongtrinhdaotao = Chuongtrinhdaotao::findOrFail($id);

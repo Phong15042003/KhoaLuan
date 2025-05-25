@@ -8,6 +8,8 @@ use App\Models\Loaihocphan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\HocphanImport;
+use App\Exports\HocphanExport;
+use App\Models\Chuongtrinhdaotao;
 class HocphanController extends Controller
 {
     
@@ -167,4 +169,21 @@ class HocphanController extends Controller
 
         return redirect()->route('hocphan.index')->with('success', 'Nhập học phần thành công!');
     }
+    //export execl
+public function export(Request $request)
+{
+    $ctdt_id = $request->chuongtrinhdaotao_id;
+    $tenChuongTrinh = 'tatca';
+
+    if ($ctdt_id) {
+        $ctdt = Chuongtrinhdaotao::find($ctdt_id);
+        if ($ctdt) {
+            // Chuyển tên thành định dạng không dấu, không khoảng trắng
+            $tenChuongTrinh = str_replace(' ', '_', $ctdt->TenChuongTrinh);
+        }
+    }
+
+    $filename = $tenChuongTrinh . '-export.xlsx';
+    return Excel::download(new \App\Exports\HocphanExport($ctdt_id), $filename);
+}
 }
