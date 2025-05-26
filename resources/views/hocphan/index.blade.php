@@ -42,7 +42,22 @@
                             <a href="{{ route('hocphan.index') }}" class="btn btn-danger">Xóa lọc</a>
                         @endif
                     </div>
+                    
                     @endif
+                           <form action="{{ route('hocphan.index') }}" method="GET" class="d-flex align-items-center">
+                            <select name="chuongtrinhdaotao_id" onchange="this.form.submit()" class="form-select form-select-sm w-auto" style="min-width: 250px;">
+                                <option value="">-- Tất cả môn học --</option>
+                                @foreach($chuongtrinhdaotaos as $ctdt)
+                                    <option value="{{ $ctdt->id }}" {{ request('chuongtrinhdaotao_id') == $ctdt->id ? 'selected' : '' }}>
+                                        {{ $ctdt->TenChuongTrinh }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </form>
+
+                        @if(request('chuongtrinhdaotao_id'))
+                            <a href="{{ route('hocphan.index') }}" class="btn btn-danger">Xóa lọc</a>
+                        @endif
                     
                     <div class="table-responsive">
                         <table class="table table-bordered" style="width: 100%;">
@@ -81,14 +96,17 @@
                                         <td>{{ $hocphan->khoikienthuc->TenKhoi ?? '' }}</td>
                                         <td>{{ $hocphan->HocKy }}</td>
                                         <td>
-                                            <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning btn-sm">Sửa</a>
-                                            <form action="{{ route('hocphan.destroy', $hocphan->id) }}" method="POST" style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa học phần này?')">
-                                                    Xóa
-                                                </button>
-                                            </form>
+                                            @if(auth()->user()->vaitro == 'admin' || auth()->user()->vaitro == 'biensoan')
+                                                <a href="{{ route('hocphan.edit', $hocphan->id) }}" class="btn btn-warning btn-sm">Sửa</a>
+                                                <form action="{{ route('hocphan.destroy', $hocphan->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa học phần này?')">
+                                                        Xóa
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <a href="{{ route('hocphan.show', $hocphan->id) }}" class="btn btn-info btn-sm">Xem</a>
                                         </td>
                                     </tr>
                                 @empty

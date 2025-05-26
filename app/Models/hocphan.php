@@ -58,9 +58,9 @@ class Hocphan extends Model
     /**
      * Get the decuongchitiets for the hocphan.
      */
-    public function decuongchitiets()
+    public function decuongchitiet()
     {
-        return $this->hasMany(Decuongchitiet::class, 'HocPhanID');
+        return $this->hasOne(Decuongchitiet::class, 'HocPhanID');
     }
 
     /**

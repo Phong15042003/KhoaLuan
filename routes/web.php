@@ -94,6 +94,7 @@ Route::delete('/hocphan/{id}', [HocphanController::class, 'destroy'])->name('hoc
 Route::get('/hocphan/excel', [HocphanController::class, 'excel'])->name('hocphan.excel');
 Route::post('/hocphan/import', [HocphanController::class, 'import'])->name('hocphan.import');
 Route::get('/hocphan/export', [HocphanController::class, 'export'])->name('hocphan.export');
+Route::get('/hocphan/{id}', [HocphanController::class, 'show'])->name('hocphan.show');
 
 //chuongtrinhdaotao
 Route::get('/chuongtrinhdaotao', [ChuongtrinhdaotaoController::class, 'index'])->name('chuongtrinhdaotao.index');
@@ -159,6 +160,10 @@ Route::get('/phancongmonhoc/{id}/edit', [App\Http\Controllers\PhancongmonhocCont
 Route::put('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'update'])->name('phancongmonhoc.update');
 Route::get('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'show'])->name('phancongmonhoc.show');
 Route::delete('/phancongmonhoc/{id}', [App\Http\Controllers\PhancongmonhocController::class, 'destroy'])->name('phancongmonhoc.destroy');
+Route::get('/lay-hoc-phan-theo-ctdt/{id}', function($id) {
+    $ctdt = \App\Models\Chuongtrinhdaotao::with('hocphans')->find($id);
+    return response()->json($ctdt->hocphans);
+});
 
 //chuandaura
 Route::get('/chuandaura', [App\Http\Controllers\ChuandauraController::class, 'index'])->name('chuandaura.index');

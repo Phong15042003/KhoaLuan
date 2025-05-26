@@ -28,21 +28,16 @@ class CtdtHocphanController extends Controller
     public function create()
     {
         $chuongtrinhdaotaos = Chuongtrinhdaotao::all();
+    $firstCTDT = $chuongtrinhdaotaos->first();
 
-        // Nếu không có chương trình nào thì không hiển thị học phần
-        $firstCTDT = $chuongtrinhdaotaos->first();
-    
-        $existingHocPhanIDs = [];
-        if ($firstCTDT) {
-            $existingHocPhanIDs = CtdtHocphan::where('CTDT_ID', $firstCTDT->id)->pluck('HocPhanID')->toArray();
-        }
-    
-        $hocphans = Hocphan::with('khoikienthuc')
-            ->whereNotIn('id', $existingHocPhanIDs)
-            ->get()
-            ->groupBy('KhoiKienThucID');
-    
-        return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans', 'firstCTDT'));
+    // ❗ Lấy danh sách học phần chưa được gán vào bất kỳ CTDT nào
+    $usedHocPhanIDs = CtdtHocphan::pluck('HocPhanID');
+    $hocphans = Hocphan::with('khoikienthuc')
+        ->whereNotIn('id', $usedHocPhanIDs)
+        ->get()
+        ->groupBy('KhoiKienThucID');
+
+    return view('ctdthocphan.create', compact('chuongtrinhdaotaos', 'hocphans', 'firstCTDT'));
     }
 
   

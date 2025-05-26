@@ -42,12 +42,16 @@
                                     <td>{{ $khoahoc->NamBatDau }}</td>
                                     <td>{{ $khoahoc->NamKetThuc }}</td>
                                     <td>
-                                        <a href="{{ route('khoahoc.edit', $khoahoc->id) }}" class="btn btn-warning">Sửa</a>
-                                        <form action="{{ route('khoahoc.destroy', $khoahoc->id) }}" method="POST" style="display:inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
-                                        </form>
+                                        @auth
+                                            @if (auth()->user()->vaitro === 'admin')
+                                                <a href="{{ route('khoahoc.edit', $khoahoc->id) }}" class="btn btn-warning">Sửa</a>
+                                                <form action="{{ route('khoahoc.destroy', $khoahoc->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Xóa</button>
+                                                </form>
+                                            @endif
+                                        @endauth
                                         <a href="{{ route('khoahoc.show', $khoahoc->id) }}" class="btn btn-info">Chi tiết</a>
                                     </td>
                                 </tr>

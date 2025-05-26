@@ -21,14 +21,19 @@
                     <form method="POST" action="{{ route('decuongchitiet.store') }}">
                         @csrf
 
-                        <div class="form-group">
-                            <label for="HocPhanID">Học phần</label>
-                            <select class="form-control" id="HocPhanID" name="HocPhanID" required>
-                                @foreach ($hocphans as $hocphan)
-                                    <option value="{{ $hocphan->id }}">{{ $hocphan->TenHocPhan }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                     <div class="form-group">
+    <label for="HocPhanID">Học phần</label>
+    <select class="form-control" id="HocPhanID" name="HocPhanID" required {{ count($hocphans) == 0 ? 'disabled' : '' }}>
+        @if(count($hocphans) > 0)
+            <option value="">-- Chọn học phần --</option>
+            @foreach ($hocphans as $hocphan)
+                <option value="{{ $hocphan->id }}">{{ $hocphan->TenHocPhan }}</option>
+            @endforeach
+        @else
+            <option>Không còn môn học nào để soạn đề cương.</option>
+        @endif
+    </select>
+</div>
 
                         <div class="form-group mt-4">
                             <label for="NoiDung"><strong>Nội dung đề cương chi tiết</strong></label>
@@ -112,7 +117,13 @@
                             </textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">Thêm</button>
+                        @if(count($hocphans) > 0)
+    <button type="submit" class="btn btn-primary mt-3">Thêm</button>
+@else
+    <div class="alert alert-warning mt-4">
+        🎓 Bạn đã soạn đề cương cho tất cả các học phần được phân công.
+    </div>
+@endif
                     </form>
                 </div>
             </div>

@@ -82,7 +82,7 @@ class HocphanController extends Controller
  
     public function show($id)
     {
-        $hocphan = Hocphan::findOrFail($id);
+          $hocphan = Hocphan::with('decuongchitiet')->findOrFail($id);
         return view('hocphan.show', compact('hocphan'));
     }
 

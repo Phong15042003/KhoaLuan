@@ -5,9 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Học phần Details') }}</div>
+                <div class="card-header">{{ __('Thông tin học phần') }}</div>
 
                 <div class="card-body">
+                    @php
+    $decuong = $hocphan->decuongchitiet;
+@endphp
+
+@if ($decuong)
+    <a href="{{ route('decuongchitiet.show', $decuong->id) }}" class="btn btn-success">
+        📄 Xem đề cương chi tiết
+    </a>
+@else
+    <span class="badge bg-warning text-dark">❌ Học phần này chưa có đề cương.</span>
+@endif
                     <p><strong>Mã Học phần:</strong> {{ $hocphan->MaHocPhan }}</p>
                     <p><strong>Tên Học phần:</strong> {{ $hocphan->TenHocPhan }}</p>
                     <p><strong>Tên Học phần Tiếng Anh:</strong> {{ $hocphan->TenHocPhanTiengAnh }}</p>

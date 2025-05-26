@@ -6,6 +6,7 @@ use App\Models\Phancongmonhoc;
 use App\Models\User;
 use App\Models\Hocphan;
 use Illuminate\Http\Request;
+use App\Models\Chuongtrinhdaotao;
 
 class PhancongmonhocController extends Controller
 {
@@ -23,9 +24,9 @@ class PhancongmonhocController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $hocphans = Hocphan::all();
-        return view('phancongmonhoc.create', compact('users', 'hocphans'));
+         $users = User::all();
+    $chuongtrinhdaotaos = Chuongtrinhdaotao::all(); // Lấy danh sách CTĐT
+    return view('phancongmonhoc.create', compact('users', 'chuongtrinhdaotaos'));
     }
 
     /**

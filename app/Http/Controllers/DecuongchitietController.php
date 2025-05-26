@@ -50,9 +50,11 @@ class DecuongchitietController extends Controller
             abort(403, 'Bạn không có quyền truy cập trang này.');
         }
 
-        $hocphans = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
-            $query->where('giangvien_id', $user->id);
-        })->get();
+       $hocphans = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
+    $query->where('giangvien_id', $user->id);
+})
+->whereDoesntHave('decuongchitiets') // chỉ lấy học phần chưa có đề cương
+->get();
 
         return view('decuongchitiet.create', compact('hocphans'));
     }
