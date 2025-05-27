@@ -27,20 +27,7 @@
                         <a href="{{ route('hocphan.create') }}" class="btn btn-primary">Thêm học phần</a>
                         <a href="{{ route('hocphan.excel') }}" class="btn btn-primary">Thêm bằng excel</a>
                         <a href="{{ route('hocphan.export', ['chuongtrinhdaotao_id' => request('chuongtrinhdaotao_id')]) }}" class="btn btn-primary">Xuất file excel</a>
-                        <form action="{{ route('hocphan.index') }}" method="GET" class="d-flex align-items-center">
-                            <select name="chuongtrinhdaotao_id" onchange="this.form.submit()" class="form-select form-select-sm w-auto" style="min-width: 250px;">
-                                <option value="">-- Tất cả môn học --</option>
-                                @foreach($chuongtrinhdaotaos as $ctdt)
-                                    <option value="{{ $ctdt->id }}" {{ request('chuongtrinhdaotao_id') == $ctdt->id ? 'selected' : '' }}>
-                                        {{ $ctdt->TenChuongTrinh }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </form>
-
-                        @if(request('chuongtrinhdaotao_id'))
-                            <a href="{{ route('hocphan.index') }}" class="btn btn-danger">Xóa lọc</a>
-                        @endif
+                       
                     </div>
                     
                     @endif

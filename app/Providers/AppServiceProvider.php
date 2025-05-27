@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('*', function ($view) {
+         View::composer('*', function ($view) {
         $soMonChuaCoDeCuong = 0;
 
         if (Auth::check() && Auth::user()->vaitro === 'giangvien') {
@@ -32,9 +32,9 @@ class AppServiceProvider extends ServiceProvider
                 $query->where('giangvien_id', $user->id);
             })->get();
 
-            // Đếm số môn chưa có đề cương
+            // Đếm số môn chưa có đề cương (dùng optional để tránh lỗi null)
             $soMonChuaCoDeCuong = $hocphans->filter(function ($hp) {
-                return $hp->decuongchitiets->count() == 0;
+                return optional($hp->decuongchitiet)->count() == 0;
             })->count();
         }
 

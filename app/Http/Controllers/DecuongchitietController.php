@@ -53,7 +53,7 @@ class DecuongchitietController extends Controller
        $hocphans = Hocphan::whereHas('phancongmonhocs', function ($query) use ($user) {
     $query->where('giangvien_id', $user->id);
 })
-->whereDoesntHave('decuongchitiets') // chỉ lấy học phần chưa có đề cương
+->whereDoesntHave('decuongchitiet') // chỉ lấy học phần chưa có đề cương
 ->get();
 
         return view('decuongchitiet.create', compact('hocphans'));
